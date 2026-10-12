@@ -17,7 +17,7 @@
 | L-03 | Guardrails → NFR (≤10 алертов/час, ≤60 запросов/мин к 1С) | базис | доп. `07_nonfunctional_requirements.md` | Must |
 | L-04 | Бизнес-кейс / ROI (цифры проблемы как допущения с расчётом) | допущения | `business_case.md` | Must |
 | L-05 | Метод и каркас оценки стоимости | UC, NFR | `cost/cost_estimation.md` (шаблон + «порядок величины») | Must |
-| L-06 | Эпики бэклога из UC1–UC7 | UC | `backlog/product_backlog.md` | Must |
+| L-06 | Эпики бэклога из UC1–UC8 | UC | `backlog/product_backlog.md` | Must |
 | L-07 | Реестр проектных рисков и допущений с владельцами | базис | `risks_register.md`, `assumptions_log.md` | Should |
 | L-08 | RACI/коммуникации, milestones, DoR/DoD | — | разделы `roadmap_and_plan.md`, `backlog/` | Should |
 | L-09 | Журнал изменений базиса (change control) | — | `change_log.md` | Should |
@@ -40,7 +40,7 @@
 
 | Точка | Направление | Что передаётся | Формат | Когда |
 | --- | --- | --- | --- | --- |
-| I-1 Базис 01–10 | общее | Vision, UC1–UC7, Domain Model, NFR, Glossary | файлы `01…10` | заморожено |
+| I-1 Базис 01–10 | общее | Vision, UC1–UC8, Domain Model, NFR, Glossary | файлы `01…10` | заморожено |
 | I-2 Юр-требования → FR/UI | Ведущий → Коллега | LGL-01…14 с колонкой «куда влияет» | `legal/…`, таблица LGL | Волна 1 |
 | I-3 FR-скелет → эпики | Коллега → Ведущий | перечень функциональных блоков + карта экранов | `requirements/…` (v-скелет) | Gate 1 |
 | I-4 FR ID ↔ US ID | Коллега → Ведущий | схема `FR-xx`; ведущий ссылается `US-xx → FR-xx` | соглашение об ID | Волна 2 |
