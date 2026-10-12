@@ -4,18 +4,20 @@
 
 ## 1. Матрица
 
-| UC / источник | FR (коллега) | UI / BPMN | Эпик | Стоимость | Юр-требование | Статус |
+| UC / источник | FR (коллега) | UI / BPMN | Эпик | Стоимость, ₽ | Юр-требование | Статус |
 | --- | --- | --- | --- | --- | --- | --- |
-| UC1 Синхронизация партии | FR-01, FR-02, FR-15 | BPMN uc1 | EPIC-01, EPIC-02 | TBD | — | 🟢 FR |
-| UC2 Предиктивный алерт | FR-03, FR-04, FR-05, FR-06, FR-12 | BPMN uc2; seq uc2/uc3; state | EPIC-03, EPIC-04, EPIC-11 | TBD | LGL-04, LGL-09, LGL-10, LGL-11, LGL-14 | 🟢 FR |
-| UC3 Корректирующее действие | FR-06 | BPMN uc3; seq uc2/uc3; state | EPIC-05 | TBD | LGL-04 | 🟢 FR |
-| UC4 Внеплановый отбор | FR-07, FR-08 | BPMN uc4; seq uc4 | EPIC-06 | TBD | — | 🟢 FR |
-| UC5 Получение результатов (Ground Truth) | FR-08, FR-09, FR-15 | BPMN uc5; seq uc5 | EPIC-07 | TBD | LGL-01, LGL-02, LGL-07, LGL-11 | 🟢 FR |
-| UC6 Валидация и разметка | FR-11, FR-12 | BPMN uc6; state | EPIC-10 | TBD | LGL-03 | 🟢 FR |
-| UC7 Cold Start | FR-10, FR-04 | BPMN uc7 | EPIC-08, EPIC-09 | TBD | — | 🟢 FR |
-| UC8 Мониторинг телеметрии (КИПиА) | FR-16 | BPMN uc8 (черновик) | EPIC-14, EPIC-02 | TBD | — | 🟢 FR |
-| NFR (07) | — | — | EPIC-11, EPIC-12 | TBD | LGL-03 | 🟢 базис готов |
-| Legal (LGL-01…14) | FR-09 (LGL-01/02/07), FR-06/08/14 (LGL-04/10/11), FR-14 (LGL-05/06), FR-04/11 (LGL-13) | §H чек-лист | EPIC-12 | TBD | — | 🟡 карта покрытия — Gate 3 |
+| UC1 Синхронизация партии | FR-01, FR-02, FR-15 | BPMN uc1 | EPIC-01, EPIC-02 | 1 450 000 | LGL-08 | 🟢 FR+стоимость |
+| UC2 Предиктивный алерт | FR-03, FR-04, FR-05, FR-06, FR-12 | BPMN uc2; seq uc2/uc3; state | EPIC-03, EPIC-04, EPIC-11 | 1 250 000 | LGL-04, LGL-09, LGL-10, LGL-11, LGL-14 | 🟢 FR+стоимость |
+| UC3 Корректирующее действие | FR-06 | BPMN uc3; seq uc2/uc3; state | EPIC-05 | 450 000 | LGL-04, LGL-10 | 🟢 FR+стоимость |
+| UC4 Внеплановый отбор | FR-07, FR-08 | BPMN uc4; seq uc4 | EPIC-06 | 400 000 | — | 🟢 FR+стоимость |
+| UC5 Получение результатов (Ground Truth) | FR-08, FR-09, FR-15 | BPMN uc5; seq uc5 | EPIC-07 | 300 000 | LGL-01, LGL-02, LGL-07, LGL-11 | 🟢 FR+стоимость |
+| UC6 Валидация и разметка | FR-11, FR-12 | BPMN uc6; state | EPIC-10 | 550 000 | LGL-03, LGL-13 | 🟢 FR+стоимость |
+| UC7 Cold Start | FR-10, FR-04 | BPMN uc7 | EPIC-08, EPIC-09 | 1 500 000 | — | 🟢 FR+стоимость |
+| UC8 Мониторинг телеметрии (КИПиА) | FR-16 | BPMN uc8 (черновик) | EPIC-14, EPIC-02 | 300 000 | — | 🟢 FR+стоимость |
+| NFR (07) | — | — | EPIC-12 (сквозной) | 540 000 | LGL-03 | 🟢 базис готов |
+| Legal (LGL-01…14) | см. §4 | §H чек-лист | EPIC-12 | сквозной | — | 🟢 см. §4 |
+
+Атрибутировано по UC: 6 200 000 ₽; сквозные (EPIC-12 540 000 + EPIC-13 350 000 = 890 000 ₽) не привязаны к одному UC. Итого сметы — 7 090 000 ₽ (`cost/cost_estimation.md`, §8).
 
 Обозначения статуса: 🟢 готово, 🟡 в работе/ожидает, 🔴 конфликт.
 
@@ -31,4 +33,25 @@
 - Метрики: `kpi.md` (цели по слоям + Baseline) — данные экрана «Метрики модели» (I-10).
 - Экономика: `business_case.md` (ROI), `cost/cost_estimation.md` (метод и оценка по эпикам).
 - Открытые вопросы и допущения: `open_questions.md` (OQ-01…06).
-- Цели: `backlog/product_backlog.md` (эпики), `cost/cost_estimation.md` (стоимость), будущие `requirements/functional_requirements.md`, `requirements/ui_requirements.md`, `diagrams/`.
+- Цели: `backlog/product_backlog.md` (эпики), `cost/cost_estimation.md` (стоимость), `requirements/functional_requirements.md`, `requirements/ui_requirements.md`, `diagrams/`.
+
+## 4. Матрица покрытия юридических требований (LGL → FR/SCR/BPMN)
+
+| LGL | Суть | FR | SCR / UI | BPMN / диаграмма | Статус |
+| --- | --- | --- | --- | --- | --- |
+| LGL-01 | Утверждённые результаты из 1С; ФГИС — контур 1С | FR-08.1, FR-09.3 | SCR-04, SCR-05 | bpmn_uc5_ground_truth | 🟢 |
+| LGL-02 | Юрзначимость/ЭП — в контуре 1С; аудит-след рекомендаций | FR-09.1, FR-14.3 | SCR-05 | bpmn_uc5_ground_truth | 🟢 |
+| LGL-03 | Валидация ПО, неизменяемость и аудит записей | FR-02.5, FR-03.3, FR-14.3 | SCR-11 | — | 🟢 |
+| LGL-04 | HITL-разграничение (советует/решает) | FR-06.7 | UI-01…UI-08 | bpmn_uc2, bpmn_uc3 | 🟢 |
+| LGL-05 | ПДн: минимизация, RBAC | FR-14.1, FR-14.2 | SCR-11 | — | 🟢 |
+| LGL-06 | Сроки хранения данных | FR-02.5, FR-14.2 | — | — | 🟡 OQ-05 |
+| LGL-07 | Запрет формирования/подписания протоколов в AquaPredict | FR-09.1, FR-09.4 | SCR-05 | bpmn_uc5_ground_truth | 🟢 |
+| LGL-08 | Прослеживаемость (Track & Trace) | FR-01.5 | — | bpmn_uc1_party_telemetry | 🟢 |
+| LGL-09 | Раскрытие вероятностного характера и рабочей точки | FR-05.3, FR-13.2 | SCR-06, SCR-11 | state_model_and_batch | 🟢 |
+| LGL-10 | Аудит: «рекомендация / решение / действие» | FR-06.3, FR-06.4, FR-14.3 | SCR-02, SCR-03 | state_incident_alert_task | 🟢 |
+| LGL-11 | Браковка — только по лабораторному контролю и ЭП | FR-06.7, FR-08.3 | SCR-04 | bpmn_uc5_ground_truth | 🟢 |
+| LGL-12 | Договорное ограничение ответственности | — (договор, вне FR) | — | — | 🟢 |
+| LGL-13 | Мониторинг дрейфа и переобучение | FR-04.5, FR-11.5, FR-11.6 | SCR-06 | bpmn_uc6_retraining, state_model_and_batch | 🟢 |
+| LGL-14 | Automation bias: предупреждения и выборочный контроль | FR-14.4, FR-14.5 | SCR-11 | — | 🟢 |
+
+Единственная неснятая зависимость — **LGL-06** (сроки хранения): ждёт ответа заказчика (OQ-05). Остальные требования покрыты FR/SCR/BPMN.
