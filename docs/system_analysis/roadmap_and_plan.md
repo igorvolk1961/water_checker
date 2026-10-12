@@ -122,4 +122,5 @@ gantt
 - Начато: юр-раздел (`legal/legal_risks_and_requirements.md`) — часть, не зависящая от FR.
 - Созданы каркасы: `traceability.md`, `backlog/product_backlog.md`.
 - Независимый фронт ведущего (§6) стартует немедленно, не ожидая FR.
+- Готово: L-01 (юридические требования, `legal/`), L-02 (KPI-спецификация, `kpi.md`), L-06 (эпики, `backlog/`), плюс `requirements/measured_parameters.md` и расширенный глоссарий.
 - Ожидается от коллеги: FR-скелет и карта экранов (Gate 1).

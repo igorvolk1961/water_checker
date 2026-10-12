@@ -27,4 +27,5 @@
 ## 3. Связь с другими артефактами
 
 - Источники: `04_use_cases.md` (UC1–UC7), `07_nonfunctional_requirements.md` (NFR), `legal/legal_risks_and_requirements.md` (LGL), `requirements/measured_parameters.md` (TEL/LAB — параметры для KPI/FR/UI).
+- Метрики: `kpi.md` (пофазные цели + Baseline) — данные экрана «Метрики модели» (I-10).
 - Цели: `backlog/product_backlog.md` (эпики), `cost/cost_estimation.md` (стоимость), будущие `requirements/functional_requirements.md`, `requirements/ui_requirements.md`, `diagrams/`.
