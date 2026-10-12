@@ -91,14 +91,16 @@
 | Диаграммы | [diagrams/](docs/system_analysis/diagrams/) (BPMN, sequence, state) |
 | Право | [legal_risks_and_requirements.md](docs/system_analysis/legal/legal_risks_and_requirements.md) (LGL-01…14) |
 | Экономика | [business_case.md](docs/system_analysis/business_case.md), [cost_estimation.md](docs/system_analysis/cost/cost_estimation.md) |
-| Управление | [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md), [backlog/](docs/system_analysis/backlog/), [plans/](docs/system_analysis/plans/), [traceability.md](docs/system_analysis/traceability.md), [change_log.md](docs/system_analysis/change_log.md) |
+| Инфраструктура/стек | [hardware_requirements.md](docs/system_analysis/hardware_requirements.md), [architecture_stack.md](docs/system_analysis/architecture_stack.md) |
+| Договор и ТЗ | [contract_draft.md](docs/system_analysis/legal/contract_draft.md), [tz_draft.md](docs/system_analysis/legal/tz_draft.md) |
+| Управление | [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md), [backlog_implementation_plan.md](docs/system_analysis/plans/backlog_implementation_plan.md), [backlog/](docs/system_analysis/backlog/), [traceability.md](docs/system_analysis/traceability.md), [change_log.md](docs/system_analysis/change_log.md) |
 
 ## Статус ворот (Gate 0–4)
 
 - **Gate 0** — базис заморожен (вариант A), правила приняты. ✅
 - **Gate 1** — FR-скелет и карта экранов. ✅
 - **Gate 2** — FR v1.1, UI v0.3, BPMN/sequence/state; решения по вопросам коллеги приняты. ✅
-- **Gate 3** — FR/UI/BPMN заморожены, стоимость (проход 2 ≈ 8,5 млн ₽), матрица трассируемости и покрытия LGL. 🔄 идёт финализация (см. [request](docs/system_analysis/reviews/2026-10-13_lead_to_colleague_request.md)).
+- **Gate 3** — FR/UI/BPMN заморожены, стоимость (проход 2: ПО ≈ 7,09 + оборудование ≈ 2,28 → CAPEX ≈ 11,2 млн ₽), матрица трассируемости и покрытия LGL (LGL-06 закрыт). 🔄 осталось: действия коллеги по чек-листу (см. [request](docs/system_analysis/reviews/2026-10-13_lead_to_colleague_request.md)).
 - **Gate 4** — финальный чек-лист, пояснительная записка, защита. ⏳
 
 ## Роли и правила работы
@@ -129,9 +131,9 @@
   - [services/](src/aquapredict/services/), [api/](src/aquapredict/api/) — сервисы и HTTP-слой
 - [tests/](tests/) — тесты (unit/integration)
 
-## Открытые вопросы (к заказчику)
+## Вводные заказчика
 
-Актуальные вводные и принятые решения — в [open_questions.md](docs/system_analysis/open_questions.md) (OQ-01…OQ-06). Закрыто: сроки хранения данных — 1 год (LGL-06). Ожидает: SLA чтения партий, вид ЭП/подписант.
+Все вводные закрыты — решения в [open_questions.md](docs/system_analysis/open_questions.md) (OQ-01…OQ-11) и реестре допущений [assumptions_log.md](docs/system_analysis/assumptions_log.md) (ASM-01…ASM-17). Открытых вопросов к заказчику нет.
 
 ## Примечание
 
