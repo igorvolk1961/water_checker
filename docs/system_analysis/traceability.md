@@ -32,7 +32,7 @@
 - Источники: `04_use_cases.md` (UC1–UC8), `07_nonfunctional_requirements.md` (NFR), `legal/legal_risks_and_requirements.md` (LGL), `requirements/measured_parameters.md` (TEL/LAB — параметры для KPI/FR/UI).
 - Метрики: `kpi.md` (цели по слоям + Baseline) — данные экрана «Метрики модели» (I-10).
 - Экономика: `business_case.md` (ROI), `cost/cost_estimation.md` (метод и оценка по эпикам).
-- Открытые вопросы и допущения: `open_questions.md` (OQ-01…06).
+- Открытые вопросы и допущения: `open_questions.md` (OQ-01…OQ-11), `assumptions_log.md`.
 - Цели: `backlog/product_backlog.md` (эпики), `cost/cost_estimation.md` (стоимость), `requirements/functional_requirements.md`, `requirements/ui_requirements.md`, `diagrams/`.
 
 ## 4. Матрица покрытия юридических требований (LGL → FR/SCR/BPMN)

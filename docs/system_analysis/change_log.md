@@ -41,5 +41,6 @@
 | 2026-10-13 | legal, `open_questions.md`, `assumptions_log.md`, FR, `traceability.md`, `roadmap_and_plan.md` | Решение заказчика: срок хранения логов/телеметрии в AquaPredict — **1 год** (LGL-06 закрыт, статус 🟢) | Заказчик | Закрытие LGL-06 (OQ-05) | FR/legal/трассируемость | Ведущий |
 | 2026-10-13 | legal, `open_questions.md`, `assumptions_log.md`, FR, `traceability.md`, `bpmn_uc5_ground_truth.md`, `sequence_uc5_ground_truth.md` | Решение заказчика: подписант протокола — руководитель лаборатории, **ПЭП** (OQ-01, LGL-02 закрыт) | Заказчик | Закрытие OQ-01 | legal/FR/трассируемость | Ведущий |
 | 2026-10-13 | `assumptions_log.md`, `open_questions.md`, `09_assumptions_and_constraints.md` | Заказчик одобрил **все допущения ASM-01…ASM-15** и ответы OQ-02…OQ-06; статусы переведены в 🟢 | Заказчик | Подтверждение допущений | все | Ведущий |
+| 2026-10-13 | legal, `open_questions.md`, `business_case.md`, `cost/cost_estimation.md`, `traceability.md`, `roadmap_and_plan.md` | Решения заказчика: формат/версия ФГИС (§E.2), ограничение ответственности (§E.4/LGL-12), ПДн (§E.5), Track & Trace (LGL-08), бюджет — фазовый MVP (OQ-07…OQ-11) | Заказчик | Закрытие вопросов §E и бюджета | все | Ведущий |
 
 > Таблица заполняется по мере изменений.
