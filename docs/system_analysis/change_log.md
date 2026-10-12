@@ -40,5 +40,6 @@
 | 2026-10-13 | FR, `state_incident_alert_task.md`, `traceability.md`, `roadmap_and_plan.md`, `change_log.md` | Правки консистентности Gate 3: UI v0.3, ссылки на матрицу §4, переход КА[Отменено]→Новый в state-машине, статус Gate 1–3, пометки о переименованиях | Ведущий | Консистентность (Gate 3) | FR/UI/трассируемость | Ведущий |
 | 2026-10-13 | legal, `open_questions.md`, `assumptions_log.md`, FR, `traceability.md`, `roadmap_and_plan.md` | Решение заказчика: срок хранения логов/телеметрии в AquaPredict — **1 год** (LGL-06 закрыт, статус 🟢) | Заказчик | Закрытие LGL-06 (OQ-05) | FR/legal/трассируемость | Ведущий |
 | 2026-10-13 | legal, `open_questions.md`, `assumptions_log.md`, FR, `traceability.md`, `bpmn_uc5_ground_truth.md`, `sequence_uc5_ground_truth.md` | Решение заказчика: подписант протокола — руководитель лаборатории, **ПЭП** (OQ-01, LGL-02 закрыт) | Заказчик | Закрытие OQ-01 | legal/FR/трассируемость | Ведущий |
+| 2026-10-13 | `assumptions_log.md`, `open_questions.md`, `09_assumptions_and_constraints.md` | Заказчик одобрил **все допущения ASM-01…ASM-15** и ответы OQ-02…OQ-06; статусы переведены в 🟢 | Заказчик | Подтверждение допущений | все | Ведущий |
 
 > Таблица заполняется по мере изменений.
