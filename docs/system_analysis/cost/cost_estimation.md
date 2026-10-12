@@ -47,13 +47,13 @@
 | --- | --- | --- | --- | --- |
 | EPIC-01 Интеграция с «БИТ.Лаборатория» | 1С/backend | TBD | TBD | OData/HTTP |
 | EPIC-02 Сбор телеметрии | backend/DevOps | TBD | TBD | OPC-UA/MQTT |
-| EPIC-03 Движок риск-скоринга Фаза 1 | ML/backend | TBD | TBD | rules |
+| EPIC-03 Движок риск-скоринга Слой 1 | ML/backend | TBD | TBD | rules |
 | EPIC-04 Предиктивные алерты | backend/frontend | TBD | TBD | — |
 | EPIC-05 Корректирующие действия | backend/frontend | TBD | TBD | workflow |
 | EPIC-06 Внеплановый отбор | backend/frontend | TBD | TBD | — |
 | EPIC-07 Протокол и ФГИС | backend/1С | TBD | TBD | экспорт XML |
 | EPIC-08 Cold Start (ETL/Baseline/Shadow) | ML/backend | TBD | TBD | — |
-| EPIC-09 Движок риск-скоринга Фаза 2 | ML | TBD | TBD | — |
+| EPIC-09 Движок риск-скоринга Слой 2 | ML | TBD | TBD | — |
 | EPIC-10 MLOps (разметка/дрейф) | ML | TBD | TBD | — |
 | EPIC-11 Дашборд метрик | frontend | TBD | TBD | экран «Метрики модели» |
 | EPIC-12 Безопасность/ПДн/ЭП/аудит | backend/юрист | TBD | TBD | сквозной |
@@ -75,7 +75,7 @@
 | --- | --- | --- |
 | Анализ и проектирование | 300 | аналитики |
 | Backend | 900 | backend |
-| ML-модуль (Фаза 1 + Cold Start) | 600 | ML |
+| ML-модуль (Слой 1 + Cold Start) | 600 | ML |
 | Frontend (веб-консоль) | 400 | frontend |
 | Интеграции (1С OData/HTTP, OPC-UA/MQTT) | 400 | backend/1С |
 | Тестирование и валидация ПО | 300 | QA |
