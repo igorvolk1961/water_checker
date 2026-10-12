@@ -54,6 +54,8 @@
     - [state_model_and_batch.md](docs/system_analysis/diagrams/state_model_and_batch.md)
   - [legal/](docs/system_analysis/legal/)
     - [legal_risks_and_requirements.md](docs/system_analysis/legal/legal_risks_and_requirements.md) — юридические риски и требования (LGL)
+    - [contract_draft.md](docs/system_analysis/legal/contract_draft.md) — проект договора на выполнение работ
+    - [tz_draft.md](docs/system_analysis/legal/tz_draft.md) — проект технического задания
   - [cost/](docs/system_analysis/cost/)
     - [cost_estimation.md](docs/system_analysis/cost/cost_estimation.md) — оценка стоимости (2 прохода)
   - [backlog/](docs/system_analysis/backlog/)
