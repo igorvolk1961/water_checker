@@ -32,6 +32,7 @@
   - [assumptions_log.md](docs/system_analysis/assumptions_log.md) — реестр допущений
   - [change_log.md](docs/system_analysis/change_log.md) — журнал изменений базиса
   - [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md) — волны, ворота, RACI, DoR/DoD
+  - [architecture_stack.md](docs/system_analysis/architecture_stack.md) — технологический стек (FastAPI, PostgreSQL, Redis и др.)
   - [requirements/](docs/system_analysis/requirements/)
     - [functional_requirements.md](docs/system_analysis/requirements/functional_requirements.md) — функциональные требования FR-01…FR-16
     - [ui_requirements.md](docs/system_analysis/requirements/ui_requirements.md) — требования к UI (SCR-01…SCR-12, ST-01…07)

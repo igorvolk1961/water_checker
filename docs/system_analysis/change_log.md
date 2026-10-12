@@ -43,5 +43,6 @@
 | 2026-10-13 | `assumptions_log.md`, `open_questions.md`, `09_assumptions_and_constraints.md` | Заказчик одобрил **все допущения ASM-01…ASM-15** и ответы OQ-02…OQ-06; статусы переведены в 🟢 | Заказчик | Подтверждение допущений | все | Ведущий |
 | 2026-10-13 | legal, `open_questions.md`, `business_case.md`, `cost/cost_estimation.md`, `traceability.md`, `roadmap_and_plan.md` | Решения заказчика: формат/версия ФГИС (§E.2), ограничение ответственности (§E.4/LGL-12), ПДн (§E.5), Track & Trace (LGL-08), бюджет — фазовый MVP (OQ-07…OQ-11) | Заказчик | Закрытие вопросов §E и бюджета | все | Ведущий |
 | 2026-10-13 | `plans/backlog_implementation_plan.md` | Детальный план реализации бэклога: релизы R0–R3, задачи по 14 эпикам, критический путь, вехи, тестирование | Ведущий | Планирование реализации | бэклог/стоимость | Ведущий |
+| 2026-10-13 | `pyproject.toml`, `uv.lock`, `architecture_stack.md` | Утверждён технологический стек: FastAPI/Pydantic v2/uvicorn, PostgreSQL+SQLAlchemy+Alembic, httpx/asyncua/paho-mqtt, scikit-learn, MLflow, фоновые задачи — **Redis** | Заказчик/Ведущий | Фиксация технологического решения | все | Ведущий |
 
 > Таблица заполняется по мере изменений.
