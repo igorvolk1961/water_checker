@@ -105,6 +105,26 @@
 - **Изменения базиса 01–10** — только через PR с ревью ведущего и записью в [change_log.md](docs/system_analysis/change_log.md).
 - **Правило упаковки:** UC — источник истины; User Story — упаковка; Acceptance Criteria не дублируют UC.
 
+## Разработка (Python / uv)
+
+Стандартный src-layout-проект; окружение и зависимости управляются через `uv` (метаданные — [pyproject.toml](pyproject.toml), lock — [uv.lock](uv.lock)).
+
+- Установка окружения: `uv sync`
+- Тесты: `uv run pytest`
+- Линтер: `uv run ruff check .`
+- Запуск приложения: `PYTHONPATH=src uv run python -m aquapredict` (пакет не устанавливается: `package = false`)
+- Переменные окружения: скопируйте [.env.example](.env.example) в `.env`
+
+Структура исходников:
+
+- [src/aquapredict/](src/aquapredict/) — пакет
+  - [config.py](src/aquapredict/config.py) — конфигурация
+  - [domain/](src/aquapredict/domain/) — доменные модели ([models.py](src/aquapredict/domain/models.py))
+  - [integrations/](src/aquapredict/integrations/) — «БИТ.Лаборатория» (OData/HTTP) и телеметрия (OPC-UA/MQTT)
+  - [risk_engine/](src/aquapredict/risk_engine/) — Слой 1 (rules) и Слой 2 (ML)
+  - [services/](src/aquapredict/services/), [api/](src/aquapredict/api/) — сервисы и HTTP-слой
+- [tests/](tests/) — тесты (unit/integration)
+
 ## Открытые вопросы (к заказчику)
 
 Актуальные вводные и принятые решения — в [open_questions.md](docs/system_analysis/open_questions.md) (OQ-01…OQ-06). Закрыто: сроки хранения данных — 1 год (LGL-06). Ожидает: SLA чтения партий, вид ЭП/подписант.

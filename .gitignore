@@ -1,5 +1,20 @@
-/.idea
-.venv/
+# Артефакты сборки и кэши Python
 __pycache__/
 *.pyc
+*.egg-info/
+build/
+dist/
+.venv/
 
+# Инструменты
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Окружение
+.env
+
+# IDE
+/.idea

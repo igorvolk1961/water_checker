@@ -1,0 +1,40 @@
+[project]
+name = "aquapredict"
+version = "0.1.0"
+description = "AquaPredict — предиктивная аналитика качества бутилированной воды (IoT/ML), надстройка над «БИТ.Лаборатория»"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "AquaPredict team" }]
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+
+[tool.uv]
+# Приложение, а не библиотека: пакет не устанавливается (src-layout, импорт через PYTHONPATH/pythonpath).
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = "src"
+packages = ["aquapredict"]
+warn_unused_ignores = true
