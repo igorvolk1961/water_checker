@@ -46,18 +46,18 @@ gantt
     FR-скелет + карта экранов   :c1, after a1, 2
     Детальные FR + UI           :c2, after c1, 3
     BPMN / Sequence / State     :c3, after c1, 3
-    section Ведущий
+    section Ведущий (независимо от FR)
     Юр-требования               :b1, after a1, 2
     Эпики бэклога из UC         :b2, after a1, 2
-    Оценка стоимости (2 прохода):b3, after b2, 3
-    Stories + AC под FR         :b4, after c2, 2
-    Трассируемость + сверка     :b5, after b4, 2
-    section Ведущий (независимо от FR)
     KPI + Baseline              :d1, after a1, 2
     Guardrails в NFR            :d2, after d1, 1
     Бизнес-кейс ROI             :d3, after a1, 2
     Каркас оценки стоимости     :d4, after a1, 2
     Реестр рисков и допущений   :d5, after d1, 2
+    section Ведущий (после заморозки FR)
+    Оценка стоимости (проход 2) :b3, after c2, 2
+    Stories + AC под FR         :b4, after c2, 2
+    Трассируемость + сверка     :b5, after b4, 2
 ```
 
 ## 4. Критический путь
