@@ -1,91 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3644 772" width="3644" height="772" font-family="Manrope, Segoe UI, system-ui, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3334 772" width="3334" height="772" font-family="Manrope, Segoe UI, system-ui, sans-serif">
 <defs>
 <marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#33475b"/></marker>
 <marker id="arrm" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5f6368"/></marker>
+<filter id="sh" x="-12%" y="-12%" width="130%" height="130%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0e2433" flood-opacity="0.12"/></filter>
 </defs>
-<rect x="0" y="0" width="3644" height="772" fill="#ffffff"/>
-<text x="264" y="42" font-family="Unbounded, Manrope, sans-serif" font-size="24" font-weight="700" fill="#0e2433">BPMN v1 — UC7: Первичная калибровка (Cold Start) и обучение базовой линии</text>
-<text x="264" y="70" font-size="13" fill="#5d7285">Версия:</text>
-<rect x="24" y="118" width="3596" height="504" rx="14" fill="#f7fbfb" stroke="#dfe8ea"/>
+<rect x="0" y="0" width="3334" height="772" fill="#ffffff"/>
+<text x="254" y="42" font-family="Unbounded, Manrope, sans-serif" font-size="24" font-weight="700" fill="#0e2433">BPMN v1 — UC7: Первичная калибровка (Cold Start) и обучение базовой линии</text>
+<text x="254" y="70" font-size="13" fill="#5d7285">Версия:</text>
+<rect x="24" y="118" width="3286" height="504" rx="14" fill="#f7fbfb" stroke="#dfe8ea"/>
 <text transform="translate(46,370.0) rotate(-90)" text-anchor="middle" font-family="Unbounded, Manrope, sans-serif" font-size="15" font-weight="700" fill="#0e7c86" letter-spacing="1">AquaPredict</text>
-<line x1="70" y1="118" x2="3604" y2="118" stroke="#e3ecee"/>
+<rect x="70" y="118" width="3224" height="168" fill="#eef6f7" opacity="0.55"/>
+<line x1="70" y1="118" x2="3294" y2="118" stroke="#e3ecee"/>
 <text x="86" y="196.0" font-size="14" font-weight="700" fill="#0e2433">Система (AquaPredict)</text>
 <text x="86" y="216.0" font-size="11" fill="#5d7285">дорожка</text>
-<line x1="70" y1="286" x2="3604" y2="286" stroke="#e3ecee"/>
+<line x1="70" y1="286" x2="3294" y2="286" stroke="#e3ecee"/>
 <text x="86" y="364.0" font-size="14" font-weight="700" fill="#0e2433">ML-инженер (DS)</text>
 <text x="86" y="384.0" font-size="11" fill="#5d7285">дорожка</text>
-<line x1="70" y1="454" x2="3604" y2="454" stroke="#e3ecee"/>
+<rect x="70" y="454" width="3224" height="168" fill="#eef6f7" opacity="0.55"/>
+<line x1="70" y1="454" x2="3294" y2="454" stroke="#e3ecee"/>
 <text x="86" y="532.0" font-size="14" font-weight="700" fill="#0e2433">Главный технолог (ГТ)</text>
 <text x="86" y="552.0" font-size="11" fill="#5d7285">дорожка</text>
-<circle cx="382.0" cy="202.0" r="26" fill="#e7f6ec" stroke="#1e8449" stroke-width="3"/>
-<text x="382.0" y="250.0" text-anchor="middle" font-size="13" font-weight="700" fill="#1e8449">Старт</text>
-<text x="508" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">1</text>
-<rect x="594" y="165.0" width="236" height="74" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
-<text x="608" y="189.0" font-size="12.5" fill="#16262e">Импорт архива (ETL): очистка,</text>
-<text x="608" y="205.0" font-size="12.5" fill="#16262e">валидация форматов</text>
-<text x="608" y="229.0" font-size="10.5" fill="#7a8b99">(задача (SCR-08))</text>
-<text x="838" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">2</text>
-<path d="M1042.0 142.0 L1102.0 202.0 L1042.0 262.0 L982.0 202.0 Z" fill="#fff8e1" stroke="#a3660a" stroke-width="2"/>
-<text x="1042.0" y="194.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">Архивных данных</text>
-<text x="1042.0" y="209.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">достаточно?</text>
-<text x="1168" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">3</text>
-<text x="1172" y="236.0" font-size="10.5" font-style="italic" fill="#8a5a00">Нет → Pre-training на</text>
-<text x="1172" y="249.0" font-size="10.5" font-style="italic" fill="#8a5a00">синтетических данных цифрового</text>
-<text x="1172" y="262.0" font-size="10.5" font-style="italic" fill="#8a5a00">двойника; продление периода</text>
-<text x="1172" y="275.0" font-size="10.5" font-style="italic" fill="#8a5a00">калибровки (явный шаг мастера</text>
-<rect x="1254" y="142.5" width="236" height="119" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
-<text x="1268" y="166.5" font-size="12.5" fill="#16262e">Матчинг: срез телеметрии за</text>
-<text x="1268" y="182.5" font-size="12.5" fill="#16262e">окно (2 ч) до отбора пробы →</text>
-<text x="1268" y="198.5" font-size="12.5" fill="#16262e">проба из журнала; отчёт о</text>
-<text x="1268" y="214.5" font-size="12.5" fill="#16262e">качестве матчинга (доля ≥ 90 %</text>
-<text x="1268" y="230.5" font-size="12.5" fill="#16262e">— `kpi.md` §4)</text>
-<text x="1268" y="251.5" font-size="10.5" fill="#7a8b99">(задача (FR-10))</text>
-<text x="1498" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">4</text>
-<rect x="1584" y="159.5" width="236" height="85" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
-<text x="1598" y="183.5" font-size="12.5" fill="#16262e">Обучение Baseline-профиля</text>
-<text x="1598" y="199.5" font-size="12.5" fill="#16262e">(Anomaly Detection, без</text>
-<text x="1598" y="215.5" font-size="12.5" fill="#16262e">размеченных примеров брака)</text>
-<text x="1598" y="234.5" font-size="10.5" fill="#7a8b99">(задача)</text>
-<text x="1828" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">5</text>
-<rect x="1914" y="333.0" width="236" height="74" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
-<text x="1928" y="357.0" font-size="12.5" fill="#16262e">Проверка профиля; размещение в</text>
-<text x="1928" y="373.0" font-size="12.5" fill="#16262e">Shadow Mode</text>
-<text x="1928" y="397.0" font-size="10.5" fill="#7a8b99">(задача (SCR-08))</text>
-<text x="2158" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">6</text>
-<rect x="2244" y="159.5" width="236" height="85" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
-<text x="2258" y="183.5" font-size="12.5" fill="#16262e">Shadow Mode: прогнозы не</text>
-<text x="2258" y="199.5" font-size="12.5" fill="#16262e">показываются персоналу,</text>
-<text x="2258" y="215.5" font-size="12.5" fill="#16262e">накапливаются метрики точности</text>
-<text x="2258" y="234.5" font-size="10.5" fill="#7a8b99">(задача (FR-04))</text>
-<text x="2488" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">7</text>
-<rect x="2574" y="501.0" width="236" height="74" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
-<text x="2588" y="525.0" font-size="12.5" fill="#16262e">Подтверждение профиля нормы</text>
-<text x="2588" y="541.0" font-size="12.5" fill="#16262e">как «Эталонный» (ST-06)</text>
-<text x="2588" y="565.0" font-size="10.5" fill="#7a8b99">(задача (UI-07: фиксация в аудите))</text>
-<text x="2818" y="498.0" font-size="12" font-weight="800" fill="#c3d3da">8</text>
-<path d="M3022.0 142.0 L3082.0 202.0 L3022.0 262.0 L2962.0 202.0 Z" fill="#fff8e1" stroke="#a3660a" stroke-width="2"/>
-<text x="3022.0" y="194.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">Критерии перехода §4</text>
-<text x="3022.0" y="209.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">выполнены (Recall ≥</text>
-<text x="3022.0" y="224.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">0,75 при FPR ≤ 0,10;</text>
-<text x="3148" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">9</text>
-<text x="3152" y="236.0" font-size="10.5" font-style="italic" fill="#8a5a00">Нет → продолжение накопления</text>
-<text x="3152" y="249.0" font-size="10.5" font-style="italic" fill="#8a5a00">метрик (возврат к шагу 7)</text>
-<circle cx="3352.0" cy="202.0" r="26" fill="#fdecea" stroke="#b03a2e" stroke-width="6"/>
-<text x="3352.0" y="250.0" text-anchor="middle" font-size="13" font-weight="700" fill="#b03a2e">Конец</text>
-<text x="3478" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">10</text>
-<path d="M500 202.0 H547.0 V202.0 H594" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<path d="M830 202.0 H877.0 V202.0 H924" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<path d="M1160 202.0 H1207.0 V202.0 H1254" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<path d="M1490 202.0 H1537.0 V202.0 H1584" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<path d="M1820 202.0 H1867.0 V370.0 H1914" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<path d="M2150 370.0 H2197.0 V202.0 H2244" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<path d="M2480 202.0 H2527.0 V538.0 H2574" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<path d="M2810 538.0 H2857.0 V202.0 H2904" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<path d="M3140 202.0 H3187.0 V202.0 H3234" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
-<text x="264" y="706" font-size="12" font-weight="700" fill="#5d7285">Легенда:</text>
-<circle cx="354" cy="702" r="9" fill="#e7f6ec" stroke="#1e8449" stroke-width="2"/><text x="370" y="706" font-size="11.5" fill="#33475b">событие старта</text>
-<rect x="494" y="693" width="34" height="20" rx="5" fill="#ffffff" stroke="#0e7c86" stroke-width="1.6"/><text x="536" y="706" font-size="11.5" fill="#33475b">задача</text>
-<path d="M644 692 l12 12 l-12 12 l-12 -12 z" fill="#fff8e1" stroke="#a3660a"/><text x="664" y="706" font-size="11.5" fill="#33475b">шлюз</text>
-<circle cx="784" cy="702" r="9" fill="#fdecea" stroke="#b03a2e" stroke-width="3"/><text x="800" y="706" font-size="11.5" fill="#33475b">конец</text>
-<line x1="904" y1="702" x2="954" y2="702" stroke="#5f6368" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrm)"/><text x="964" y="706" font-size="11.5" fill="#33475b">межпуловый поток (message flow)</text>
+<circle cx="365.0" cy="202.0" r="26" fill="#e7f6ec" stroke="#1e8449" stroke-width="3"/>
+<text x="365.0" y="250.0" text-anchor="middle" font-size="13" font-weight="700" fill="#1e8449">Старт</text>
+<text x="484" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">1</text>
+<rect x="554" y="165.0" width="222" height="74" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2" filter="url(#sh)"/>
+<text x="568" y="189.0" font-size="12.5" fill="#16262e">Импорт архива (ETL): очистка,</text>
+<text x="568" y="205.0" font-size="12.5" fill="#16262e">валидация форматов</text>
+<text x="568" y="229.0" font-size="10.5" fill="#7a8b99">(задача (SCR-08))</text>
+<text x="784" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">2</text>
+<path d="M965.0 142.0 L1025.0 202.0 L965.0 262.0 L905.0 202.0 Z" fill="#fff8e1" stroke="#a3660a" stroke-width="2" filter="url(#sh)"/>
+<text x="965.0" y="194.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">Архивных данных</text>
+<text x="965.0" y="209.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">достаточно?</text>
+<text x="1084" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">3</text>
+<text x="1088" y="236.0" font-size="10.5" font-style="italic" fill="#8a5a00">Нет → Pre-training на</text>
+<text x="1088" y="249.0" font-size="10.5" font-style="italic" fill="#8a5a00">синтетических данных цифрового</text>
+<text x="1088" y="262.0" font-size="10.5" font-style="italic" fill="#8a5a00">двойника; продление периода</text>
+<text x="1088" y="275.0" font-size="10.5" font-style="italic" fill="#8a5a00">калибровки (явный шаг мастера</text>
+<rect x="1154" y="142.5" width="222" height="119" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2" filter="url(#sh)"/>
+<text x="1168" y="166.5" font-size="12.5" fill="#16262e">Матчинг: срез телеметрии за</text>
+<text x="1168" y="182.5" font-size="12.5" fill="#16262e">окно (2 ч) до отбора пробы →</text>
+<text x="1168" y="198.5" font-size="12.5" fill="#16262e">проба из журнала; отчёт о</text>
+<text x="1168" y="214.5" font-size="12.5" fill="#16262e">качестве матчинга (доля ≥ 90 %</text>
+<text x="1168" y="230.5" font-size="12.5" fill="#16262e">— `kpi.md` §4)</text>
+<text x="1168" y="251.5" font-size="10.5" fill="#7a8b99">(задача (FR-10))</text>
+<text x="1384" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">4</text>
+<rect x="1454" y="159.5" width="222" height="85" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2" filter="url(#sh)"/>
+<text x="1468" y="183.5" font-size="12.5" fill="#16262e">Обучение Baseline-профиля</text>
+<text x="1468" y="199.5" font-size="12.5" fill="#16262e">(Anomaly Detection, без</text>
+<text x="1468" y="215.5" font-size="12.5" fill="#16262e">размеченных примеров брака)</text>
+<text x="1468" y="234.5" font-size="10.5" fill="#7a8b99">(задача)</text>
+<text x="1684" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">5</text>
+<rect x="1754" y="333.0" width="222" height="74" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2" filter="url(#sh)"/>
+<text x="1768" y="357.0" font-size="12.5" fill="#16262e">Проверка профиля; размещение в</text>
+<text x="1768" y="373.0" font-size="12.5" fill="#16262e">Shadow Mode</text>
+<text x="1768" y="397.0" font-size="10.5" fill="#7a8b99">(задача (SCR-08))</text>
+<text x="1984" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">6</text>
+<rect x="2054" y="159.5" width="222" height="85" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2" filter="url(#sh)"/>
+<text x="2068" y="183.5" font-size="12.5" fill="#16262e">Shadow Mode: прогнозы не</text>
+<text x="2068" y="199.5" font-size="12.5" fill="#16262e">показываются персоналу,</text>
+<text x="2068" y="215.5" font-size="12.5" fill="#16262e">накапливаются метрики точности</text>
+<text x="2068" y="234.5" font-size="10.5" fill="#7a8b99">(задача (FR-04))</text>
+<text x="2284" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">7</text>
+<rect x="2354" y="501.0" width="222" height="74" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2" filter="url(#sh)"/>
+<text x="2368" y="525.0" font-size="12.5" fill="#16262e">Подтверждение профиля нормы</text>
+<text x="2368" y="541.0" font-size="12.5" fill="#16262e">как «Эталонный» (ST-06)</text>
+<text x="2368" y="565.0" font-size="10.5" fill="#7a8b99">(задача (UI-07: фиксация в аудите))</text>
+<text x="2584" y="498.0" font-size="12" font-weight="800" fill="#c3d3da">8</text>
+<path d="M2765.0 142.0 L2825.0 202.0 L2765.0 262.0 L2705.0 202.0 Z" fill="#fff8e1" stroke="#a3660a" stroke-width="2" filter="url(#sh)"/>
+<text x="2765.0" y="194.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">Критерии перехода §4</text>
+<text x="2765.0" y="209.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">выполнены (Recall ≥</text>
+<text x="2765.0" y="224.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">0,75 при FPR ≤ 0,10;</text>
+<text x="2884" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">9</text>
+<text x="2888" y="236.0" font-size="10.5" font-style="italic" fill="#8a5a00">Нет → продолжение накопления</text>
+<text x="2888" y="249.0" font-size="10.5" font-style="italic" fill="#8a5a00">метрик (возврат к шагу 7)</text>
+<circle cx="3065.0" cy="202.0" r="26" fill="#fdecea" stroke="#b03a2e" stroke-width="6"/>
+<text x="3065.0" y="250.0" text-anchor="middle" font-size="13" font-weight="700" fill="#b03a2e">Конец</text>
+<text x="3184" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">10</text>
+<path d="M476 202.0 H515.0 V202.0 H554" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M776 202.0 H815.0 V202.0 H854" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1076 202.0 H1115.0 V202.0 H1154" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1376 202.0 H1415.0 V202.0 H1454" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1676 202.0 H1715.0 V370.0 H1754" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1976 370.0 H2015.0 V202.0 H2054" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M2276 202.0 H2315.0 V538.0 H2354" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M2576 538.0 H2615.0 V202.0 H2654" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M2876 202.0 H2915.0 V202.0 H2954" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<text x="254" y="706" font-size="12" font-weight="700" fill="#5d7285">Легенда:</text>
+<circle cx="344" cy="702" r="9" fill="#e7f6ec" stroke="#1e8449" stroke-width="2"/><text x="360" y="706" font-size="11.5" fill="#33475b">событие старта</text>
+<rect x="484" y="693" width="34" height="20" rx="5" fill="#ffffff" stroke="#0e7c86" stroke-width="1.6"/><text x="526" y="706" font-size="11.5" fill="#33475b">задача</text>
+<path d="M634 692 l12 12 l-12 12 l-12 -12 z" fill="#fff8e1" stroke="#a3660a"/><text x="654" y="706" font-size="11.5" fill="#33475b">шлюз</text>
+<circle cx="774" cy="702" r="9" fill="#fdecea" stroke="#b03a2e" stroke-width="3"/><text x="790" y="706" font-size="11.5" fill="#33475b">конец</text>
+<line x1="894" y1="702" x2="944" y2="702" stroke="#5f6368" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrm)"/><text x="954" y="706" font-size="11.5" fill="#33475b">межпуловый поток (message flow)</text>
 </svg>

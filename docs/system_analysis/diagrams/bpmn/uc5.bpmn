@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_uc5" targetNamespace="http://aquapredict/bpmn">
+<bpmn:collaboration id="Collab_uc5">
+<bpmn:participant id="P_uc5_1C" name="«БИТ:LIMS» (1С)" processRef="Proc_uc5_1C"/>
+<bpmn:participant id="P_uc5_AquaPredict" name="AquaPredict" processRef="Proc_uc5_AquaPredict"/>
+<bpmn:messageFlow id="mf_uc5_1" sourceRef="n1" targetRef="n2" name="межсистемное взаимодействие"/>
+</bpmn:collaboration>
+<bpmn:process id="Proc_uc5_1C" isExecutable="false">
+<bpmn:task id="n1" name="Лаборант вносит результаты анализа; протокол формируется и утверждается (ПЭП руководителя лаборатории — контур 1С, LGL-0"/>
+</bpmn:process>
+<bpmn:process id="Proc_uc5_AquaPredict" isExecutable="false">
+<bpmn:laneSet id="ls_uc5">
+<bpmn:lane id="lane_uc5_0" name="Система (AquaPredict)"><bpmn:flowNodeRef>n2</bpmn:flowNodeRef><bpmn:flowNodeRef>n3</bpmn:flowNodeRef><bpmn:flowNodeRef>n4</bpmn:flowNodeRef><bpmn:flowNodeRef>n5</bpmn:flowNodeRef></bpmn:lane>
+</bpmn:laneSet>
+<bpmn:serviceTask id="n2" name="Периодическое чтение утверждённых результатов пробы по OData (в пакете, ≤ 60 запросов/мин — NFR-6)"/>
+<bpmn:serviceTask id="n3" name="Сверка результата с нормативами (СанПиН 1.2.3685-21 / ГОСТ 32220-2013, справочник) — **информационная** подсветка; решен"/>
+<bpmn:serviceTask id="n4" name="Сохранение результата как Ground Truth, привязанного к партии/пробе; чтение статуса ФГИС-выгрузки и UUID — отображение r"/>
+<bpmn:endEvent id="n5" name="Связка «проба → срез телеметрии за окно (2 ч)» → метка (приоритет: протокол &gt; вердикт технолога) → UC6"/>
+<bpmn:sequenceFlow id="sf_uc5_2" sourceRef="n2" targetRef="n3"/>
+<bpmn:sequenceFlow id="sf_uc5_3" sourceRef="n3" targetRef="n4"/>
+<bpmn:sequenceFlow id="sf_uc5_4" sourceRef="n4" targetRef="n5"/>
+</bpmn:process>
+<bpmndi:BPMNDiagram id="Dia_uc5"><bpmndi:BPMNPlane id="Plane_uc5" bpmnElement="Collab_uc5">
+<bpmndi:BPMNShape id="sh_P_uc5_1C" bpmnElement="P_uc5_1C" isHorizontal="true"><dc:Bounds x="24" y="118" width="1786" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_P_uc5_AquaPredict" bpmnElement="P_uc5_AquaPredict" isHorizontal="true"><dc:Bounds x="24" y="286" width="1786" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc5_0" bpmnElement="lane_uc5_0" isHorizontal="true"><dc:Bounds x="70" y="286" width="1724" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n1" bpmnElement="n1"><dc:Bounds x="254" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n2" bpmnElement="n2"><dc:Bounds x="554" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n3" bpmnElement="n3"><dc:Bounds x="854" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n4" bpmnElement="n4"><dc:Bounds x="1154" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n5" bpmnElement="n5"><dc:Bounds x="1454" y="352" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="e_mf_uc5_1" bpmnElement="mf_uc5_1"><di:waypoint x="476" y="202"/><di:waypoint x="515" y="202"/><di:waypoint x="515" y="370"/><di:waypoint x="554" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc5_2" bpmnElement="sf_uc5_2"><di:waypoint x="776" y="370"/><di:waypoint x="815" y="370"/><di:waypoint x="815" y="370"/><di:waypoint x="854" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc5_3" bpmnElement="sf_uc5_3"><di:waypoint x="1076" y="370"/><di:waypoint x="1115" y="370"/><di:waypoint x="1115" y="370"/><di:waypoint x="1154" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc5_4" bpmnElement="sf_uc5_4"><di:waypoint x="1376" y="370"/><di:waypoint x="1415" y="370"/><di:waypoint x="1415" y="370"/><di:waypoint x="1454" y="370"/></bpmndi:BPMNEdge>
+</bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn:definitions>

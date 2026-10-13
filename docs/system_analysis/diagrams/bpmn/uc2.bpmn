@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_uc2" targetNamespace="http://aquapredict/bpmn">
+<bpmn:collaboration id="Collab_uc2">
+<bpmn:participant id="P_uc2_AquaPredict" name="AquaPredict" processRef="Proc_uc2_AquaPredict"/>
+<bpmn:participant id="P_uc2_1C" name="«БИТ:LIMS» (1С)" processRef="Proc_uc2_1C"/>
+<bpmn:messageFlow id="mf_uc2_9" sourceRef="n9" targetRef="n10" name="межсистемное взаимодействие"/>
+<bpmn:messageFlow id="mf_uc2_10" sourceRef="n10" targetRef="n11" name="межсистемное взаимодействие"/>
+</bpmn:collaboration>
+<bpmn:process id="Proc_uc2_AquaPredict" isExecutable="false">
+<bpmn:laneSet id="ls_uc2">
+<bpmn:lane id="lane_uc2_0" name="Система (AquaPredict)"><bpmn:flowNodeRef>n1</bpmn:flowNodeRef><bpmn:flowNodeRef>n2</bpmn:flowNodeRef><bpmn:flowNodeRef>n3</bpmn:flowNodeRef><bpmn:flowNodeRef>n4</bpmn:flowNodeRef><bpmn:flowNodeRef>n5</bpmn:flowNodeRef><bpmn:flowNodeRef>n6</bpmn:flowNodeRef><bpmn:flowNodeRef>n9</bpmn:flowNodeRef><bpmn:flowNodeRef>n11</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="lane_uc2_1" name="Главный технолог (ГТ)"><bpmn:flowNodeRef>n7</bpmn:flowNodeRef><bpmn:flowNodeRef>n8</bpmn:flowNodeRef></bpmn:lane>
+</bpmn:laneSet>
+<bpmn:serviceTask id="n1" name="Телеметрия по партии связана и анализируется (FR-01, FR-02; TEL-01…TEL-13)"/>
+<bpmn:serviceTask id="n2" name="Расчёт вероятности риска (Слой 1 правила / Слой 2 ML; FR-03/FR-04)"/>
+<bpmn:exclusiveGateway id="n3" name="Вероятность ≥ рабочей точки?"/>
+<bpmn:serviceTask id="n4" name="Генерация события `RiskAlert` (партия, параметр, риск-скор, горизонт, рекомендация) ≤ 5 с от датчика"/>
+<bpmn:exclusiveGateway id="n5" name="Алертов за час &lt; 10?"/>
+<bpmn:serviceTask id="n6" name="Создание записи «Предиктивный инцидент» [Новый]; уведомление ГТ (push/SMS — SCR-12); критический уровень → выделение, зв"/>
+<bpmn:userTask id="n7" name="Получение алерта, подтверждение ознакомления; просмотр карточки инцидента (SCR-02): тренды, рекомендация"/>
+<bpmn:exclusiveGateway id="n8" name="Риск реален?"/>
+<bpmn:serviceTask id="n9" name="Создание задачи «Корректирующее действие» в 1С через HTTP-сервис с рекомендованными шагами; при высоком риске — параллел"/>
+<bpmn:serviceTask id="n11" name="Статусы синхронизируются обратно (≤ 60 запросов/мин, NFR-6); инцидент [Подтверждён]"/>
+<bpmn:sequenceFlow id="sf_uc2_1" sourceRef="n1" targetRef="n2"/>
+<bpmn:sequenceFlow id="sf_uc2_2" sourceRef="n2" targetRef="n3"/>
+<bpmn:sequenceFlow id="sf_uc2_3" sourceRef="n3" targetRef="n4"/>
+<bpmn:sequenceFlow id="sf_uc2_4" sourceRef="n4" targetRef="n5"/>
+<bpmn:sequenceFlow id="sf_uc2_5" sourceRef="n5" targetRef="n6"/>
+<bpmn:sequenceFlow id="sf_uc2_6" sourceRef="n6" targetRef="n7"/>
+<bpmn:sequenceFlow id="sf_uc2_7" sourceRef="n7" targetRef="n8"/>
+<bpmn:sequenceFlow id="sf_uc2_8" sourceRef="n8" targetRef="n9"/>
+</bpmn:process>
+<bpmn:process id="Proc_uc2_1C" isExecutable="false">
+<bpmn:task id="n10" name="Задача назначается (ГТ / оператор линии), уведомление штатными средствами 1С"/>
+</bpmn:process>
+<bpmndi:BPMNDiagram id="Dia_uc2"><bpmndi:BPMNPlane id="Plane_uc2" bpmnElement="Collab_uc2">
+<bpmndi:BPMNShape id="sh_P_uc2_AquaPredict" bpmnElement="P_uc2_AquaPredict" isHorizontal="true"><dc:Bounds x="24" y="118" width="3586" height="336"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc2_0" bpmnElement="lane_uc2_0" isHorizontal="true"><dc:Bounds x="70" y="118" width="3524" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc2_1" bpmnElement="lane_uc2_1" isHorizontal="true"><dc:Bounds x="70" y="286" width="3524" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_P_uc2_1C" bpmnElement="P_uc2_1C" isHorizontal="true"><dc:Bounds x="24" y="454" width="3586" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n1" bpmnElement="n1"><dc:Bounds x="254" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n2" bpmnElement="n2"><dc:Bounds x="554" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n3" bpmnElement="n3"><dc:Bounds x="854" y="177" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n4" bpmnElement="n4"><dc:Bounds x="1154" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n5" bpmnElement="n5"><dc:Bounds x="1454" y="177" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n6" bpmnElement="n6"><dc:Bounds x="1754" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n7" bpmnElement="n7"><dc:Bounds x="2054" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n8" bpmnElement="n8"><dc:Bounds x="2354" y="345" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n9" bpmnElement="n9"><dc:Bounds x="2654" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n10" bpmnElement="n10"><dc:Bounds x="2954" y="498" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n11" bpmnElement="n11"><dc:Bounds x="3254" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="e_sf_uc2_1" bpmnElement="sf_uc2_1"><di:waypoint x="476" y="202"/><di:waypoint x="515" y="202"/><di:waypoint x="515" y="202"/><di:waypoint x="554" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc2_2" bpmnElement="sf_uc2_2"><di:waypoint x="776" y="202"/><di:waypoint x="815" y="202"/><di:waypoint x="815" y="202"/><di:waypoint x="854" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc2_3" bpmnElement="sf_uc2_3"><di:waypoint x="904" y="202"/><di:waypoint x="1029" y="202"/><di:waypoint x="1029" y="202"/><di:waypoint x="1154" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc2_4" bpmnElement="sf_uc2_4"><di:waypoint x="1376" y="202"/><di:waypoint x="1415" y="202"/><di:waypoint x="1415" y="202"/><di:waypoint x="1454" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc2_5" bpmnElement="sf_uc2_5"><di:waypoint x="1504" y="202"/><di:waypoint x="1629" y="202"/><di:waypoint x="1629" y="202"/><di:waypoint x="1754" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc2_6" bpmnElement="sf_uc2_6"><di:waypoint x="1976" y="202"/><di:waypoint x="2015" y="202"/><di:waypoint x="2015" y="370"/><di:waypoint x="2054" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc2_7" bpmnElement="sf_uc2_7"><di:waypoint x="2276" y="370"/><di:waypoint x="2315" y="370"/><di:waypoint x="2315" y="370"/><di:waypoint x="2354" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc2_8" bpmnElement="sf_uc2_8"><di:waypoint x="2404" y="370"/><di:waypoint x="2529" y="370"/><di:waypoint x="2529" y="202"/><di:waypoint x="2654" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc2_9" bpmnElement="mf_uc2_9"><di:waypoint x="2876" y="202"/><di:waypoint x="2915" y="202"/><di:waypoint x="2915" y="538"/><di:waypoint x="2954" y="538"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc2_10" bpmnElement="mf_uc2_10"><di:waypoint x="3176" y="538"/><di:waypoint x="3215" y="538"/><di:waypoint x="3215" y="202"/><di:waypoint x="3254" y="202"/></bpmndi:BPMNEdge>
+</bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn:definitions>

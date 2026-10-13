@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_uc1" targetNamespace="http://aquapredict/bpmn">
+<bpmn:collaboration id="Collab_uc1">
+<bpmn:participant id="P_uc1_1C" name="«БИТ:LIMS» (1С)" processRef="Proc_uc1_1C"/>
+<bpmn:participant id="P_uc1_AquaPredict" name="AquaPredict" processRef="Proc_uc1_AquaPredict"/>
+<bpmn:participant id="P_uc1_Line" name="Линия/шлюз (внешнее)" processRef="Proc_uc1_Line"/>
+<bpmn:messageFlow id="mf_uc1_1" sourceRef="n1" targetRef="n2" name="межсистемное взаимодействие"/>
+<bpmn:messageFlow id="mf_uc1_3" sourceRef="n3" targetRef="n4" name="межсистемное взаимодействие"/>
+<bpmn:messageFlow id="mf_uc1_4" sourceRef="n4" targetRef="n5" name="межсистемное взаимодействие"/>
+<bpmn:messageFlow id="mf_uc1_6" sourceRef="n6" targetRef="n7" name="межсистемное взаимодействие"/>
+<bpmn:messageFlow id="mf_uc1_7" sourceRef="n7" targetRef="n8" name="межсистемное взаимодействие"/>
+</bpmn:collaboration>
+<bpmn:process id="Proc_uc1_1C" isExecutable="false">
+<bpmn:startEvent id="n1" name="Регистрация производственной партии (штатный процесс 1С, номер партии — источник прослеживаемости)"/>
+<bpmn:intermediateThrowEvent id="n7" name="Попытка закрытия партии"/>
+</bpmn:process>
+<bpmn:process id="Proc_uc1_AquaPredict" isExecutable="false">
+<bpmn:laneSet id="ls_uc1">
+<bpmn:lane id="lane_uc1_0" name="Система (AquaPredict)"><bpmn:flowNodeRef>n2</bpmn:flowNodeRef><bpmn:flowNodeRef>n3</bpmn:flowNodeRef><bpmn:flowNodeRef>n5</bpmn:flowNodeRef><bpmn:flowNodeRef>n6</bpmn:flowNodeRef><bpmn:flowNodeRef>n8</bpmn:flowNodeRef></bpmn:lane>
+</bpmn:laneSet>
+<bpmn:serviceTask id="n2" name="Чтение новой партии по OData (в составе пакета, ≤ 60 запросов/мин — NFR-6)"/>
+<bpmn:serviceTask id="n3" name="Регистрация начала наблюдения за партией; привязка временных рядов телеметрии к идентификатору партии"/>
+<bpmn:serviceTask id="n5" name="Контроль качества потока: пропуски, «замороженные» значения, выход за физический диапазон → события для инженера КИПиА ("/>
+<bpmn:endEvent id="n6" name="Партия наблюдается: скоринг запущен (UC2)"/>
+<bpmn:exclusiveGateway id="n8" name="Есть непроверенные предиктивные инциденты по партии?"/>
+<bpmn:sequenceFlow id="sf_uc1_2" sourceRef="n2" targetRef="n3"/>
+<bpmn:sequenceFlow id="sf_uc1_5" sourceRef="n5" targetRef="n6"/>
+</bpmn:process>
+<bpmn:process id="Proc_uc1_Line" isExecutable="false">
+<bpmn:task id="n4" name="Поток телеметрии TEL-01…TEL-13 по OPC-UA / MQTT, частота ≥ 1 раз/мин; буферизация до 2 ч при потере связи с автосинхрони"/>
+</bpmn:process>
+<bpmndi:BPMNDiagram id="Dia_uc1"><bpmndi:BPMNPlane id="Plane_uc1" bpmnElement="Collab_uc1">
+<bpmndi:BPMNShape id="sh_P_uc1_1C" bpmnElement="P_uc1_1C" isHorizontal="true"><dc:Bounds x="24" y="118" width="2686" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_P_uc1_AquaPredict" bpmnElement="P_uc1_AquaPredict" isHorizontal="true"><dc:Bounds x="24" y="286" width="2686" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc1_0" bpmnElement="lane_uc1_0" isHorizontal="true"><dc:Bounds x="70" y="286" width="2624" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_P_uc1_Line" bpmnElement="P_uc1_Line" isHorizontal="true"><dc:Bounds x="24" y="454" width="2686" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n1" bpmnElement="n1"><dc:Bounds x="254" y="184" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n2" bpmnElement="n2"><dc:Bounds x="554" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n3" bpmnElement="n3"><dc:Bounds x="854" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n4" bpmnElement="n4"><dc:Bounds x="1154" y="498" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n5" bpmnElement="n5"><dc:Bounds x="1454" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n6" bpmnElement="n6"><dc:Bounds x="1754" y="352" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n7" bpmnElement="n7"><dc:Bounds x="2054" y="184" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n8" bpmnElement="n8"><dc:Bounds x="2354" y="345" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="e_mf_uc1_1" bpmnElement="mf_uc1_1"><di:waypoint x="290" y="202"/><di:waypoint x="422" y="202"/><di:waypoint x="422" y="370"/><di:waypoint x="554" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc1_2" bpmnElement="sf_uc1_2"><di:waypoint x="776" y="370"/><di:waypoint x="815" y="370"/><di:waypoint x="815" y="370"/><di:waypoint x="854" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc1_3" bpmnElement="mf_uc1_3"><di:waypoint x="1076" y="370"/><di:waypoint x="1115" y="370"/><di:waypoint x="1115" y="538"/><di:waypoint x="1154" y="538"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc1_4" bpmnElement="mf_uc1_4"><di:waypoint x="1376" y="538"/><di:waypoint x="1415" y="538"/><di:waypoint x="1415" y="370"/><di:waypoint x="1454" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc1_5" bpmnElement="sf_uc1_5"><di:waypoint x="1676" y="370"/><di:waypoint x="1715" y="370"/><di:waypoint x="1715" y="370"/><di:waypoint x="1754" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc1_6" bpmnElement="mf_uc1_6"><di:waypoint x="1790" y="370"/><di:waypoint x="1922" y="370"/><di:waypoint x="1922" y="202"/><di:waypoint x="2054" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc1_7" bpmnElement="mf_uc1_7"><di:waypoint x="2090" y="202"/><di:waypoint x="2222" y="202"/><di:waypoint x="2222" y="370"/><di:waypoint x="2354" y="370"/></bpmndi:BPMNEdge>
+</bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn:definitions>

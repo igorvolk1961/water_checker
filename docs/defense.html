@@ -47,6 +47,8 @@
   .foot{position:fixed;left:18px;bottom:16px;font-size:12px;color:var(--muted)}
   .frame{width:100%;height:66vh;border:1px solid var(--line);border-radius:12px;background:#fff}
   .mermaid{width:100%;height:auto;text-align:center}
+  .diagram{height:60vh;width:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+  .diagramWrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:#fff;padding:6px}
   @media (max-width:760px){ .cols{grid-template-columns:1fr} .slide{padding:56px 22px} }
   @media print{ html,body{overflow:visible;height:auto} .deck{height:auto} .slide{display:flex !important;position:static;height:auto;min-height:auto;page-break-after:always} .controls,.progress,.foot{display:none} }
 </style>
@@ -511,6 +513,10 @@
     </div>
     <ul style="margin-top:16px"><li>Детальная спецификация — UC2 «Обработка предиктивного предупреждения».</li></ul>
   </section>
+
+  <section class="slide"><p class="eyebrow">Процессы · BPMN</p><h2 class="slideTitle">UC2 — Предиктивное предупреждение</h2><div class="diagramWrap"><img class="diagram" src="system_analysis/diagrams/bpmn/uc2.svg" alt="BPMN UC2" loading="lazy"></div><p class="sub">Пул-дорожки: Система, ГТ, «БИТ:LIMS» (1С); межпуловые потоки — пунктиром.</p></section>
+  <section class="slide"><p class="eyebrow">Процессы · BPMN</p><h2 class="slideTitle">UC3 — Корректирующее действие и вердикт</h2><div class="diagramWrap"><img class="diagram" src="system_analysis/diagrams/bpmn/uc3.svg" alt="BPMN UC3" loading="lazy"></div><p class="sub">Разведение «результат корректирующего действия» ≠ «вердикт инцидента».</p></section>
+  <section class="slide"><p class="eyebrow">Процессы · BPMN</p><h2 class="slideTitle">UC4 — Внеплановый (триггерный) отбор пробы</h2><div class="diagramWrap"><img class="diagram" src="system_analysis/diagrams/bpmn/uc4.svg" alt="BPMN UC4" loading="lazy"></div><p class="sub">Пул-дорожки: Система, Лаборант, 1С; журнал проб — в 1С (двойной ввод исключён).</p></section>
 
   <section class="slide">
     <p class="eyebrow">Данные и ML</p>

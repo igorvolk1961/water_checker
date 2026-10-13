@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_uc3" targetNamespace="http://aquapredict/bpmn">
+<bpmn:collaboration id="Collab_uc3">
+<bpmn:participant id="P_uc3_AquaPredict" name="AquaPredict" processRef="Proc_uc3_AquaPredict"/>
+<bpmn:participant id="P_uc3_1C" name="«БИТ:LIMS» (1С)" processRef="Proc_uc3_1C"/>
+<bpmn:messageFlow id="mf_uc3_1" sourceRef="n1" targetRef="n2" name="межсистемное взаимодействие"/>
+<bpmn:messageFlow id="mf_uc3_2" sourceRef="n2" targetRef="n3" name="межсистемное взаимодействие"/>
+<bpmn:messageFlow id="mf_uc3_4" sourceRef="n4" targetRef="n5" name="межсистемное взаимодействие"/>
+<bpmn:messageFlow id="mf_uc3_5" sourceRef="n5" targetRef="n6" name="межсистемное взаимодействие"/>
+</bpmn:collaboration>
+<bpmn:process id="Proc_uc3_AquaPredict" isExecutable="false">
+<bpmn:laneSet id="ls_uc3">
+<bpmn:lane id="lane_uc3_0" name="Система (AquaPredict)"><bpmn:flowNodeRef>n1</bpmn:flowNodeRef><bpmn:flowNodeRef>n6</bpmn:flowNodeRef><bpmn:flowNodeRef>n7</bpmn:flowNodeRef><bpmn:flowNodeRef>n9</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="lane_uc3_1" name="Персонал (ГТ/оператор)"><bpmn:flowNodeRef>n3</bpmn:flowNodeRef><bpmn:flowNodeRef>n4</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="lane_uc3_2" name="Главный технолог (ГТ)"><bpmn:flowNodeRef>n8</bpmn:flowNodeRef></bpmn:lane>
+</bpmn:laneSet>
+<bpmn:startEvent id="n1" name="Вход: подтверждённый инцидент (из UC2, шаг 9) — задача на корректирующее действие уже создана в 1С с рекомендованными ша"/>
+<bpmn:userTask id="n3" name="Физическое выполнение действия на оборудовании (вне систем)"/>
+<bpmn:userTask id="n4" name="Закрытие задачи в 1С: «Действие выполнено» + приложение (фото/комментарий)"/>
+<bpmn:serviceTask id="n6" name="Чтение статуса по OData; синхронизация в карточку инцидента (SCR-02); различение источника события в аудите"/>
+<bpmn:exclusiveGateway id="n7" name="Результат корректирующего действия [Выполнено]?"/>
+<bpmn:userTask id="n8" name="Фиксация **вердикта по инциденту** — отдельная сущность: [Подтверждён / Ложное срабатывание] + причина (не смешивать с р"/>
+<bpmn:serviceTask id="n9" name="Вердикт → прокси-метка в обучающую выборку (FR-11; приоритет — лабораторный протокол); инцидент [Закрыт]; блокировка зак"/>
+<bpmn:sequenceFlow id="sf_uc3_3" sourceRef="n3" targetRef="n4"/>
+<bpmn:sequenceFlow id="sf_uc3_6" sourceRef="n6" targetRef="n7"/>
+<bpmn:sequenceFlow id="sf_uc3_7" sourceRef="n7" targetRef="n8"/>
+<bpmn:sequenceFlow id="sf_uc3_8" sourceRef="n8" targetRef="n9"/>
+</bpmn:process>
+<bpmn:process id="Proc_uc3_1C" isExecutable="false">
+<bpmn:task id="n2" name="Задача назначена исполнителю; уведомление штатными средствами 1С"/>
+<bpmn:task id="n5" name="Статус задачи [Выполнено / Отменено]; время и исполнитель фиксируются в 1С"/>
+</bpmn:process>
+<bpmndi:BPMNDiagram id="Dia_uc3"><bpmndi:BPMNPlane id="Plane_uc3" bpmnElement="Collab_uc3">
+<bpmndi:BPMNShape id="sh_P_uc3_AquaPredict" bpmnElement="P_uc3_AquaPredict" isHorizontal="true"><dc:Bounds x="24" y="118" width="2986" height="504"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc3_0" bpmnElement="lane_uc3_0" isHorizontal="true"><dc:Bounds x="70" y="118" width="2924" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc3_1" bpmnElement="lane_uc3_1" isHorizontal="true"><dc:Bounds x="70" y="286" width="2924" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc3_2" bpmnElement="lane_uc3_2" isHorizontal="true"><dc:Bounds x="70" y="454" width="2924" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_P_uc3_1C" bpmnElement="P_uc3_1C" isHorizontal="true"><dc:Bounds x="24" y="622" width="2986" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n1" bpmnElement="n1"><dc:Bounds x="254" y="184" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n2" bpmnElement="n2"><dc:Bounds x="554" y="666" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n3" bpmnElement="n3"><dc:Bounds x="854" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n4" bpmnElement="n4"><dc:Bounds x="1154" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n5" bpmnElement="n5"><dc:Bounds x="1454" y="666" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n6" bpmnElement="n6"><dc:Bounds x="1754" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n7" bpmnElement="n7"><dc:Bounds x="2054" y="177" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n8" bpmnElement="n8"><dc:Bounds x="2354" y="498" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n9" bpmnElement="n9"><dc:Bounds x="2654" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="e_mf_uc3_1" bpmnElement="mf_uc3_1"><di:waypoint x="290" y="202"/><di:waypoint x="422" y="202"/><di:waypoint x="422" y="706"/><di:waypoint x="554" y="706"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc3_2" bpmnElement="mf_uc3_2"><di:waypoint x="776" y="706"/><di:waypoint x="815" y="706"/><di:waypoint x="815" y="370"/><di:waypoint x="854" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc3_3" bpmnElement="sf_uc3_3"><di:waypoint x="1076" y="370"/><di:waypoint x="1115" y="370"/><di:waypoint x="1115" y="370"/><di:waypoint x="1154" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc3_4" bpmnElement="mf_uc3_4"><di:waypoint x="1376" y="370"/><di:waypoint x="1415" y="370"/><di:waypoint x="1415" y="706"/><di:waypoint x="1454" y="706"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_mf_uc3_5" bpmnElement="mf_uc3_5"><di:waypoint x="1676" y="706"/><di:waypoint x="1715" y="706"/><di:waypoint x="1715" y="202"/><di:waypoint x="1754" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc3_6" bpmnElement="sf_uc3_6"><di:waypoint x="1976" y="202"/><di:waypoint x="2015" y="202"/><di:waypoint x="2015" y="202"/><di:waypoint x="2054" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc3_7" bpmnElement="sf_uc3_7"><di:waypoint x="2104" y="202"/><di:waypoint x="2229" y="202"/><di:waypoint x="2229" y="538"/><di:waypoint x="2354" y="538"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc3_8" bpmnElement="sf_uc3_8"><di:waypoint x="2576" y="538"/><di:waypoint x="2615" y="538"/><di:waypoint x="2615" y="202"/><di:waypoint x="2654" y="202"/></bpmndi:BPMNEdge>
+</bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn:definitions>

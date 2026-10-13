@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_uc6" targetNamespace="http://aquapredict/bpmn">
+<bpmn:collaboration id="Collab_uc6">
+<bpmn:participant id="P_uc6_AquaPredict" name="AquaPredict" processRef="Proc_uc6_AquaPredict"/>
+</bpmn:collaboration>
+<bpmn:process id="Proc_uc6_AquaPredict" isExecutable="false">
+<bpmn:laneSet id="ls_uc6">
+<bpmn:lane id="lane_uc6_0" name="Система (AquaPredict)"><bpmn:flowNodeRef>n1</bpmn:flowNodeRef><bpmn:flowNodeRef>n2</bpmn:flowNodeRef><bpmn:flowNodeRef>n3</bpmn:flowNodeRef><bpmn:flowNodeRef>n4</bpmn:flowNodeRef><bpmn:flowNodeRef>n6</bpmn:flowNodeRef><bpmn:flowNodeRef>n7</bpmn:flowNodeRef><bpmn:flowNodeRef>n9</bpmn:flowNodeRef></bpmn:lane>
+<bpmn:lane id="lane_uc6_1" name="ML-инженер (DS)"><bpmn:flowNodeRef>n5</bpmn:flowNodeRef><bpmn:flowNodeRef>n8</bpmn:flowNodeRef></bpmn:lane>
+</bpmn:laneSet>
+<bpmn:serviceTask id="n1" name="Автоагрегация: связка «срез телеметрии за окно (2 ч) → лабораторный протокол или вердикт технолога» → «Размеченный приме"/>
+<bpmn:serviceTask id="n2" name="Приоритет метки: лабораторный протокол &gt; вердикт технолога (прокси-метка)"/>
+<bpmn:exclusiveGateway id="n3" name="Источники расходятся или противоречат объективным данным?"/>
+<bpmn:serviceTask id="n4" name="Накоплено N новых примеров → уведомление DS: «Накоплено 500 новых размеченных примеров» (SCR-07)"/>
+<bpmn:userTask id="n5" name="Инициирует переобучение (Retraining) на расширенном датасете"/>
+<bpmn:serviceTask id="n6" name="Пайплайн обучения; вычисление метрик новой версии (Recall/Precision/FPR/F1 — цели по слоям `kpi.md` §2)"/>
+<bpmn:exclusiveGateway id="n7" name="Метрики новой версии ≥ рабочей (допустимый коридор)?"/>
+<bpmn:userTask id="n8" name="«Утвердить и развернуть»"/>
+<bpmn:endEvent id="n9" name="Новая версия → [Production]; старая → [Архив]; журнал версий в SCR-07"/>
+<bpmn:sequenceFlow id="sf_uc6_1" sourceRef="n1" targetRef="n2"/>
+<bpmn:sequenceFlow id="sf_uc6_2" sourceRef="n2" targetRef="n3"/>
+<bpmn:sequenceFlow id="sf_uc6_3" sourceRef="n3" targetRef="n4"/>
+<bpmn:sequenceFlow id="sf_uc6_4" sourceRef="n4" targetRef="n5"/>
+<bpmn:sequenceFlow id="sf_uc6_5" sourceRef="n5" targetRef="n6"/>
+<bpmn:sequenceFlow id="sf_uc6_6" sourceRef="n6" targetRef="n7"/>
+<bpmn:sequenceFlow id="sf_uc6_7" sourceRef="n7" targetRef="n8"/>
+<bpmn:sequenceFlow id="sf_uc6_8" sourceRef="n8" targetRef="n9"/>
+</bpmn:process>
+<bpmndi:BPMNDiagram id="Dia_uc6"><bpmndi:BPMNPlane id="Plane_uc6" bpmnElement="Collab_uc6">
+<bpmndi:BPMNShape id="sh_P_uc6_AquaPredict" bpmnElement="P_uc6_AquaPredict" isHorizontal="true"><dc:Bounds x="24" y="118" width="2986" height="336"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc6_0" bpmnElement="lane_uc6_0" isHorizontal="true"><dc:Bounds x="70" y="118" width="2924" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_uc6_1" bpmnElement="lane_uc6_1" isHorizontal="true"><dc:Bounds x="70" y="286" width="2924" height="168"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n1" bpmnElement="n1"><dc:Bounds x="254" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n2" bpmnElement="n2"><dc:Bounds x="554" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n3" bpmnElement="n3"><dc:Bounds x="854" y="177" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n4" bpmnElement="n4"><dc:Bounds x="1154" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n5" bpmnElement="n5"><dc:Bounds x="1454" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n6" bpmnElement="n6"><dc:Bounds x="1754" y="162" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n7" bpmnElement="n7"><dc:Bounds x="2054" y="177" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n8" bpmnElement="n8"><dc:Bounds x="2354" y="330" width="222" height="80"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_n9" bpmnElement="n9"><dc:Bounds x="2654" y="184" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="e_sf_uc6_1" bpmnElement="sf_uc6_1"><di:waypoint x="476" y="202"/><di:waypoint x="515" y="202"/><di:waypoint x="515" y="202"/><di:waypoint x="554" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc6_2" bpmnElement="sf_uc6_2"><di:waypoint x="776" y="202"/><di:waypoint x="815" y="202"/><di:waypoint x="815" y="202"/><di:waypoint x="854" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc6_3" bpmnElement="sf_uc6_3"><di:waypoint x="904" y="202"/><di:waypoint x="1029" y="202"/><di:waypoint x="1029" y="202"/><di:waypoint x="1154" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc6_4" bpmnElement="sf_uc6_4"><di:waypoint x="1376" y="202"/><di:waypoint x="1415" y="202"/><di:waypoint x="1415" y="370"/><di:waypoint x="1454" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc6_5" bpmnElement="sf_uc6_5"><di:waypoint x="1676" y="370"/><di:waypoint x="1715" y="370"/><di:waypoint x="1715" y="202"/><di:waypoint x="1754" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc6_6" bpmnElement="sf_uc6_6"><di:waypoint x="1976" y="202"/><di:waypoint x="2015" y="202"/><di:waypoint x="2015" y="202"/><di:waypoint x="2054" y="202"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc6_7" bpmnElement="sf_uc6_7"><di:waypoint x="2104" y="202"/><di:waypoint x="2229" y="202"/><di:waypoint x="2229" y="370"/><di:waypoint x="2354" y="370"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="e_sf_uc6_8" bpmnElement="sf_uc6_8"><di:waypoint x="2576" y="370"/><di:waypoint x="2615" y="370"/><di:waypoint x="2615" y="202"/><di:waypoint x="2654" y="202"/></bpmndi:BPMNEdge>
+</bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn:definitions>
