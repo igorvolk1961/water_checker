@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1994 604" width="1994" height="604" font-family="Manrope, Segoe UI, system-ui, sans-serif">
+<defs>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#33475b"/></marker>
+<marker id="arrm" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5f6368"/></marker>
+</defs>
+<rect x="0" y="0" width="1994" height="604" fill="#ffffff"/>
+<text x="264" y="42" font-family="Unbounded, Manrope, sans-serif" font-size="24" font-weight="700" fill="#0e2433">BPMN v1 — UC5: Получение утверждённых результатов испытаний (Ground Truth) из «БИТ:LIMS»</text>
+<text x="264" y="70" font-size="13" fill="#5d7285">Версия:</text>
+<rect x="24" y="118" width="1946" height="168" rx="14" fill="#fbfaf6" stroke="#dfe8ea"/>
+<text transform="translate(46,202.0) rotate(-90)" text-anchor="middle" font-family="Unbounded, Manrope, sans-serif" font-size="15" font-weight="700" fill="#0e7c86" letter-spacing="1">«БИТ:LIMS» (1С)</text>
+<rect x="24" y="286" width="1946" height="168" rx="14" fill="#f7fbfb" stroke="#dfe8ea"/>
+<text transform="translate(46,370.0) rotate(-90)" text-anchor="middle" font-family="Unbounded, Manrope, sans-serif" font-size="15" font-weight="700" fill="#0e7c86" letter-spacing="1">AquaPredict</text>
+<line x1="70" y1="118" x2="1954" y2="118" stroke="#e3ecee"/>
+<text x="86" y="196.0" font-size="14" font-weight="700" fill="#0e2433">1С</text>
+<text x="86" y="216.0" font-size="11" fill="#5d7285">дорожка</text>
+<line x1="70" y1="286" x2="1954" y2="286" stroke="#e3ecee"/>
+<text x="86" y="364.0" font-size="14" font-weight="700" fill="#0e2433">Система (AquaPredict)</text>
+<text x="86" y="384.0" font-size="11" fill="#5d7285">дорожка</text>
+<rect x="264" y="125.5" width="236" height="153" rx="10" fill="#f1f3f4" stroke="#5f6368" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="278" y="149.5" font-size="12.5" fill="#16262e">Лаборант вносит результаты</text>
+<text x="278" y="165.5" font-size="12.5" fill="#16262e">анализа; протокол формируется</text>
+<text x="278" y="181.5" font-size="12.5" fill="#16262e">и утверждается (ПЭП</text>
+<text x="278" y="197.5" font-size="12.5" fill="#16262e">руководителя лаборатории —</text>
+<text x="278" y="213.5" font-size="12.5" fill="#16262e">контур 1С, LGL-02); выгрузка</text>
+<text x="278" y="229.5" font-size="12.5" fill="#16262e">во ФГИС — штатный функционал</text>
+<text x="278" y="245.5" font-size="12.5" fill="#16262e">1С (LGL-01)</text>
+<text x="278" y="268.5" font-size="10.5" fill="#7a8b99">(вне проекта)</text>
+<text x="508" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">1</text>
+<rect x="594" y="319.0" width="236" height="102" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="608" y="343.0" font-size="12.5" fill="#16262e">Периодическое чтение</text>
+<text x="608" y="359.0" font-size="12.5" fill="#16262e">утверждённых результатов пробы</text>
+<text x="608" y="375.0" font-size="12.5" fill="#16262e">по OData (в пакете, ≤ 60</text>
+<text x="608" y="391.0" font-size="12.5" fill="#16262e">запросов/мин — NFR-6)</text>
+<text x="608" y="411.0" font-size="10.5" fill="#7a8b99">(задача (FR-08.1, EPIC-07))</text>
+<text x="838" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">2</text>
+<rect x="924" y="293.5" width="236" height="153" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="938" y="317.5" font-size="12.5" fill="#16262e">Сверка результата с</text>
+<text x="938" y="333.5" font-size="12.5" fill="#16262e">нормативами (СанПиН</text>
+<text x="938" y="349.5" font-size="12.5" fill="#16262e">1.2.3685-21 / ГОСТ 32220-2013,</text>
+<text x="938" y="365.5" font-size="12.5" fill="#16262e">справочник) —</text>
+<text x="938" y="381.5" font-size="12.5" fill="#16262e">**информационная** подсветка;</text>
+<text x="938" y="397.5" font-size="12.5" fill="#16262e">решение о несоответствии — в</text>
+<text x="938" y="413.5" font-size="12.5" fill="#16262e">1С (LGL-11)</text>
+<text x="938" y="436.5" font-size="10.5" fill="#7a8b99">(задача (FR-08.3))</text>
+<text x="1168" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">3</text>
+<rect x="1254" y="302.0" width="236" height="136" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="1268" y="326.0" font-size="12.5" fill="#16262e">Сохранение результата как</text>
+<text x="1268" y="342.0" font-size="12.5" fill="#16262e">Ground Truth, привязанного к</text>
+<text x="1268" y="358.0" font-size="12.5" fill="#16262e">партии/пробе; чтение статуса</text>
+<text x="1268" y="374.0" font-size="12.5" fill="#16262e">ФГИС-выгрузки и UUID —</text>
+<text x="1268" y="390.0" font-size="12.5" fill="#16262e">отображение read-only (SCR-05,</text>
+<text x="1268" y="406.0" font-size="12.5" fill="#16262e">FR-09.3)</text>
+<text x="1268" y="428.0" font-size="10.5" fill="#7a8b99">(задача)</text>
+<text x="1498" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">4</text>
+<circle cx="1702.0" cy="370.0" r="26" fill="#fdecea" stroke="#b03a2e" stroke-width="6"/>
+<text x="1702.0" y="418.0" text-anchor="middle" font-size="13" font-weight="700" fill="#b03a2e">Конец</text>
+<text x="1828" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">5</text>
+<path d="M500 202.0 H547.0 V370.0 H594" fill="none" stroke="#5f6368" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrm)"/>
+<path d="M830 370.0 H877.0 V370.0 H924" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1160 370.0 H1207.0 V370.0 H1254" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1490 370.0 H1537.0 V370.0 H1584" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<text x="264" y="538" font-size="12" font-weight="700" fill="#5d7285">Легенда:</text>
+<circle cx="354" cy="534" r="9" fill="#e7f6ec" stroke="#1e8449" stroke-width="2"/><text x="370" y="538" font-size="11.5" fill="#33475b">событие старта</text>
+<rect x="494" y="525" width="34" height="20" rx="5" fill="#ffffff" stroke="#0e7c86" stroke-width="1.6"/><text x="536" y="538" font-size="11.5" fill="#33475b">задача</text>
+<path d="M644 524 l12 12 l-12 12 l-12 -12 z" fill="#fff8e1" stroke="#a3660a"/><text x="664" y="538" font-size="11.5" fill="#33475b">шлюз</text>
+<circle cx="784" cy="534" r="9" fill="#fdecea" stroke="#b03a2e" stroke-width="3"/><text x="800" y="538" font-size="11.5" fill="#33475b">конец</text>
+<line x1="904" y1="534" x2="954" y2="534" stroke="#5f6368" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrm)"/><text x="964" y="538" font-size="11.5" fill="#33475b">межпуловый поток (message flow)</text>
+</svg>

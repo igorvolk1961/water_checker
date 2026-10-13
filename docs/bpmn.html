@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AquaPredict — BPMN-схемы</title>
+<style>
+  :root{ --bg:#f6f9fa; --fg:#0e2433; --muted:#5d7285; --accent:#0e7c86; --line:#dfe8ea; --card:#fff; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,'Segoe UI',Manrope,sans-serif}
+  header{background:linear-gradient(160deg,#07222e,#0d3a4a);color:#eef7f8;padding:34px 24px}
+  header h1{margin:0 0 8px;font-size:26px}
+  header p{margin:0;color:#8fb3bd;font-size:14px}
+  .wrap{max-width:1400px;margin:0 auto;padding:0 20px}
+  nav{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;gap:10px;flex-wrap:wrap;z-index:5}
+  nav a{font-size:13px;text-decoration:none;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+  nav a:hover{border-color:var(--accent)}
+  section{padding:28px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:19px;margin:0 0 4px}
+  .hint{color:var(--muted);font-size:13px;margin:0 0 12px}
+  .board{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;overflow:auto}
+  .board img{display:block;width:100%;height:auto;min-width:1000px}
+  .open{font-size:12.5px;margin-top:8px;display:inline-block;color:var(--accent)}
+  .foot{padding:24px 0 60px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>AquaPredict — BPMN-схемы процессов (UC1…UC8)</h1>
+    <p>Схемы построены из текстовых спецификаций <code>bpmn_ucX.md</code> (пулы/дорожки, события, задачи, шлюзы, межпуловые потоки). Для редактируемого BPMN 2.0 откройте спецификации в bpmn.io / Camunda Modeler.</p>
+  </div>
+</header>
+<nav>
+  <a href="#uc1">UC1 партия</a><a href="#uc2">UC2 алерт</a><a href="#uc3">UC3 корректирующее действие</a>
+  <a href="#uc4">UC4 отбор</a><a href="#uc5">UC5 Ground Truth</a><a href="#uc6">UC6 разметка</a>
+  <a href="#uc7">UC7 Cold Start</a><a href="#uc8">UC8 мониторинг</a>
+</nav>
+<div class="wrap">
+  <section id="uc1"><h2>UC1 — Синхронизация партии и привязка телеметрии</h2><p class="hint">FR-01, FR-02, FR-15 · дорожки: 1С, Система, Линия/шлюз</p><div class="board"><img src="system_analysis/diagrams/bpmn/uc1.svg" alt="UC1"></div><a class="open" href="system_analysis/diagrams/bpmn/uc1.svg">открыть SVG</a></section>
+  <section id="uc2"><h2>UC2 — Предиктивное предупреждение</h2><p class="hint">FR-05/06/12 · дорожки: Система, ГТ, 1С</p><div class="board"><img src="system_analysis/diagrams/bpmn/uc2.svg" alt="UC2"></div><a class="open" href="system_analysis/diagrams/bpmn/uc2.svg">открыть SVG</a></section>
+  <section id="uc3"><h2>UC3 — Корректирующее действие и вердикт</h2><p class="hint">FR-06, LGL-10 · дорожки: Система, Персонал, ГТ, 1С</p><div class="board"><img src="system_analysis/diagrams/bpmn/uc3.svg" alt="UC3"></div><a class="open" href="system_analysis/diagrams/bpmn/uc3.svg">открыть SVG</a></section>
+  <section id="uc4"><h2>UC4 — Внеплановый (триггерный) отбор пробы</h2><p class="hint">FR-07, FR-08 · дорожки: Система, Лаборант, 1С</p><div class="board"><img src="system_analysis/diagrams/bpmn/uc4.svg" alt="UC4"></div><a class="open" href="system_analysis/diagrams/bpmn/uc4.svg">открыть SVG</a></section>
+  <section id="uc5"><h2>UC5 — Получение Ground Truth из «БИТ:LIMS»</h2><p class="hint">FR-08/09, LGL-01/02/07 · дорожки: 1С (лабораторный контур), Система</p><div class="board"><img src="system_analysis/diagrams/bpmn/uc5.svg" alt="UC5"></div><a class="open" href="system_analysis/diagrams/bpmn/uc5.svg">открыть SVG</a></section>
+  <section id="uc6"><h2>UC6 — Валидация и пополнение обучающей выборки</h2><p class="hint">FR-11/12, LGL-13 · дорожки: Система, ML-инженер</p><div class="board"><img src="system_analysis/diagrams/bpmn/uc6.svg" alt="UC6"></div><a class="open" href="system_analysis/diagrams/bpmn/uc6.svg">открыть SVG</a></section>
+  <section id="uc7"><h2>UC7 — Cold Start и базовая линия</h2><p class="hint">FR-04/10 · дорожки: Система, DS, ГТ</p><div class="board"><img src="system_analysis/diagrams/bpmn/uc7.svg" alt="UC7"></div><a class="open" href="system_analysis/diagrams/bpmn/uc7.svg">открыть SVG</a></section>
+  <section id="uc8"><h2>UC8 — Мониторинг телеметрии (КИПиА)</h2><p class="hint">FR-16, NFR-2 · дорожки: Система, Инженер КИПиА</p><div class="board"><img src="system_analysis/diagrams/bpmn/uc8.svg" alt="UC8"></div><a class="open" href="system_analysis/diagrams/bpmn/uc8.svg">открыть SVG</a></section>
+  <div class="foot">Схемы — BPMN-обзор (schematic), сгенерированы из спецификаций; исходные тексты — <code>docs/system_analysis/diagrams/bpmn_ucX*.md</code>.</div>
+</div>
+</body>
+</html>

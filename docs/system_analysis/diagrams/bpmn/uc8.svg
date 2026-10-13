@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2324 604" width="2324" height="604" font-family="Manrope, Segoe UI, system-ui, sans-serif">
+<defs>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#33475b"/></marker>
+<marker id="arrm" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5f6368"/></marker>
+</defs>
+<rect x="0" y="0" width="2324" height="604" fill="#ffffff"/>
+<text x="264" y="42" font-family="Unbounded, Manrope, sans-serif" font-size="24" font-weight="700" fill="#0e2433">BPMN v1 — UC8: Мониторинг источников телеметрии (КИПиА)</text>
+<text x="264" y="70" font-size="13" fill="#5d7285">Версия:</text>
+<rect x="24" y="118" width="2276" height="336" rx="14" fill="#f7fbfb" stroke="#dfe8ea"/>
+<text transform="translate(46,286.0) rotate(-90)" text-anchor="middle" font-family="Unbounded, Manrope, sans-serif" font-size="15" font-weight="700" fill="#0e7c86" letter-spacing="1">AquaPredict</text>
+<line x1="70" y1="118" x2="2284" y2="118" stroke="#e3ecee"/>
+<text x="86" y="196.0" font-size="14" font-weight="700" fill="#0e2433">Система (AquaPredict)</text>
+<text x="86" y="216.0" font-size="11" fill="#5d7285">дорожка</text>
+<line x1="70" y1="286" x2="2284" y2="286" stroke="#e3ecee"/>
+<text x="86" y="364.0" font-size="14" font-weight="700" fill="#0e2433">КИПиА</text>
+<text x="86" y="384.0" font-size="11" fill="#5d7285">дорожка</text>
+<rect x="264" y="117.0" width="236" height="170" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="278" y="141.0" font-size="12.5" fill="#16262e">Непрерывная проверка</text>
+<text x="278" y="157.0" font-size="12.5" fill="#16262e">доступности датчиков (OPC-UA)</text>
+<text x="278" y="173.0" font-size="12.5" fill="#16262e">и целостности потока: пропуски</text>
+<text x="278" y="189.0" font-size="12.5" fill="#16262e">отметок, «замороженные»</text>
+<text x="278" y="205.0" font-size="12.5" fill="#16262e">значения, рассинхронизация</text>
+<text x="278" y="221.0" font-size="12.5" fill="#16262e">времени, выход за физические</text>
+<text x="278" y="237.0" font-size="12.5" fill="#16262e">границы значений (FR-16.1,</text>
+<text x="278" y="253.0" font-size="12.5" fill="#16262e">FR-02.4)</text>
+<text x="278" y="277.0" font-size="10.5" fill="#7a8b99">(задача)</text>
+<text x="508" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">1</text>
+<path d="M712.0 142.0 L772.0 202.0 L712.0 262.0 L652.0 202.0 Z" fill="#fff8e1" stroke="#a3660a" stroke-width="2"/>
+<text x="712.0" y="194.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">Аномалия обнаружена?</text>
+<text x="838" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">2</text>
+<text x="842" y="236.0" font-size="10.5" font-style="italic" fill="#8a5a00">Нет → продолжение мониторинга;</text>
+<text x="842" y="249.0" font-size="10.5" font-style="italic" fill="#8a5a00">статусы датчиков и буфера — на</text>
+<text x="842" y="262.0" font-size="10.5" font-style="italic" fill="#8a5a00">SCR-09</text>
+<rect x="924" y="151.0" width="236" height="102" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="938" y="175.0" font-size="12.5" fill="#16262e">Диагностическое уведомление</text>
+<text x="938" y="191.0" font-size="12.5" fill="#16262e">инженеру КИПиА (канал —</text>
+<text x="938" y="207.0" font-size="12.5" fill="#16262e">SCR-12); пометка достоверности</text>
+<text x="938" y="223.0" font-size="12.5" fill="#16262e">канала</text>
+<text x="938" y="243.0" font-size="10.5" fill="#7a8b99">(задача (FR-16.3))</text>
+<text x="1168" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">3</text>
+<rect x="1254" y="142.5" width="236" height="119" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="1268" y="166.5" font-size="12.5" fill="#16262e">Скоринг по данным</text>
+<text x="1268" y="182.5" font-size="12.5" fill="#16262e">деградировавшего канала</text>
+<text x="1268" y="198.5" font-size="12.5" fill="#16262e">помечается признаком</text>
+<text x="1268" y="214.5" font-size="12.5" fill="#16262e">пониженной достоверности</text>
+<text x="1268" y="230.5" font-size="12.5" fill="#16262e">(SCR-01/SCR-02)</text>
+<text x="1268" y="251.5" font-size="10.5" fill="#7a8b99">(задача (FR-16.4))</text>
+<text x="1498" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">4</text>
+<rect x="1584" y="327.5" width="236" height="85" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="1598" y="351.5" font-size="12.5" fill="#16262e">Устранение неисправности (вне</text>
+<text x="1598" y="367.5" font-size="12.5" fill="#16262e">системы) и подтверждение</text>
+<text x="1598" y="383.5" font-size="12.5" fill="#16262e">восстановления</text>
+<text x="1598" y="402.5" font-size="10.5" fill="#7a8b99">(задача (HITL))</text>
+<text x="1828" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">5</text>
+<circle cx="2032.0" cy="202.0" r="26" fill="#fdecea" stroke="#b03a2e" stroke-width="6"/>
+<text x="2032.0" y="250.0" text-anchor="middle" font-size="13" font-weight="700" fill="#b03a2e">Конец</text>
+<text x="2158" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">6</text>
+<path d="M500 202.0 H547.0 V202.0 H594" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M830 202.0 H877.0 V202.0 H924" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1160 202.0 H1207.0 V202.0 H1254" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1490 202.0 H1537.0 V370.0 H1584" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1820 370.0 H1867.0 V202.0 H1914" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<text x="264" y="538" font-size="12" font-weight="700" fill="#5d7285">Легенда:</text>
+<circle cx="354" cy="534" r="9" fill="#e7f6ec" stroke="#1e8449" stroke-width="2"/><text x="370" y="538" font-size="11.5" fill="#33475b">событие старта</text>
+<rect x="494" y="525" width="34" height="20" rx="5" fill="#ffffff" stroke="#0e7c86" stroke-width="1.6"/><text x="536" y="538" font-size="11.5" fill="#33475b">задача</text>
+<path d="M644 524 l12 12 l-12 12 l-12 -12 z" fill="#fff8e1" stroke="#a3660a"/><text x="664" y="538" font-size="11.5" fill="#33475b">шлюз</text>
+<circle cx="784" cy="534" r="9" fill="#fdecea" stroke="#b03a2e" stroke-width="3"/><text x="800" y="538" font-size="11.5" fill="#33475b">конец</text>
+<line x1="904" y1="534" x2="954" y2="534" stroke="#5f6368" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrm)"/><text x="964" y="538" font-size="11.5" fill="#33475b">межпуловый поток (message flow)</text>
+</svg>

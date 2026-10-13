@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3314 940" width="3314" height="940" font-family="Manrope, Segoe UI, system-ui, sans-serif">
+<defs>
+<marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#33475b"/></marker>
+<marker id="arrm" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5f6368"/></marker>
+</defs>
+<rect x="0" y="0" width="3314" height="940" fill="#ffffff"/>
+<text x="264" y="42" font-family="Unbounded, Manrope, sans-serif" font-size="24" font-weight="700" fill="#0e2433">BPMN v1 — UC3: Регистрация и контроль выполнения корректирующего действия</text>
+<rect x="24" y="118" width="3266" height="672" rx="14" fill="#f7fbfb" stroke="#dfe8ea"/>
+<text transform="translate(46,454.0) rotate(-90)" text-anchor="middle" font-family="Unbounded, Manrope, sans-serif" font-size="15" font-weight="700" fill="#0e7c86" letter-spacing="1">AquaPredict</text>
+<rect x="24" y="286" width="3266" height="168" rx="14" fill="#fbfaf6" stroke="#dfe8ea"/>
+<text transform="translate(46,370.0) rotate(-90)" text-anchor="middle" font-family="Unbounded, Manrope, sans-serif" font-size="15" font-weight="700" fill="#0e7c86" letter-spacing="1">«БИТ:LIMS» (1С)</text>
+<line x1="70" y1="118" x2="3274" y2="118" stroke="#e3ecee"/>
+<text x="86" y="196.0" font-size="14" font-weight="700" fill="#0e2433">Система (AquaPredict)</text>
+<text x="86" y="216.0" font-size="11" fill="#5d7285">дорожка</text>
+<line x1="70" y1="286" x2="3274" y2="286" stroke="#e3ecee"/>
+<text x="86" y="364.0" font-size="14" font-weight="700" fill="#0e2433">1С</text>
+<text x="86" y="384.0" font-size="11" fill="#5d7285">дорожка</text>
+<line x1="70" y1="454" x2="3274" y2="454" stroke="#e3ecee"/>
+<text x="86" y="532.0" font-size="14" font-weight="700" fill="#0e2433">Персонал (ГТ/оператор)</text>
+<text x="86" y="552.0" font-size="11" fill="#5d7285">дорожка</text>
+<line x1="70" y1="622" x2="3274" y2="622" stroke="#e3ecee"/>
+<text x="86" y="700.0" font-size="14" font-weight="700" fill="#0e2433">Главный технолог (ГТ)</text>
+<text x="86" y="720.0" font-size="11" fill="#5d7285">дорожка</text>
+<circle cx="382.0" cy="202.0" r="26" fill="#e7f6ec" stroke="#1e8449" stroke-width="3"/>
+<text x="382.0" y="250.0" text-anchor="middle" font-size="13" font-weight="700" fill="#1e8449">Старт</text>
+<text x="508" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">1</text>
+<rect x="594" y="327.5" width="236" height="85" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="608" y="351.5" font-size="12.5" fill="#16262e">Задача назначена исполнителю;</text>
+<text x="608" y="367.5" font-size="12.5" fill="#16262e">уведомление штатными</text>
+<text x="608" y="383.5" font-size="12.5" fill="#16262e">средствами 1С</text>
+<text x="608" y="402.5" font-size="10.5" fill="#7a8b99">(задача)</text>
+<text x="838" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">2</text>
+<rect x="924" y="501.0" width="236" height="74" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="938" y="525.0" font-size="12.5" fill="#16262e">Физическое выполнение действия</text>
+<text x="938" y="541.0" font-size="12.5" fill="#16262e">на оборудовании (вне систем)</text>
+<text x="938" y="565.0" font-size="10.5" fill="#7a8b99">(задача (HITL, LGL-04))</text>
+<text x="1168" y="498.0" font-size="12" font-weight="800" fill="#c3d3da">3</text>
+<rect x="1254" y="495.5" width="236" height="85" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="1268" y="519.5" font-size="12.5" fill="#16262e">Закрытие задачи в 1С:</text>
+<text x="1268" y="535.5" font-size="12.5" fill="#16262e">«Действие выполнено» +</text>
+<text x="1268" y="551.5" font-size="12.5" fill="#16262e">приложение (фото/комментарий)</text>
+<text x="1268" y="570.5" font-size="10.5" fill="#7a8b99">(задача)</text>
+<text x="1498" y="498.0" font-size="12" font-weight="800" fill="#c3d3da">4</text>
+<rect x="1584" y="327.5" width="236" height="85" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="1598" y="351.5" font-size="12.5" fill="#16262e">Статус задачи [Выполнено /</text>
+<text x="1598" y="367.5" font-size="12.5" fill="#16262e">Отменено]; время и исполнитель</text>
+<text x="1598" y="383.5" font-size="12.5" fill="#16262e">фиксируются в 1С</text>
+<text x="1598" y="402.5" font-size="10.5" fill="#7a8b99">(задача (LGL-10))</text>
+<text x="1828" y="330.0" font-size="12" font-weight="800" fill="#c3d3da">5</text>
+<rect x="1914" y="151.0" width="236" height="102" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="1928" y="175.0" font-size="12.5" fill="#16262e">Чтение статуса по OData;</text>
+<text x="1928" y="191.0" font-size="12.5" fill="#16262e">синхронизация в карточку</text>
+<text x="1928" y="207.0" font-size="12.5" fill="#16262e">инцидента (SCR-02); различение</text>
+<text x="1928" y="223.0" font-size="12.5" fill="#16262e">источника события в аудите</text>
+<text x="1928" y="243.0" font-size="10.5" fill="#7a8b99">(задача (LGL-10, FR-14))</text>
+<text x="2158" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">6</text>
+<path d="M2362.0 142.0 L2422.0 202.0 L2362.0 262.0 L2302.0 202.0 Z" fill="#fff8e1" stroke="#a3660a" stroke-width="2"/>
+<text x="2362.0" y="194.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">Результат</text>
+<text x="2362.0" y="209.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">корректирующего</text>
+<text x="2362.0" y="224.0" text-anchor="middle" font-size="11.5" fill="#6b4b0a">действия</text>
+<text x="2488" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">7</text>
+<text x="2492" y="236.0" font-size="10.5" font-style="italic" fill="#8a5a00">Отменено → инцидент возвращается в</text>
+<text x="2492" y="249.0" font-size="10.5" font-style="italic" fill="#8a5a00">статус [Новый] (переход доменной</text>
+<text x="2492" y="262.0" font-size="10.5" font-style="italic" fill="#8a5a00">модели, решение В-2): пересмотр ГТ</text>
+<text x="2492" y="275.0" font-size="10.5" font-style="italic" fill="#8a5a00">— новая рекомендация или вердикт</text>
+<rect x="2574" y="629.5" width="236" height="153" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="2588" y="653.5" font-size="12.5" fill="#16262e">Фиксация **вердикта по</text>
+<text x="2588" y="669.5" font-size="12.5" fill="#16262e">инциденту** — отдельная</text>
+<text x="2588" y="685.5" font-size="12.5" fill="#16262e">сущность: [Подтверждён /</text>
+<text x="2588" y="701.5" font-size="12.5" fill="#16262e">Ложное срабатывание] + причина</text>
+<text x="2588" y="717.5" font-size="12.5" fill="#16262e">(не смешивать с результатом</text>
+<text x="2588" y="733.5" font-size="12.5" fill="#16262e">корректирующего действия —</text>
+<text x="2588" y="749.5" font-size="12.5" fill="#16262e">устранение дефекта US-05.1)</text>
+<text x="2588" y="772.5" font-size="10.5" fill="#7a8b99">(задача (FR-06, FR-12))</text>
+<text x="2818" y="666.0" font-size="12" font-weight="800" fill="#c3d3da">8</text>
+<rect x="2904" y="134.0" width="236" height="136" rx="10" fill="#ffffff" stroke="#0e7c86" stroke-width="2"/>
+<text x="2918" y="158.0" font-size="12.5" fill="#16262e">Вердикт → прокси-метка в</text>
+<text x="2918" y="174.0" font-size="12.5" fill="#16262e">обучающую выборку (FR-11;</text>
+<text x="2918" y="190.0" font-size="12.5" fill="#16262e">приоритет — лабораторный</text>
+<text x="2918" y="206.0" font-size="12.5" fill="#16262e">протокол); инцидент [Закрыт];</text>
+<text x="2918" y="222.0" font-size="12.5" fill="#16262e">блокировка закрытия партии</text>
+<text x="2918" y="238.0" font-size="12.5" fill="#16262e">снята (FR-01)</text>
+<text x="2918" y="260.0" font-size="10.5" fill="#7a8b99">(задача)</text>
+<text x="3148" y="162.0" font-size="12" font-weight="800" fill="#c3d3da">9</text>
+<path d="M500 202.0 H547.0 V370.0 H594" fill="none" stroke="#5f6368" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrm)"/>
+<path d="M830 370.0 H877.0 V538.0 H924" fill="none" stroke="#5f6368" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrm)"/>
+<path d="M1160 538.0 H1207.0 V538.0 H1254" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M1490 538.0 H1537.0 V370.0 H1584" fill="none" stroke="#5f6368" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrm)"/>
+<path d="M1820 370.0 H1867.0 V202.0 H1914" fill="none" stroke="#5f6368" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrm)"/>
+<path d="M2150 202.0 H2197.0 V202.0 H2244" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M2480 202.0 H2527.0 V706.0 H2574" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M2810 706.0 H2857.0 V202.0 H2904" fill="none" stroke="#33475b" stroke-width="2" marker-end="url(#arr)"/>
+<text x="264" y="874" font-size="12" font-weight="700" fill="#5d7285">Легенда:</text>
+<circle cx="354" cy="870" r="9" fill="#e7f6ec" stroke="#1e8449" stroke-width="2"/><text x="370" y="874" font-size="11.5" fill="#33475b">событие старта</text>
+<rect x="494" y="861" width="34" height="20" rx="5" fill="#ffffff" stroke="#0e7c86" stroke-width="1.6"/><text x="536" y="874" font-size="11.5" fill="#33475b">задача</text>
+<path d="M644 860 l12 12 l-12 12 l-12 -12 z" fill="#fff8e1" stroke="#a3660a"/><text x="664" y="874" font-size="11.5" fill="#33475b">шлюз</text>
+<circle cx="784" cy="870" r="9" fill="#fdecea" stroke="#b03a2e" stroke-width="3"/><text x="800" y="874" font-size="11.5" fill="#33475b">конец</text>
+<line x1="904" y1="870" x2="954" y2="870" stroke="#5f6368" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrm)"/><text x="964" y="874" font-size="11.5" fill="#33475b">межпуловый поток (message flow)</text>
+</svg>
