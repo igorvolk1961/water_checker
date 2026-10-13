@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мокап SCR-02 — Карточка предиктивного инцидента</title>
+<style>
+  :root { --red:#c0392b; --green:#1e8449; --ink:#1c2833; --muted:#5d6d7e; --line:#d5dbdb; --bg:#f4f6f7; }
+  * { box-sizing:border-box; font-family:-apple-system,'Segoe UI',Roboto,sans-serif; }
+  body { margin:0; background:var(--bg); color:var(--ink); }
+  header { display:flex; align-items:center; gap:12px; padding:10px 20px; background:#fff; border-bottom:1px solid var(--line); }
+  header h1 { font-size:17px; margin:0; }
+  .badge { font-size:11px; padding:2px 8px; border-radius:10px; }
+  .b-open { background:#fdebd0; color:#b9770e; }
+  .sync { margin-left:auto; font-size:12px; color:var(--green); }
+  main { padding:16px 20px; max-width:1100px; margin:0 auto; display:grid; gap:16px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:14px; }
+  .card h2 { font-size:14px; margin:0 0 10px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; }
+  .meta { display:flex; gap:24px; flex-wrap:wrap; font-size:13px; }
+  .meta b { display:block; font-size:15px; }
+  .chart { height:140px; background:linear-gradient(#eaf2f8 1px, transparent 1px); background-size:100% 28px; border:1px solid var(--line); border-radius:4px; position:relative; }
+  .chart .line { position:absolute; left:0; right:0; bottom:20%; height:2px; background:#c0392b; opacity:.7; }
+  .chart .cap { position:absolute; right:8px; top:6px; font-size:11px; color:var(--muted); }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  select, textarea, button { font-size:13px; padding:6px 8px; border:1px solid var(--line); border-radius:4px; }
+  button.primary { background:#1c2833; color:#fff; border:none; cursor:pointer; }
+  button.ghost { background:#fff; cursor:pointer; }
+  .verdict-locked { font-size:12px; color:var(--muted); }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  td, th { padding:5px 6px; border-bottom:1px solid var(--line); text-align:left; }
+  th { color:var(--muted); }
+  .disclaimer { font-size:11px; color:var(--muted); border-top:1px dashed var(--line); margin-top:10px; padding-top:8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Инцидент ИНЦ-0041 · партия П-2026-11-0412</h1>
+  <span class="badge b-open">Статус: Новый</span>
+  <span class="sync">Синхронизация с 1С: норма</span>
+</header>
+<main>
+  <div class="card">
+    <h2>Параметры события</h2>
+    <div class="meta">
+      <span>Параметр<b>Мутность (TEL-06)</b></span>
+      <span>Риск-скор<b>0,87</b></span>
+      <span>Горизонт<b>≈ 2 ч</b></span>
+      <span>Источник<b>Слой 2 (ML)</b></span>
+      <span>Канал<b>достоверен ✓</b></span>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Тренд телеметрии · окно 2 ч</h2>
+    <div class="chart"><div class="line"></div><span class="cap">порог рабочей точки: 0,80 (утверждена эксплуатантом 05.10.2026)</span></div>
+    <p class="disclaimer">Данные 1С (результаты LAB) отображаются только для чтения (UI-06).</p>
+  </div>
+  <div class="cols">
+    <div class="card">
+      <h2>Вердикт по инциденту (ВердиктИнцидента)</h2>
+      <p><select><option>— выберите значение —</option><option>Подтверждён</option><option>Ложное срабатывание</option></select></p>
+      <p><select><option>— причина (справочник) —</option><option>Данные канала недостоверны</option><option>Плановое переключение режима</option><option>Другое (указать)</option></select></p>
+      <p><textarea rows="2" style="width:100%" placeholder="Комментарий (необязательно)"></textarea></p>
+      <button class="primary">Зафиксировать вердикт</button>
+      <p class="verdict-locked">Вердикт обязателен до перевода инцидента в «Закрыт» (решение В-1). Вердикт «Ложное срабатывание» уходит в разметку как прокси-метка (FR-12).</p>
+    </div>
+    <div class="card">
+      <h2>Задача КА (в 1С — read-only)</h2>
+      <table>
+        <tr><th>Рекомендованные шаги</th><td>Проверить фильтр №2; при необходимости промыть</td></tr>
+        <tr><th>Задача в 1С</th><td>КА-0087 · назначена · ссылка в 1С →</td></tr>
+        <tr><th>Результат КА</th><td>— (Выполнено / Отменено)</td></tr>
+      </table>
+      <p class="verdict-locked">Результат КА ≠ вердикт по инциденту — разные сущности (FR-06.5). Действия с задачей — в 1С.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Журнал событий инцидента</h2>
+    <table>
+      <tr><th>Время</th><th>Событие</th><th>Источник</th></tr>
+      <tr><td>14:31:58</td><td>Риск-скор 0,87 ≥ порога 0,80 → алерт</td><td>Рекомендация системы</td></tr>
+      <tr><td>14:32:01</td><td>Уведомление ГТ (push) · SMS</td><td>Система</td></tr>
+      <tr><td>14:34:10</td><td>Задача КА-0087 создана в 1С</td><td>Система</td></tr>
+      <tr><td>14:36:44</td><td>Карточка открыта</td><td>Действие человека · ГТ</td></tr>
+    </table>
+    <p class="disclaimer">⚠️ Прогноз вероятностный (LGL-09). HITL: система рекомендует, решение и действие — за персоналом (LGL-04). Основание решения о качестве — лабораторный контроль и ЭП в 1С (LGL-11). Все действия фиксируются в аудите (LGL-10).</p>
+  </div>
+</main>
+</body>
+</html>
