@@ -89,6 +89,7 @@
     - [2026-10-13_colleague_tz_review.md](docs/system_analysis/reviews/2026-10-13_colleague_tz_review.md)
     - [2026-10-13_frontend_api_contract_draft.md](docs/system_analysis/reviews/2026-10-13_frontend_api_contract_draft.md)
     - [2026-10-13_lead_to_colleague_note.md](docs/system_analysis/reviews/2026-10-13_lead_to_colleague_note.md)
+    - [2026-10-13_final_consistency_check.md](docs/system_analysis/reviews/2026-10-13_final_consistency_check.md)
 
 - [docs/references/](docs/references/) — учебные материалы (напр. выявление аномалий во временных рядах)
 
@@ -121,9 +122,9 @@
 
 - **Gate 0** — базис заморожен (вариант A), правила приняты. ✅
 - **Gate 1** — FR-скелет и карта экранов. ✅
-- **Gate 2** — FR v1.1, UI v0.3, BPMN/sequence/state; решения по вопросам коллеги приняты. ✅
-- **Gate 3** — FR/UI/BPMN заморожены, стоимость (проход 2: ПО ≈ 7,09 + оборудование ≈ 2,28 → CAPEX ≈ 11,2 млн ₽), матрица трассируемости и покрытия LGL (LGL-06 закрыт). 🔄 осталось: действия коллеги по чек-листу (см. [request](docs/system_analysis/reviews/2026-10-13_lead_to_colleague_request.md)).
-- **Gate 4** — финальный чек-лист, пояснительная записка, защита. ⏳
+- **Gate 2** — FR v1.1, UI v0.3, BPMN/sequence/state, C4; решения по вопросам коллеги приняты. ✅
+- **Gate 3** — FR/UI/BPMN заморожены; стоимость (ПО ≈ 7,09 + оборудование ≈ 2,28 → CAPEX ≈ 11,2 млн ₽); матрица трассируемости и полное покрытие LGL; API зафиксированы (1С и события v1.0, консоль v0.1). ✅
+- **Gate 4** — финальный чек-лист консистентности, пояснительная записка, защита. 🔄
 
 ## Роли и правила работы
 
