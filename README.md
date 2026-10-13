@@ -83,6 +83,8 @@
     - [2026-10-13_colleague_tz_review.md](docs/system_analysis/reviews/2026-10-13_colleague_tz_review.md)
     - [2026-10-13_frontend_api_contract_draft.md](docs/system_analysis/reviews/2026-10-13_frontend_api_contract_draft.md)
 
+- [docs/references/](docs/references/) — учебные материалы (напр. выявление аномалий во временных рядах)
+
 ## С чего начать чтение
 
 1. [01_vision_and_scope.md](docs/system_analysis/01_vision_and_scope.md) — зачем проект и что в границах.
