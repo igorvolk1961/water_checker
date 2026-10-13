@@ -16,7 +16,7 @@ class IncidentStatus(StrEnum):
 
 
 class CAStatus(StrEnum):
-    """Результат корректирующего действия (FT-06.5)."""
+    """Результат корректирующего действия (FR-06.5)."""
 
     DONE = "Выполнено"
     CANCELLED = "Отменено"
