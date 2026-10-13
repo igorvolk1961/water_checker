@@ -45,6 +45,8 @@
     - [ui_requirements.md](docs/system_analysis/requirements/ui_requirements.md) — требования к UI (SCR-01…SCR-12, ST-01…07)
     - [measured_parameters.md](docs/system_analysis/requirements/measured_parameters.md) — измеряемые параметры TEL/LAB
     - [integration_contract_1c.md](docs/system_analysis/requirements/integration_contract_1c.md) — контракт обмена с 1С (OData чтение / HTTP запись)
+    - [api_contract.md](docs/system_analysis/requirements/api_contract.md) — API-контракт (поверхности, конвенции, консольный API, SSE)
+    - [domain_events.md](docs/system_analysis/requirements/domain_events.md) — доменные события (очередь)
   - [diagrams/](docs/system_analysis/diagrams/)
     - [bpmn_uc1_party_telemetry.md](docs/system_analysis/diagrams/bpmn_uc1_party_telemetry.md)
     - [bpmn_uc2_prediction_alert.md](docs/system_analysis/diagrams/bpmn_uc2_prediction_alert.md)
@@ -104,7 +106,7 @@
 
 | Область | Артефакты |
 | --- | --- |
-| Требования | [functional_requirements.md](docs/system_analysis/requirements/functional_requirements.md), [ui_requirements.md](docs/system_analysis/requirements/ui_requirements.md), [integration_contract_1c.md](docs/system_analysis/requirements/integration_contract_1c.md) |
+| Требования | [functional_requirements.md](docs/system_analysis/requirements/functional_requirements.md), [ui_requirements.md](docs/system_analysis/requirements/ui_requirements.md), [integration_contract_1c.md](docs/system_analysis/requirements/integration_contract_1c.md), [api_contract.md](docs/system_analysis/requirements/api_contract.md), [domain_events.md](docs/system_analysis/requirements/domain_events.md) |
 | Данные и параметры | [measured_parameters.md](docs/system_analysis/requirements/measured_parameters.md), [08_data_requirements.md](docs/system_analysis/08_data_requirements.md), [10_cold_start_and_archival_data.md](docs/system_analysis/10_cold_start_and_archival_data.md) |
 | Качество/метрики | [07_nonfunctional_requirements.md](docs/system_analysis/07_nonfunctional_requirements.md), [kpi.md](docs/system_analysis/kpi.md) |
 | Диаграммы | [diagrams/](docs/system_analysis/diagrams/) (BPMN, sequence, state, C4) |

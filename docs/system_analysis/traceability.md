@@ -29,7 +29,7 @@
 
 ## 3. Связь с другими артефактами
 
-- Источники: `04_use_cases.md` (UC1–UC8), `07_nonfunctional_requirements.md` (NFR), `legal/legal_risks_and_requirements.md` (LGL), `requirements/measured_parameters.md` (TEL/LAB — параметры для KPI/FR/UI), `requirements/integration_contract_1c.md` (операции обмена с 1С).
+- Источники: `04_use_cases.md` (UC1–UC8), `07_nonfunctional_requirements.md` (NFR), `legal/legal_risks_and_requirements.md` (LGL), `requirements/measured_parameters.md` (TEL/LAB — параметры для KPI/FR/UI), `requirements/integration_contract_1c.md` (операции обмена с 1С), `requirements/api_contract.md` (API), `requirements/domain_events.md` (события).
 - Метрики: `kpi.md` (цели по слоям + Baseline) — данные экрана «Метрики модели» (I-10).
 - Экономика: `business_case.md` (ROI), `cost/cost_estimation.md` (метод и оценка по эпикам).
 - Открытые вопросы и допущения: `open_questions.md` (OQ-01…OQ-12), `assumptions_log.md`.
