@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Метрики модели (SCR-06){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">Метрики модели</h2>
+
+<div class="grid">
+  <div class="card">
+    <h2>Показатели по Слоям движка (цели и текущие — `kpi.md` §2, точка I-10)</h2>
+    <table class="data num">
+      <thead>
+      <tr><th>Метрика</th><th>Цель · Слой 1</th><th>Тек. Слой 1</th><th>Цель · Слой 2</th><th>Тек. Слой 2</th><th>Baseline</th></tr>
+      </thead>
+      <tbody>
+      {% for m in metrics %}
+      <tr>
+        <td>{{ m.name }}</td>
+        <td>{{ m.target_l1 }}</td>
+        <td>{{ m.current_l1 }}</td>
+        <td class="num">{{ m.target_l2 }}</td>
+        <td class="num" {% if m.status_l2 == 'ok' %}style="color:var(--ok);font-weight:700"{% endif %}>{{ m.current_l2 }}</td>
+        <td class="num">{{ m.baseline }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="disclaimer">Значения — на размеченном тест-наборе (лаб. подтверждения); цели — предварительные допущения, фиксируются с заказчиком. Baseline — реактивный процесс до внедрения.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Рабочая точка (LGL-09)</h2>
+      <table class="data num">
+        <tr><th>Порог алертинга</th><td><b>{{ operating_point.threshold }}</b></td></tr>
+        <tr><th>Остаточные FPR / FNR</th><td class="num">{{ operating_point.fpr }} / {{ operating_point.fnr }}</td></tr>
+        <tr><th>Утверждена эксплуатантом</th><td>{{ operating_point.approved_at }} ✓</td></tr>
+      </table>
+      <p class="disclaimer">Изменение порога — только в администрировании (SCR-11, право АДМ) с записью в аудит. NFR-4 применяется к текущему значению.</p>
+    </div>
+
+    <div class="card">
+      <h2>Состояние моделей (ST-05)</h2>
+      <table class="data">
+        {% for mo in models %}
+        <tr><th>{{ mo.name }}</th><td><span class="badge {{ {'Production':'info','Shadow':'warn','Advisor':'ok','Архив':'muted'}[mo.state] }}">{{ mo.state }}</span></td></tr>
+        {% endfor %}
+        <tr><th>Дрейф данных</th><td><span class="badge {{ 'warn' if drift.status == 'в норме' else 'crit' }}">{{ drift.status }} · {{ drift.checked_at }}</span></td></tr>
+        <tr><th>Бюджет алертов</th><td class="num">{{ budget.used }} / {{ budget.limit }} в час (NFR-5)</td></tr>
+      </table>
+      <p class="disclaimer">Production — статус версии; фаза внедрения — Advisor (решение В-4). Деградация метрик → откат кандидата (UC6-6а). Мониторинг дрейфа непрерывен (LGL-13).</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Задачи (SCR-03){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">Задачи: корректирующие действия и отбор</h2>
+
+{% if sync.status == 'error' %}
+{# UI-SCR-03.5: при ошибке синхронизации список замораживается (баннер уже в base.html) #}
+{% endif %}
+
+<div class="card">
+  <form class="app-nav" method="get" hx-get="/tasks" hx-target="#task-list" hx-trigger="change, keyup delay:300ms from:find input" style="margin-bottom:12px">
+    <select name="type" aria-label="Тип задачи">
+      <option value="">Все типы</option>
+      <option value="ca" {% if filters.type == 'ca' %}selected{% endif %}>Корректирующее действие</option>
+      <option value="sampling" {% if filters.type == 'sampling' %}selected{% endif %}>Внеплановый отбор</option>
+    </select>
+    <select name="status" aria-label="Статус">
+      <option value="">Все статусы</option>
+      {% for s in statuses %}<option value="{{ s }}" {% if filters.status == s %}selected{% endif %}>{{ s }}</option>{% endfor %}
+    </select>
+    <input name="party" value="{{ filters.party or '' }}" placeholder="Партия…" aria-label="Партия">
+  </form>
+
+  <div id="task-list">
+  <table class="data">
+    <thead>
+    <tr><th>Тип</th><th>№ (1С)</th><th>Партия</th><th>Суть</th><th>Приоритет</th><th>Исполнитель</th><th>Статус (из 1С)</th><th>Инцидент</th></tr>
+    </thead>
+    <tbody>
+    {% for t in tasks %}
+    <tr>
+      <td>{% if t.type == 'ca' %}<span class="badge info">Корректирующее действие</span>{% else %}<span class="badge muted">Отбор</span>{% endif %}</td>
+      <td class="num">{{ t.id }}</td>
+      <td class="num">{{ t.party_id }}</td>
+      <td>{{ t.summary }}</td>
+      <td>{% if t.priority == 'Срочно' %}<span class="badge crit">Срочно</span>{% else %}{{ t.priority }}{% endif %}</td>
+      <td>{{ t.assignee }}</td>
+      <td><span class="badge {{ 'ok' if t.status == 'Выполнена' else 'warn' }}">{{ t.status }}</span></td>
+      <td>{% if t.incident_id %}<a href="/incidents/{{ t.incident_id }}">{{ t.incident_id }}</a>{% else %}—{% endif %}</td>
+    </tr>
+    {% endfor %}
+    {% if not tasks %}<tr><td colspan="8" style="color:var(--ink-2)">Нет задач по выбранным фильтрам.</td></tr>{% endif %}
+    </tbody>
+  </table>
+  </div>
+
+  <p class="disclaimer">
+    Представление поверх 1С — <b>только чтение</b> (UI-06, FR-06.4). Назначение, закрытие, фото и комментарии — в «1С».
+    Результат корректирующего действия [Выполнено / Отменено] ≠ вердикт по инциденту (FR-06.5).
+    Chain of Custody ведёт 1С; ссылка «инцидент → задание → проба» сохраняется в системе (FR-07.4).
+    {# fixture: tasks = [{id: 'CA-0087', type: 'ca', party_id: 'П-2026-11-0412', summary: 'Проверить фильтр №2', priority: 'Срочно', assignee: 'Оператор линии', status: 'Назначена', incident_id: 'ИНЦ-0041'}, …] #}
+  </p>
+</div>
+{% endblock %}
