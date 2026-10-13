@@ -189,6 +189,7 @@
 - **CSV / JSON / Parquet** — форматы данных; **HDA (Historical Data Access, OPC-UA HDA)** — доступ к архивным данным.
 - **AOF (Append-Only File)** — режим персистентности Redis; **RTO (Recovery Time Objective)** — целевое время восстановления; **RPO (Recovery Point Objective)** — целевая точка потери данных (см. NFR-10).
 - **SMS** — текстовые сообщения (канал уведомлений); **HTML** — язык разметки веб-страниц; **CI/CD** — непрерывная интеграция и доставка; **ETL** — см. §5.
+- **RBAC (Role-Based Access Control)** — ролевое разграничение прав доступа (см. §8); **DPIA** — см. §8.
 
 ### 9.5. Нормативы и право
 
