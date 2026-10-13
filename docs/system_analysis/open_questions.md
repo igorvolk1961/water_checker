@@ -1,6 +1,6 @@
 # AquaPredict LIMS — Открытые вопросы и принятые допущения (Open Questions & Decisions)
 
-Реестр открытых вопросов из `requirements/functional_requirements.md` §6 и `legal/legal_risks_and_requirements.md` §E с ответами. **Все допущения одобрены заказчиком 2026-10-13** (см. `assumptions_log.md`). Все ответы согласуются с вариантом A (надстройка над «БИТ.Лабораторией»).
+Реестр открытых вопросов из `requirements/functional_requirements.md` §6 и `legal/legal_risks_and_requirements.md` §E с ответами. **Все допущения одобрены заказчиком 2026-10-13** (см. `assumptions_log.md`). Все ответы согласуются с вариантом A (надстройка над «БИТ:LIMS»).
 
 | ID | Вопрос | Рекомендованный ответ | Тип | Влияет на |
 | --- | --- | --- | --- | --- |

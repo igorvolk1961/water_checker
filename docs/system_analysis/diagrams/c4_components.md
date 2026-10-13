@@ -30,7 +30,7 @@ flowchart TB
 
   PG[("PostgreSQL")]:::data
   RD[("Redis")]:::data
-  ONEC["«БИТ.Лаборатория» (1С)"]:::ext
+  ONEC["«БИТ:LIMS» (1С)"]:::ext
   TELIN["Приёмник телеметрии"]:::container
   UI["Веб-консоль"]:::container
   PUSH["Push/SMS-шлюз"]:::ext

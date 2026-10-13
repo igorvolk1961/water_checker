@@ -6,7 +6,7 @@
 
 | Поверхность | Направление | Протокол | Контракт | Статус |
 | --- | --- | --- | --- | --- |
-| **Интеграция с 1С** | AquaPredict ↔ «БИТ.Лаборатория» | OData (чтение), HTTP-сервис (запись) | `integration_contract_1c.md` | **v1.0 — FROZEN** |
+| **Интеграция с 1С** | AquaPredict ↔ «БИТ:LIMS» | OData (чтение), HTTP-сервис (запись) | `integration_contract_1c.md` | **v1.0 — FROZEN** |
 | **Консольный API** | Веб-консоль ↔ API-сервер | REST + SSE | этот документ, §4 | **v0.1 — draft-frozen** (v1.0 к Gate 3/R0) |
 | **Доменные события (async)** | модули/воркеры ↔ очередь | очередь Redis | `domain_events.md` | **v1.0 — FROZEN** |
 

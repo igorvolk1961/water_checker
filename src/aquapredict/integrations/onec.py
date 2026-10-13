@@ -1,4 +1,4 @@
-"""Интеграция с «БИТ.Лаборатория» (1С): OData чтение / HTTP запись (FR-15, EPIC-01).
+"""Интеграция с «БИТ:LIMS» (1С): OData чтение / HTTP запись (FR-15, EPIC-01).
 
 Плейсхолдер: реализации добавляются на этапе R0
 (см. ``docs/system_analysis/plans/backlog_implementation_plan.md``).

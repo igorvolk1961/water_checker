@@ -10,7 +10,7 @@ sequenceDiagram
     participant ПР as Приёмник телеметрии
     participant СК as Риск-скоринг (Слой 1/2)
     participant АЛ as Контур алертинга
-    participant 1С as БИТ.Лаборатория (1С)
+    participant 1С as БИТ:LIMS (1С)
     participant ГТ as Главный технолог
     participant ПРС as Персонал (ОЛ/ГТ)
 

@@ -1,7 +1,7 @@
 [project]
 name = "aquapredict"
 version = "0.1.0"
-description = "AquaPredict — предиктивная аналитика качества бутилированной воды (IoT/ML), надстройка над «БИТ.Лаборатория»"
+description = "AquaPredict — предиктивная аналитика качества бутилированной воды (IoT/ML), надстройка над «БИТ:LIMS»"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Proprietary" }

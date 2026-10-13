@@ -69,7 +69,7 @@ class Incident:
 
 @dataclass
 class CorrectiveAction:
-    """Корректирующее действие (задача в «БИТ.Лаборатории»)."""
+    """Корректирующее действие (задача в «БИТ:LIMS»)."""
 
     id: str
     incident_id: str

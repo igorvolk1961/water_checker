@@ -1,6 +1,6 @@
 # AquaPredict — план реализации бэклога (Backlog Implementation Plan)
 
-Сводный план реализации продуктового бэклога (`../backlog/product_backlog.md`, 14 эпиков, US-01.1…US-14.1). Детальная проработка каждого эпика (задачи, API-компоненты, тесты, DoD, риски) вынесена в отдельные файлы: **`epics/epic-01…epic-14`**. Опирается на FR v1.1, UI v0.3, диаграммы (BPMN/sequence/state/**C4**), NFR, `kpi.md`, `requirements/measured_parameters.md`, `requirements/integration_contract_1c.md`, стоимость (`../cost/cost_estimation.md`). Архитектура — вариант A (надстройка над «БИТ.Лаборатория»).
+Сводный план реализации продуктового бэклога (`../backlog/product_backlog.md`, 14 эпиков, US-01.1…US-14.1). Детальная проработка каждого эпика (задачи, API-компоненты, тесты, DoD, риски) вынесена в отдельные файлы: **`epics/epic-01…epic-14`**. Опирается на FR v1.1, UI v0.3, диаграммы (BPMN/sequence/state/**C4**), NFR, `kpi.md`, `requirements/measured_parameters.md`, `requirements/integration_contract_1c.md`, стоимость (`../cost/cost_estimation.md`). Архитектура — вариант A (надстройка над «БИТ:LIMS»).
 
 ## 0. Рамки и базовые решения
 
@@ -34,7 +34,7 @@
 
 | EPIC | Название | Релиз | Оценка (ч/₽) | Детальный план |
 | --- | --- | --- | --- | --- |
-| EPIC-01 | Интеграция с «БИТ.Лаборатория» | R0 | 300 / 650 000 | `epics/epic-01-integration-1c.md` |
+| EPIC-01 | Интеграция с «БИТ:LIMS» | R0 | 300 / 650 000 | `epics/epic-01-integration-1c.md` |
 | EPIC-02 | Сбор телеметрии и привязка к партии | R0 | 360 / 800 000 | `epics/epic-02-telemetry.md` |
 | EPIC-03 | Движок Слой 1 (rules) | R1 | 180 / 400 000 | `epics/epic-03-layer1-rules.md` |
 | EPIC-04 | Предиктивные алерты и уведомления | R1 | 230 / 500 000 | `epics/epic-04-alerts.md` |

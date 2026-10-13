@@ -25,7 +25,7 @@ flowchart LR
     RD[("Redis<br/>очередь: ретраи 1С,<br/>переобучение, дрейф")]:::data
   end
 
-  ONEC["«БИТ.Лаборатория» (1С)"]:::ext
+  ONEC["«БИТ:LIMS» (1С)"]:::ext
   GW["IoT-шлюз + датчики"]:::ext
   PUSH["Push/SMS-шлюз"]:::ext
 

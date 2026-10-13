@@ -1,4 +1,4 @@
-# Sequence v1 — UC5 (редакция ведущего): получение Ground Truth из «БИТ.Лаборатории»
+# Sequence v1 — UC5 (редакция ведущего): получение Ground Truth из «БИТ:LIMS»
 
 **Версия:** 0.2 (C-05/C-07). Заменяет sequence_uc5_protocol_export (старый UC5 с экспортом — Out-of-Scope по редакции ведущего от 2026-10-12). Показывает: лабораторный контур — в 1С, AquaPredict читает утверждённые результаты и замыкает их в обучающий контур. Термины — `02_glossary.md`; процесс — BPMN UC5 (`bpmn_uc5_ground_truth.md`).
 
@@ -6,7 +6,7 @@
 sequenceDiagram
     autonumber
     participant ЛБ as Лаборант / РЛ (в 1С)
-    participant 1С as БИТ.Лаборатория (1С)
+    participant 1С as БИТ:LIMS (1С)
     participant AP as AquaPredict
     participant МЛ as Контур обучения (MLOps)
 

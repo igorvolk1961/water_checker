@@ -6,7 +6,7 @@
 sequenceDiagram
     autonumber
     participant СК as Риск-скоринг / инцидент
-    participant 1С as БИТ.Лаборатория (1С)
+    participant 1С as БИТ:LIMS (1С)
     participant ЛБ as Лаборант
     participant ЛАБ as Лабораторный анализ
     participant МЛ as Контур обучения (MLOps)
