@@ -43,6 +43,7 @@
     - [functional_requirements.md](docs/system_analysis/requirements/functional_requirements.md) — функциональные требования FR-01…FR-16
     - [ui_requirements.md](docs/system_analysis/requirements/ui_requirements.md) — требования к UI (SCR-01…SCR-12, ST-01…07)
     - [measured_parameters.md](docs/system_analysis/requirements/measured_parameters.md) — измеряемые параметры TEL/LAB
+    - [integration_contract_1c.md](docs/system_analysis/requirements/integration_contract_1c.md) — контракт обмена с 1С (OData чтение / HTTP запись)
   - [diagrams/](docs/system_analysis/diagrams/)
     - [bpmn_uc1_party_telemetry.md](docs/system_analysis/diagrams/bpmn_uc1_party_telemetry.md)
     - [bpmn_uc2_prediction_alert.md](docs/system_analysis/diagrams/bpmn_uc2_prediction_alert.md)
@@ -57,6 +58,7 @@
     - [sequence_uc5_ground_truth.md](docs/system_analysis/diagrams/sequence_uc5_ground_truth.md)
     - [state_incident_alert_task.md](docs/system_analysis/diagrams/state_incident_alert_task.md)
     - [state_model_and_batch.md](docs/system_analysis/diagrams/state_model_and_batch.md)
+    - [c4_context.md](docs/system_analysis/diagrams/c4_context.md) · [c4_containers.md](docs/system_analysis/diagrams/c4_containers.md) · [c4_components.md](docs/system_analysis/diagrams/c4_components.md) — C4 (уровни 1–3)
   - [legal/](docs/system_analysis/legal/)
     - [legal_risks_and_requirements.md](docs/system_analysis/legal/legal_risks_and_requirements.md) — юридические риски и требования (LGL)
     - [contract_draft.md](docs/system_analysis/legal/contract_draft.md) — проект договора на выполнение работ
@@ -82,6 +84,7 @@
     - [2026-10-13_colleague_contract_tz_review.md](docs/system_analysis/reviews/2026-10-13_colleague_contract_tz_review.md)
     - [2026-10-13_colleague_tz_review.md](docs/system_analysis/reviews/2026-10-13_colleague_tz_review.md)
     - [2026-10-13_frontend_api_contract_draft.md](docs/system_analysis/reviews/2026-10-13_frontend_api_contract_draft.md)
+    - [2026-10-13_lead_to_colleague_note.md](docs/system_analysis/reviews/2026-10-13_lead_to_colleague_note.md)
 
 - [docs/references/](docs/references/) — учебные материалы (напр. выявление аномалий во временных рядах)
 
@@ -99,10 +102,10 @@
 
 | Область | Артефакты |
 | --- | --- |
-| Требования | [functional_requirements.md](docs/system_analysis/requirements/functional_requirements.md), [ui_requirements.md](docs/system_analysis/requirements/ui_requirements.md) |
+| Требования | [functional_requirements.md](docs/system_analysis/requirements/functional_requirements.md), [ui_requirements.md](docs/system_analysis/requirements/ui_requirements.md), [integration_contract_1c.md](docs/system_analysis/requirements/integration_contract_1c.md) |
 | Данные и параметры | [measured_parameters.md](docs/system_analysis/requirements/measured_parameters.md), [08_data_requirements.md](docs/system_analysis/08_data_requirements.md), [10_cold_start_and_archival_data.md](docs/system_analysis/10_cold_start_and_archival_data.md) |
 | Качество/метрики | [07_nonfunctional_requirements.md](docs/system_analysis/07_nonfunctional_requirements.md), [kpi.md](docs/system_analysis/kpi.md) |
-| Диаграммы | [diagrams/](docs/system_analysis/diagrams/) (BPMN, sequence, state) |
+| Диаграммы | [diagrams/](docs/system_analysis/diagrams/) (BPMN, sequence, state, C4) |
 | Право | [legal_risks_and_requirements.md](docs/system_analysis/legal/legal_risks_and_requirements.md) (LGL-01…14) |
 | Экономика | [business_case.md](docs/system_analysis/business_case.md), [cost_estimation.md](docs/system_analysis/cost/cost_estimation.md) |
 | Инфраструктура/стек | [hardware_requirements.md](docs/system_analysis/hardware_requirements.md), [architecture_stack.md](docs/system_analysis/architecture_stack.md) |
@@ -148,7 +151,7 @@
 
 ## Вводные заказчика
 
-Все вводные закрыты — решения в [open_questions.md](docs/system_analysis/open_questions.md) (OQ-01…OQ-11) и реестре допущений [assumptions_log.md](docs/system_analysis/assumptions_log.md) (ASM-01…ASM-17). Открытых вопросов к заказчику нет.
+Все вводные закрыты — решения в [open_questions.md](docs/system_analysis/open_questions.md) (OQ-01…OQ-12) и реестре допущений [assumptions_log.md](docs/system_analysis/assumptions_log.md) (ASM-01…ASM-17). Открытых вопросов к заказчику нет.
 
 ## Примечание
 

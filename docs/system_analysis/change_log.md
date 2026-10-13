@@ -56,5 +56,8 @@
 | 2026-10-13 | `README.md` | GitHub Pages включён: ссылка на презентацию в README заменена на живой адрес `https://igorvolk1961.github.io/water_checker/` | Ведущий | Актуализация README | — | Ведущий |
 | 2026-10-13 | `README.md` | Блок презентации сокращён до ссылки «Презентация проекта» | Ведущий | Краткость README | — | Ведущий |
 | 2026-10-13 | `docs/references/ml_anomaly_detection.md` | Добавлен учебный материал по выявлению аномалий во временных рядах (для команды без опыта ML); ссылка в README | Ведущий | Образовательный материал (references) | — | Ведущий |
+| 2026-10-13 | `main` ← `colleague-fr-skeleton` | Влиты материалы коллеги: C4-1…3, макеты SCR-01…12, standalone-презентация, обновлённый статус | Ведущий | Приём материалов | диаграммы/UI | Ведущий |
+| 2026-10-13 | `05_use_case_specification.md`, `07_nfr`, `requirements/integration_contract_1c.md`, `08_data_requirements.md`, `03_stakeholder_map.md`, FR-15.5 | Закрыты В-7: UC2 под вариант A; NFR-8…11 (аутентификация, TLS, RTO/RPO, NTP); контракт обмена с 1С; объёмы данных; роль «Администратор AquaPredict»; очередь — Redis (AOF) | Ведущий | Ответы на ревью коллеги | FR/NFR/UI | Ведущий |
+| 2026-10-13 | `architecture_stack.md`, `open_questions.md`, `backlog/product_backlog.md` | OQ-12 решён (Jinja2 + HTMX + Chart.js); добавлена US-13.2 (FR-12); C4 в план/README/трассируемость | Ведущий | Решения ведущего | UI/бэклог | Ведущий |
 
 > Таблица заполняется по мере изменений.
