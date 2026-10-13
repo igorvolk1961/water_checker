@@ -42,9 +42,9 @@
   - [report.md](docs/system_analysis/report.md) — пояснительная записка (черновик)
   - [defense_notes.md](docs/system_analysis/defense_notes.md) — аргументы защиты
   - [defense_slides.md](docs/system_analysis/defense_slides.md) — слайды защиты (черновик)
-  - [docs/defense.html](docs/defense.html) — **автономная** HTML-дека защиты (mermaid и шрифты встроены; работает офлайн), навигация стрелками/пробелом
+  - [docs/defense.html](docs/defense.html) — **автономная** HTML-дека защиты (шрифты встроены; mermaid — локальный `docs/vendor/mermaid.min.js`), навигация стрелками/пробелом
   - [hardware_requirements.md](docs/system_analysis/hardware_requirements.md) — требования к оборудованию и инфраструктуре
-  - [presentation_customer.html](docs/system_analysis/presentation_customer.html) — презентация заказчику (HTML)
+  - [presentation_customer.html](docs/system_analysis/presentation_customer.html) — презентация заказчику (HTML, автономная — шрифты встроены)
   - [qa/](docs/system_analysis/qa/) — тест-план, чек-листы приёмки, каркасы руководств
   - [requirements/](docs/system_analysis/requirements/)
     - [functional_requirements.md](docs/system_analysis/requirements/functional_requirements.md) — функциональные требования FR-01…FR-16
