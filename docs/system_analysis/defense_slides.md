@@ -1,5 +1,6 @@
 # AquaPredict — Слайды защиты проекта
 
+> Внешняя ссылка (GitHub Pages): `https://igorvolk1961.github.io/water_checker/defense.html`
 > Колода для защиты (черновик). Формат: слайд = заголовок + тезисы; в конце каждого — «Заметка докладчика». Основа — `report.md`, `defense_notes.md`, артефакты проекта.
 
 ---
