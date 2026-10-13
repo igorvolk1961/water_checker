@@ -45,6 +45,7 @@
   .counter{font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
   .progress{position:fixed;left:0;bottom:0;height:3px;background:var(--accent);width:0;transition:width .2s}
   .foot{position:fixed;left:18px;bottom:16px;font-size:12px;color:var(--muted)}
+  .frame{width:100%;height:66vh;border:1px solid var(--line);border-radius:12px;background:#fff}
   @media (max-width:760px){ .cols{grid-template-columns:1fr} .slide{padding:56px 22px} }
   @media print{ html,body{overflow:visible;height:auto} .deck{height:auto} .slide{display:flex !important;position:static;height:auto;min-height:auto;page-break-after:always} .controls,.progress,.foot{display:none} }
 </style>
@@ -93,6 +94,25 @@
     </div>
     <ul style="margin-top:16px"><li>Обоснование: безопасность/ответственность, сложность сертификации, отсутствие двойного ввода.</li></ul>
   </section>
+
+  <section class="slide">
+    <p class="eyebrow">Веб-консоль технолога</p>
+    <h2 class="slideTitle">Экраны интерфейса — SCR-01…SCR-12</h2>
+    <p class="sub">Консоль работает как read-only представление поверх «БИТ:LIMS» (ввод результатов и подписи — в 1С). Далее — по одному слайду на экран (макеты).</p>
+  </section>
+
+  <section class="slide"><p class="eyebrow">Экран · SCR-01</p><h2 class="slideTitle">Дашборд технолога</h2><iframe class="frame" src="mockups/scr01_dashboard.html" title="SCR-01" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-02</p><h2 class="slideTitle">Карточка инцидента и вердикт</h2><iframe class="frame" src="mockups/scr02_incident.html" title="SCR-02" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-03</p><h2 class="slideTitle">Задачи (корректирующее действие / отбор)</h2><iframe class="frame" src="mockups/scr03_tasks.html" title="SCR-03" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-04</p><h2 class="slideTitle">Производственная партия</h2><iframe class="frame" src="mockups/scr04_party.html" title="SCR-04" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-05</p><h2 class="slideTitle">Протоколы испытаний (read-only)</h2><iframe class="frame" src="mockups/scr05_protocols.html" title="SCR-05" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-06</p><h2 class="slideTitle">Метрики модели</h2><iframe class="frame" src="mockups/scr06_metrics.html" title="SCR-06" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-07</p><h2 class="slideTitle">MLOps — модели и версии</h2><iframe class="frame" src="mockups/scr07_mlops.html" title="SCR-07" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-08</p><h2 class="slideTitle">Cold Start</h2><iframe class="frame" src="mockups/scr08_coldstart.html" title="SCR-08" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-09</p><h2 class="slideTitle">Здоровье телеметрии</h2><iframe class="frame" src="mockups/scr09_telemetry_health.html" title="SCR-09" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-10</p><h2 class="slideTitle">Журнал аудита</h2><iframe class="frame" src="mockups/scr10_audit.html" title="SCR-10" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-11</p><h2 class="slideTitle">Администрирование (рабочая точка)</h2><iframe class="frame" src="mockups/scr11_admin.html" title="SCR-11" loading="lazy"></iframe></section>
+  <section class="slide"><p class="eyebrow">Экран · SCR-12</p><h2 class="slideTitle">Уведомления</h2><iframe class="frame" src="mockups/scr12_notifications.html" title="SCR-12" loading="lazy"></iframe></section>
 
   <section class="slide">
     <p class="eyebrow">Стейкхолдеры</p>

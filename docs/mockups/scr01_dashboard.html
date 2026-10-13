@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мокап SCR-01 — Дашборд технолога</title>
+<style>
+  :root { --red:#c0392b; --amber:#b9770e; --green:#1e8449; --ink:#1c2833; --muted:#5d6d7e; --line:#d5dbdb; --bg:#f4f6f7; }
+  * { box-sizing:border-box; font-family:'Manrope',system-ui,sans-serif; }
+  body { margin:0; background:var(--bg); color:var(--ink); }
+  header { display:flex; align-items:center; gap:16px; padding:10px 20px; background:#fff; border-bottom:1px solid var(--line); }
+  header h1 { font-size:18px; margin:0; }
+  .role { font-size:12px; color:var(--muted); border:1px solid var(--line); padding:2px 8px; border-radius:10px; }
+  .sync { margin-left:auto; font-size:12px; padding:4px 10px; border-radius:4px; }
+  .sync.ok { background:#eafaf1; color:var(--green); border:1px solid var(--green); }
+  main { padding:16px 20px; display:grid; grid-template-columns: 1fr 320px; gap:16px; max-width:1200px; margin:0 auto; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:14px; }
+  .card h2 { font-size:14px; margin:0 0 10px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; }
+  .budget { display:flex; gap:12px; margin-bottom:12px; }
+  .budget div { flex:1; text-align:center; padding:8px; background:var(--bg); border-radius:6px; }
+  .budget b { font-size:20px; display:block; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; color:var(--muted); font-weight:600; padding:6px 8px; border-bottom:2px solid var(--line); }
+  td { padding:8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .alert-crit td { background:#fdedec; }
+  .badge { font-size:11px; padding:2px 8px; border-radius:10px; white-space:nowrap; }
+  .b-crit { background:var(--red); color:#fff; }
+  .b-warn { background:#fdebd0; color:var(--amber); }
+  .b-l1 { background:#eaf2f8; color:#2471a3; }
+  .b-l2 { background:#f4ecf7; color:#7d3c98; }
+  .ack { background:#fff; border:1px solid var(--red); color:var(--red); padding:4px 10px; border-radius:4px; cursor:pointer; font-size:12px; }
+  .disclaimer { font-size:11px; color:var(--muted); border-top:1px dashed var(--line); margin-top:10px; padding-top:8px; }
+  .sound { font-size:12px; color:var(--red); }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;600;700&display=swap">
+</head>
+<body>
+<header>
+  <h1>AquaPredict — Дашборд технолога</h1>
+  <span class="role">Главный технолог · Линия №1</span>
+  <span class="sync ok">Синхронизация с 1С: норма · последняя 14:32:05</span>
+</header>
+<main>
+  <section class="card">
+    <h2>Активные алерты (лента)</h2>
+    <table>
+      <tr><th>Критичность</th><th>Партия</th><th>Параметр</th><th>Риск-скор</th><th>Горизонт</th><th>Источник</th><th>Статус</th><th></th></tr>
+      <tr class="alert-crit">
+        <td><span class="badge b-crit">Критический</span><br><span class="sound">🔊 сигнал активен</span></td>
+        <td>П-2026-11-0412</td>
+        <td>Мутность (TEL-06)</td>
+        <td><b>0,87</b></td>
+        <td>≈ 2 ч</td>
+        <td><span class="badge b-l2">Слой 2 (ML)</span></td>
+        <td>Новый</td>
+        <td><button class="ack">Подтвердить ознакомление</button></td>
+      </tr>
+      <tr>
+        <td><span class="badge b-warn">Предупреждение</span></td>
+        <td>П-2026-11-0410</td>
+        <td>Давление до мембраны (TEL-01)</td>
+        <td>0,64</td>
+        <td>≈ 3 ч</td>
+        <td><span class="badge b-l1">Слой 1 (правило)</span></td>
+        <td>Ознакомлен</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="badge b-warn">Предупреждение</span></td>
+        <td>П-2026-11-0408</td>
+        <td>Остаточный озон (TEL-05)</td>
+        <td>0,58</td>
+        <td>≈ 4 ч</td>
+        <td><span class="badge b-l1">Слой 1 (правило)</span></td>
+        <td>В работе</td>
+        <td></td>
+      </tr>
+    </table>
+    <p class="disclaimer">⚠️ Прогноз имеет вероятностный характер (LGL-09). Система рекомендует — решение принимает человек (HITL, LGL-04). ML-алерт не является основанием для браковки партии (LGL-11).</p>
+  </section>
+  <aside>
+    <div class="card">
+      <h2>Бюджет алертов (линия №1)</h2>
+      <div class="budget"><div><b>4</b>за час</div><div><b>10</b>лимит</div></div>
+      <p class="disclaimer">При превышении — приоритизация и подавление дублей (NFR-5). Подавленные алерты инцидент не создают.</p>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h2>Линии</h2>
+      <table>
+        <tr><th>Линия</th><th>Партия</th><th>Статус</th></tr>
+        <tr><td>№1</td><td>П-2026-11-0412</td><td>Наблюдается</td></tr>
+        <tr><td>№2</td><td>П-2026-11-0411</td><td>Наблюдается</td></tr>
+        <tr><td>№3</td><td>—</td><td>CIP-режим</td></tr>
+      </table>
+    </div>
+  </aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мокап SCR-06 — Метрики модели</title>
+<style>
+  :root { --ink:#16262e; --ink2:#51656f; --surface:#f5f8f9; --card:#fff; --line:#dbe4e7; --crit:#b03a2e; --warn:#a3660a; --ok:#1e8449; --accent:#0e7c86; --accent-soft:#e2f1f2; }
+  *{box-sizing:border-box;font-family:'Manrope',system-ui,sans-serif}
+  body{margin:0;background:var(--surface);color:var(--ink);font-size:14px}
+  header{display:flex;align-items:center;gap:10px;padding:10px 20px;background:var(--card);border-bottom:1px solid var(--line)}
+  header h1{font-size:16px;margin:0} .sync{margin-left:auto;font-size:12px;color:var(--ok)}
+  .wrap{max-width:1080px;margin:0 auto;padding:16px 20px;display:grid;gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 10px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{color:var(--ink2);font-size:11px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:7px 9px;border-bottom:2px solid var(--line)}
+  td{padding:7px 9px;border-bottom:1px solid var(--line)}
+  .num{font-variant-numeric:tabular-nums}
+  .ok{color:var(--ok);font-weight:700} .bad{color:var(--crit);font-weight:700} .na{color:var(--ink2)}
+  .b{border-radius:999px;padding:2px 9px;font-size:11px;font-weight:700}
+  .b-prod{background:var(--accent-soft);color:#0a5a62} .b-shadow{background:#fdf3e0;color:var(--warn)} .b-drift{background:#fdecea;color:var(--crit)}
+  .op{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+  .op div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px}
+  .op b{display:block;font-size:16px}
+  .note{font-size:11px;color:var(--ink2);border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}
+  .cols{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+  @media(max-width:760px){.cols{grid-template-columns:1fr}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;600;700&display=swap">
+</head>
+<body>
+<header>
+  <h1>Метрики модели · SCR-06</h1>
+  <span class="sync">● Синхронизация с 1С: норма</span>
+</header>
+<div class="wrap">
+  <div class="card">
+    <h2>Показатели по Слоям движка (цели и текущие значения, `kpi.md` §2)</h2>
+    <table class="num">
+      <tr><th>Метрика</th><th>Цель · Слой 1 (правила)</th><th>Тек. Слой 1</th><th>Цель · Слой 2 (ML)</th><th>Тек. Слой 2</th><th>Baseline</th></tr>
+      <tr><td>Recall</td><td class="na">не нормируется (охват правил)</td><td class="na">—</td><td class="num">≥ 0,75</td><td class="ok">0,78</td><td class="num">≈ 0</td></tr>
+      <tr><td>Precision</td><td class="num">≥ 0,50</td><td class="ok">0,62</td><td class="num">≥ 0,60</td><td class="ok">0,66</td><td class="na">—</td></tr>
+      <tr><td>FPR</td><td class="num">≤ 0,10</td><td class="ok">0,08</td><td class="num">≤ 0,10</td><td class="ok">0,07</td><td class="num">0</td></tr>
+      <tr><td>FNR</td><td class="na">—</td><td class="na">—</td><td class="num">≤ 0,25</td><td class="ok">0,22</td><td class="num">≈ 1,0</td></tr>
+      <tr><td>F1</td><td class="na">—</td><td class="na">—</td><td class="num">≥ 0,65</td><td class="ok">0,72</td><td class="na">—</td></tr>
+      <tr><td>Горизонт (Lead time)</td><td class="na">—</td><td class="na">—</td><td class="num">≥ 2 ч</td><td class="ok">2,4 ч</td><td class="num">≈ 0</td></tr>
+    </table>
+    <p class="note">Значения — на размеченном тест-наборе (лаб. подтверждения); пример-иллюстрация. Цели — предварительные допущения, фиксируются с заказчиком.</p>
+  </div>
+  <div class="cols">
+    <div class="card">
+      <h2>Рабочая точка (операционная)</h2>
+      <div class="op">
+        <div><span class="note">Порог алертинга</span><b class="num">0,80</b></div>
+        <div><span class="note">Остаточный FPR</span><b class="num">0,07</b></div>
+        <div><span class="note">Остаточный FNR</span><b class="num">0,22</b></div>
+        <div><span class="note">Утверждена эксплуатантом</span><b style="font-size:13px">05.10.2026 ✓</b></div>
+      </div>
+      <p class="note">Изменение порога — только в администрировании (SCR-11, право АДМ) с записью в аудит (LGL-09). NFR-4 применяется к текущему значению.</p>
+    </div>
+    <div class="card">
+      <h2>Состояние моделей</h2>
+      <table>
+        <tr><th>Слой 1 (правила)</th><td><span class="b b-prod">Production</span></td></tr>
+        <tr><th>Слой 2 v14</th><td><span class="b b-prod">Production</span></td></tr>
+        <tr><th>Слой 2 v15 (кандидат)</th><td><span class="b b-shadow">Shadow</span></td></tr>
+        <tr><th>Дрейф данных</th><td><span class="b b-shadow">в норме · проверено 12.10</span></td></tr>
+        <tr><th>Бюджет алертов</th><td class="num">4 / 10 в час (линия №1)</td></tr>
+      </table>
+      <p class="note">Production — статус версии; фаза внедрения — Advisor (разведение — решение В-4). Мониторинг дрейфа непрерывен (LGL-13). Деградация метрик → откат (UC6-6а).</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
