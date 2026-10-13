@@ -2,9 +2,7 @@
 
 Учебный проект по системному анализу: модуль предиктивной аналитики качества воды на базе IoT и ML. Система анализирует потоковые данные датчиков линии розлива и заранее предупреждает о риске выхода параметров за нормы СанПиН, позволяя предотвратить брак.
 
-> **▶ Презентация проекта (отрендеренная страница):** [открыть презентацию](https://htmlpreview.github.io/?https://github.com/igorvolk1961/water_checker/blob/main/docs/system_analysis/presentation_customer.html).
->
-> Чтобы презентация открывалась сразу по адресу репозитория (GitHub Pages): **Settings → Pages → Source: Deploy from a branch → Branch: `main`, folder `/docs`**. После этого корень `https://igorvolk1961.github.io/water_checker/` сразу показывает презентацию (файл [docs/index.html](docs/index.html)).
+> **▶ Презентация проекта:** [открыть презентацию](https://igorvolk1961.github.io/water_checker/) — открывается сразу (GitHub Pages, файл [docs/index.html](docs/index.html)). Отдельным файлом: [presentation_customer.html](docs/system_analysis/presentation_customer.html).
 
 **Позиционирование (вариант A):** AquaPredict — **аналитическая надстройка** над учётной системой «БИТ.Лаборатория» (1С), а не самостоятельная LIMS. Лабораторный контур (регистрация проб, результаты, протоколы, выгрузка во ФГИС) остаётся в 1С; AquaPredict добавляет телеметрию, риск-скоринг и предиктивные алерты и пишет задачи обратно в 1С.
 
