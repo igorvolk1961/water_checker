@@ -1,0 +1,57 @@
+/* AquaPredict — базовые компоненты консоли (поверх токенов) */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--font); font-size: var(--fs-m); line-height: 1.5; }
+
+/* шапка + меню */
+.app-header { display: flex; align-items: center; gap: var(--gap-2); padding: 10px 20px; background: var(--card); border-bottom: 1px solid var(--line); }
+.app-header h1 { font-family: var(--font-display); font-size: var(--fs-l); margin: 0; font-weight: 600; }
+.app-nav { display: flex; gap: var(--gap); flex-wrap: wrap; }
+.app-nav a { color: var(--ink-2); text-decoration: none; font-size: var(--fs-s); padding: 4px 10px; border-radius: var(--r-s); }
+.app-nav a:hover, .app-nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent-ink); }
+
+/* баннер синхронизации с 1С (UI-08, ST-07) */
+.sync { font-size: var(--fs-xs); padding: 4px 10px; border-radius: var(--r-s); }
+.sync.ok { background: var(--ok-soft); color: var(--ok); }
+.sync.queue { background: var(--warn-soft); color: var(--warn); }
+.sync.error { background: var(--crit-soft); color: var(--crit); }
+.sync-banner { display: flex; gap: var(--gap); align-items: center; font-size: var(--fs-s); padding: 10px 12px; border-radius: var(--r-s); margin-bottom: var(--gap-2); }
+.sync-banner.error { border: 1px solid var(--crit); }
+
+/* карточки и сетка */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-l); padding: 14px; box-shadow: var(--shadow); }
+.grid { display: grid; gap: var(--gap-2); }
+.grid.cols-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 760px) { .grid.cols-2 { grid-template-columns: 1fr; } }
+.card h2 { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin: 0 0 10px; }
+
+/* таблицы данных (read-only поверх 1С — UI-06) */
+table.data { width: 100%; border-collapse: collapse; font-size: var(--fs-s); }
+table.data th { color: var(--ink-2); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .05em; text-align: left; padding: 7px 9px; border-bottom: 2px solid var(--line); }
+table.data td { padding: 8px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.data tr.crit { background: var(--crit-soft); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* бейджи состояний (ST-01…07) */
+.badge { border-radius: 999px; padding: 2px 9px; font-size: var(--fs-xs); font-weight: 700; display: inline-block; white-space: nowrap; }
+.badge.crit { background: var(--crit); color: #fff; }
+.badge.warn { background: var(--warn-soft); color: var(--warn); }
+.badge.ok { background: var(--ok-soft); color: var(--ok); }
+.badge.info { background: var(--accent-soft); color: var(--accent-ink); }
+.badge.muted { background: var(--line); color: var(--ink-2); }
+
+/* кнопки */
+.btn { border: none; border-radius: var(--r-s); padding: 8px 14px; font-size: var(--fs-s); cursor: pointer; font-family: var(--font); font-weight: 700; }
+.btn.primary { background: var(--ink); color: var(--card); }
+.btn.accent { background: var(--accent); color: #fff; }
+.btn.ghost { background: var(--card); border: 1px solid var(--line); color: var(--ink); }
+.btn.danger { background: var(--crit-soft); border: 1px solid var(--crit); color: var(--crit); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* критический алерт (NFR-4) */
+.alert-critical td { background: var(--crit-soft); }
+.ack-btn { background: var(--card); border: 1px solid var(--crit); color: var(--crit); padding: 4px 10px; border-radius: var(--r-s); cursor: pointer; font-size: var(--fs-xs); }
+.ack-btn:focus-visible { outline: 2px solid var(--crit); outline-offset: 2px; }
+
+/* дисклеймеры — обязательный блок на экранах с прогнозом (UI-03/04/11) */
+.disclaimer { font-size: var(--fs-xs); color: var(--ink-2); border-top: 1px dashed var(--line); margin-top: var(--gap-2); padding-top: 8px; }
+.disclaimer b { color: var(--ink); }

@@ -1,0 +1,41 @@
+{# Каркас страницы консоли (Jinja2). Стыковка с бэкендом — frontend/README.md.
+   Контекст: user{role}, sync{status: ok|queue|error, last_ok}, nav{current}. #}
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}AquaPredict — консоль{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="/static/css/tokens.css">
+<link rel="stylesheet" href="/static/css/app.css">
+<script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+{% block head %}{% endblock %}
+</head>
+<body>
+<header class="app-header">
+  <h1>AquaPredict</h1>
+  <nav class="app-nav" aria-label="Разделы консоли">
+    <a href="/dashboard" {% if nav.current == 'dashboard' %}aria-current="page"{% endif %}>Дашборд</a>
+    <a href="/tasks" {% if nav.current == 'tasks' %}aria-current="page"{% endif %}>Задачи</a>
+    <a href="/metrics" {% if nav.current == 'metrics' %}aria-current="page"{% endif %}>Метрики</a>
+    <a href="/telemetry-health" {% if nav.current == 'health' %}aria-current="page"{% endif %}>Телеметрия</a>
+    <a href="/audit" {% if nav.current == 'audit' %}aria-current="page"{% endif %}>Аудит</a>
+  </nav>
+  <span class="sync {{ sync.status }}" id="sync-status"
+        title="Статус синхронизации с 1С (UI-08)">● Синхронизация с 1С: {{ sync.status }}{% if sync.last_ok %} · {{ sync.last_ok }}{% endif %}</span>
+  <span class="sync ok">{{ user.role }}</span>
+</header>
+<main style="padding:16px 20px; max-width:1200px; margin:0 auto">
+  {% if sync.status == 'error' %}
+  <div class="sync-banner error" role="alert">
+    ● Ошибка синхронизации с 1С · последняя успешная: {{ sync.last_ok }} · данные могут быть неактуальны (UI-08)
+  </div>
+  {% endif %}
+  {% block content %}{% endblock %}
+  <p class="disclaimer">⚠️ Прогноз имеет <b>вероятностный характер</b> (LGL-09) · система <b>рекомендует</b>, решение и действие — за персоналом (HITL, LGL-04) · <b>ML-алерт не является основанием для браковки партии</b> (LGL-11)</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+/* ============================================================
+   AquaPredict — дизайн-токены (единственный источник)
+   Источник вида: frontend/design_system.html
+   Стек (OQ-12): Jinja2 + HTMX + Chart.js
+   ============================================================ */
+:root {
+  /* палитра: индустриальная вода */
+  --ink: #16262e;         /* основной текст */
+  --ink-2: #51656f;       /* вторичный текст */
+  --surface: #f5f8f9;     /* фон страницы */
+  --card: #ffffff;        /* карточки */
+  --line: #dbe4e7;        /* границы, разделители */
+  --accent: #0e7c86;      /* фирменный акцент (вода) */
+  --accent-ink: #0a5a62;  /* акцент-текст */
+  --accent-soft: #e2f1f2; /* акцент-фон */
+  --crit: #b03a2e;        /* критический алерт (NFR-4) */
+  --crit-soft: #fdecea;
+  --warn: #a3660a;        /* предупреждение */
+  --warn-soft: #fdf3e0;
+  --ok: #1e8449;          /* норма/успех */
+  --ok-soft: #eaf6ef;
+
+  /* типографика (Manrope/Unbounded — Google Fonts, кириллица) */
+  --font: 'Manrope', system-ui, sans-serif;
+  --font-display: 'Unbounded', var(--font);
+  --fs-xs: 12px; --fs-s: 13px; --fs-m: 15px; --fs-l: 18px; --fs-xl: 24px;
+
+  /* форма и отступы */
+  --r-s: 6px; --r-m: 10px; --r-l: 14px;
+  --gap: 8px; --gap-2: 16px; --gap-3: 24px;
+  --shadow: 0 1px 2px rgba(22, 38, 46, .06);
+}
+
+/* тёмная тема — по системной настройке (компоненты только через токены) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8f1f2; --ink-2: #93aeb8;
+    --surface: #0b1e28; --card: #122b36; --line: #1f3d47;
+    --accent: #4fd1c5; --accent-ink: #7fd8cf; --accent-soft: #123338;
+    --crit: #e88a7d; --crit-soft: #3a1713;
+    --warn: #e6b45c; --warn-soft: #33270e;
+    --ok: #6fcf97; --ok-soft: #12291b;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #e8f1f2; --ink-2: #93aeb8;
+  --surface: #0b1e28; --card: #122b36; --line: #1f3d47;
+  --accent: #4fd1c5; --accent-ink: #7fd8cf; --accent-soft: #123338;
+  --crit: #e88a7d; --crit-soft: #3a1713;
+  --warn: #e6b45c; --warn-soft: #33270e;
+  --ok: #6fcf97; --ok-soft: #12291b;
+}

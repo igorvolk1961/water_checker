@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Дашборд (SCR-01){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">Дашборд технолога</h2>
+<div class="grid">
+  <div class="card">
+    <h2>Активные алерты</h2>
+    <table class="data">
+      <thead>
+      <tr><th>Критичность</th><th>Партия</th><th>Параметр</th><th>Риск-скор</th><th>Горизонт</th><th>Источник</th><th>Статус</th><th></th></tr>
+      </thead>
+      <tbody>
+      {% for a in alerts %}
+      <tr class="{{ 'alert-critical' if a.critical }}">
+        <td>
+          {% if a.critical %}<span class="badge crit">Критический</span>
+          {% else %}<span class="badge warn">Предупреждение</span>{% endif %}
+        </td>
+        <td class="num">{{ a.party_id }}</td>
+        <td>{{ a.param }} ({{ a.tel }})</td>
+        <td class="num"><b>{{ a.risk_score }}</b></td>
+        <td class="num">≈ {{ a.horizon }} ч</td>
+        <td><span class="badge {{ 'info' if a.source == 'Слой 2' else 'info' }}">{{ a.source }}</span></td>
+        <td>{{ a.status }}</td>
+        <td>
+          {% if a.critical and a.status == 'Новый' %}
+          <button class="ack-btn" hx-post="/alerts/{{ a.id }}/ack"
+                  hx-target="#ack-{{ a.id }}" hx-swap="outerHTML">Подтвердить ознакомление</button>
+          <span id="ack-{{ a.id }}"></span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {# fixture: alerts = [
+      {id, party_id: 'П-2026-11-0412', param: 'Мутность', tel: 'TEL-06', risk_score: '0,87', horizon: 2, source: 'Слой 2 (ML)', status: 'Новый', critical: true},
+      {id, party_id: 'П-2026-11-0410', param: 'Давление до мембраны', tel: 'TEL-01', risk_score: '0,64', horizon: 3, source: 'Слой 1 (правило)', status: 'Ознакомлен', critical: false}
+    ] #}
+  </div>
+
+  <div class="card">
+    <h2>Бюджет алертов (линия №{{ line }})</h2>
+    <p style="font-size:var(--fs-l);margin:0" class="num">{{ alerts_last_hour }} / {{ alert_budget }} <span style="font-size:var(--fs-s);color:var(--ink-2)">за час / лимит (NFR-5)</span></p>
+    <p class="disclaimer">При превышении — приоритизация и подавление дублей; подавленный алерт инцидент не создаёт (решение В-6).</p>
+    <h2 style="margin-top:14px">Линии</h2>
+    <table class="data">
+      <tr><th>Линия</th><th>Партия</th><th>Статус</th></tr>
+      {% for l in lines %}
+      <tr><td>№{{ l.num }}</td><td class="num">{{ l.party or '—' }}</td><td>{{ l.mode }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

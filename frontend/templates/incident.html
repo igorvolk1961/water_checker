@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Инцидент {{ incident.id }} (SCR-02){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">
+  Инцидент {{ incident.id }} · партия <span class="num">{{ incident.party_id }}</span>
+  <span class="badge {{ 'warn' if incident.status == 'Новый' else 'info' }}">{{ incident.status }}</span>
+</h2>
+<div class="grid">
+  <div class="card">
+    <h2>Параметры события</h2>
+    <table class="data">
+      <tr><th>Параметр</th><td>{{ incident.param }} ({{ incident.tel }})</td></tr>
+      <tr><th>Риск-скор</th><td class="num"><b>{{ incident.risk_score }}</b> · порог {{ operating_point.threshold }} <span class="badge ok">утверждена {{ operating_point.approved_at }}</span></td></tr>
+      <tr><th>Горизонт</th><td class="num">≈ {{ incident.horizon }} ч</td></tr>
+      <tr><th>Источник</th><td>{{ incident.source }}</td></tr>
+      <tr><th>Канал телеметрии</th><td>{{ incident.channel_reliability }}</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Вердикт по инциденту (ВердиктИнцидента)</h2>
+    {% if incident.verdict %}
+    <table class="data">
+      <tr><th>Значение</th><td><span class="badge {{ 'ok' if incident.verdict.value == 'Подтверждён' else 'warn' }}">{{ incident.verdict.value }}</span></td></tr>
+      <tr><th>Причина</th><td>{{ incident.verdict.reason }}</td></tr>
+      <tr><th>Автор / дата</th><td>{{ incident.verdict.author }} · {{ incident.verdict.at }}</td></tr>
+    </table>
+    {% else %}
+    <p><select aria-label="Значение вердикта"><option>— выберите значение —</option><option>Подтверждён</option><option>Ложное срабатывание</option></select></p>
+    <p><select aria-label="Причина из справочника"><option>— причина (справочник) —</option>{% for r in verdict_reasons %}<option>{{ r }}</option>{% endfor %}</select></p>
+    <p><textarea rows="2" style="width:100%" aria-label="Комментарий"></textarea></p>
+    <button class="btn primary" hx-post="/incidents/{{ incident.id }}/verdicts">Зафиксировать вердикт</button>
+    {% endif %}
+    <p class="disclaimer">Вердикт обязателен до перевода инцидента в «Закрыт» (решение В-1). «Ложное срабатывание» уходит в разметку как прокси-метка (FR-12).</p>
+  </div>
+  <div class="card">
+    <h2>Задача на корректирующее действие (в 1С — read-only, UI-06)</h2>
+    <table class="data">
+      <tr><th>Рекомендованные шаги</th><td>{{ incident.recommendation }}</td></tr>
+      <tr><th>Задача в 1С</th><td class="num">{{ incident.ca_id or '—' }} · <a href="{{ incident.ca_1c_url or '#' }}">открыть в 1С →</a></td></tr>
+      <tr><th>Результат корректирующего действия</th><td>{{ incident.ca_result or '— (Выполнено / Отменено)' }}</td></tr>
+    </table>
+    <p class="disclaimer">Результат корректирующего действия ≠ вердикт по инциденту — разные сущности (FR-06.5, US-05.1). Действия с задачей — в 1С.</p>
+  </div>
+  <div class="card">
+    <h2>Журнал событий</h2>
+    <table class="data">
+      <tr><th>Время</th><th>Событие</th><th>Источник</th></tr>
+      {% for e in incident.journal %}
+      <tr><td class="num">{{ e.at }}</td><td>{{ e.what }}</td><td><span class="badge {{ {'system':'info','human':'warn','action':'ok','1c':'muted'}[e.kind] }}">{{ e.kind_label }}</span></td></tr>
+      {% endfor %}
+    </table>
+    <p class="disclaimer">Категории и источники различаются обязательно (LGL-10, FR-14.3).</p>
+  </div>
+</div>
+{% endblock %}
