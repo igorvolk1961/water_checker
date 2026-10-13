@@ -36,6 +36,7 @@
   - [change_log.md](docs/system_analysis/change_log.md) — журнал изменений базиса
   - [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md) — волны, ворота, RACI, DoR/DoD
   - [architecture_stack.md](docs/system_analysis/architecture_stack.md) — технологический стек (FastAPI, PostgreSQL, Redis и др.)
+  - [architecture.md](docs/system_analysis/architecture.md) — архитектура: стиль, паттерны и обоснование выбора
   - [hardware_requirements.md](docs/system_analysis/hardware_requirements.md) — требования к оборудованию и инфраструктуре
   - [presentation_customer.html](docs/system_analysis/presentation_customer.html) — презентация заказчику (HTML)
   - [qa/](docs/system_analysis/qa/) — тест-план, чек-листы приёмки, каркасы руководств
@@ -109,7 +110,7 @@
 | Диаграммы | [diagrams/](docs/system_analysis/diagrams/) (BPMN, sequence, state, C4) |
 | Право | [legal_risks_and_requirements.md](docs/system_analysis/legal/legal_risks_and_requirements.md) (LGL-01…14) |
 | Экономика | [business_case.md](docs/system_analysis/business_case.md), [cost_estimation.md](docs/system_analysis/cost/cost_estimation.md) |
-| Инфраструктура/стек | [hardware_requirements.md](docs/system_analysis/hardware_requirements.md), [architecture_stack.md](docs/system_analysis/architecture_stack.md) |
+| Инфраструктура/стек | [architecture.md](docs/system_analysis/architecture.md), [architecture_stack.md](docs/system_analysis/architecture_stack.md), [hardware_requirements.md](docs/system_analysis/hardware_requirements.md) |
 | Договор и ТЗ | [contract_draft.md](docs/system_analysis/legal/contract_draft.md), [tz_draft.md](docs/system_analysis/legal/tz_draft.md) |
 | QA и макеты | [qa/](docs/system_analysis/qa/), [presentation_customer.html](docs/system_analysis/presentation_customer.html), [frontend/](frontend/) |
 | Управление | [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md), [backlog_implementation_plan.md](docs/system_analysis/plans/backlog_implementation_plan.md), [backlog/](docs/system_analysis/backlog/), [traceability.md](docs/system_analysis/traceability.md), [change_log.md](docs/system_analysis/change_log.md) |

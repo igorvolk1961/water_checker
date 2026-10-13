@@ -33,7 +33,7 @@
 - Метрики: `kpi.md` (цели по слоям + Baseline) — данные экрана «Метрики модели» (I-10).
 - Экономика: `business_case.md` (ROI), `cost/cost_estimation.md` (метод и оценка по эпикам).
 - Открытые вопросы и допущения: `open_questions.md` (OQ-01…OQ-12), `assumptions_log.md`.
-- Архитектура: C4 уровней 1–3 — `diagrams/c4_context.md`, `c4_containers.md`, `c4_components.md`.
+- Архитектура: `architecture.md` (стиль, паттерны, ADR); C4 уровней 1–3 — `diagrams/c4_context.md`, `c4_containers.md`, `c4_components.md`; стек — `architecture_stack.md`.
 - Цели: `backlog/product_backlog.md` (эпики), `cost/cost_estimation.md` (стоимость), `requirements/functional_requirements.md`, `requirements/ui_requirements.md`, `diagrams/`.
 
 ## 4. Матрица покрытия юридических требований (LGL → FR/SCR/BPMN)
