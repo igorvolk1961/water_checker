@@ -22,7 +22,7 @@
 | Релиз | Цель | Эпики | Ворота | Стоимость (₽) |
 | --- | --- | --- | --- | --- |
 | **R0. Фундамент** | Интеграционное ядро, телеметрия, стенды | EPIC-01, EPIC-02, каркас EPIC-12/13 | — | ≈ 1 810 000 |
-| **R1. MVP (Слой 1 + Cold Start)** | Правила, алерты, КА, отбор, ETL/Baseline | EPIC-03, EPIC-04, EPIC-05, EPIC-06, EPIC-07, EPIC-08, EPIC-14, EPIC-12 (полн.), EPIC-13 (осн.) | Gate 3 | ≈ 3 640 000 |
+| **R1. MVP (Слой 1 + Cold Start)** | Правила, алерты, корректирующие действия, отбор, ETL/Baseline | EPIC-03, EPIC-04, EPIC-05, EPIC-06, EPIC-07, EPIC-08, EPIC-14, EPIC-12 (полн.), EPIC-13 (осн.) | Gate 3 | ≈ 3 640 000 |
 | **R2. ML / Advisor** | Слой 2, MLOps, метрики, Shadow→Advisor | EPIC-09, EPIC-10, EPIC-11, FR-12 | — | ≈ 1 700 000 |
 | **R3. Active / Full** | Дрейф, guardrails, масштаб | доработки, Фаза 3 | Gate 4 | — (цикл) |
 
@@ -90,7 +90,7 @@ gantt
     section R1 MVP
     EPIC-03 Слой 1          :e3, after e2, 2
     EPIC-04 Алерты          :e4, after e3, 2
-    EPIC-05 КА              :e5, after e4, 2
+    EPIC-05 корректирующие действия :e5, after e4, 2
     EPIC-06 Отбор           :e6, after e4, 2
     EPIC-07 Результаты      :e7, after e1, 2
     EPIC-08 Cold Start      :e8, after e2, 3
