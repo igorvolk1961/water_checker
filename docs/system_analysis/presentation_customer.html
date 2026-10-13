@@ -1,0 +1,221 @@
+<title>AquaPredict</title>
+<style>
+  :root {
+    --bg:#f6f9fa; --fg:#0e2433; --card:#ffffff; --muted:#5d7285;
+    --accent:#0e7c86; --accent-soft:#e3f2f3; --line:#dfe8ea;
+    --warn:#a3660a; --crit:#b03a2e; --ok:#1e8449;
+    --hero-bg:#07222e; --hero-fg:#eef7f8; --hero-accent:#4fd1c5; --hero-muted:#8fb3bd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:#0b1e28; --fg:#e8f1f2; --card:#122b36; --muted:#93aeb8;
+      --accent:#4fd1c5; --accent-soft:#123338; --line:#1f3d47;
+      --warn:#e6b45c; --crit:#e88a7d; --ok:#6fcf97;
+      --hero-bg:#06161f; --hero-fg:#eef7f8; --hero-muted:#7fa3ad;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#0b1e28; --fg:#e8f1f2; --card:#122b36; --muted:#93aeb8;
+    --accent:#4fd1c5; --accent-soft:#123338; --line:#1f3d47;
+    --warn:#e6b45c; --crit:#e88a7d; --ok:#6fcf97;
+    --hero-bg:#06161f; --hero-fg:#eef7f8; --hero-muted:#7fa3ad;
+  }
+  body { background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,sans-serif; font-size:15px; line-height:1.55; margin:0; }
+  h1,h2,h3 { font-family:'Unbounded','Manrope',sans-serif; text-wrap:balance; }
+  .wrap { max-width:980px; margin:0 auto; padding:0 20px; }
+  section { padding:64px 0; border-top:1px solid var(--line); }
+  .eyebrow { font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 10px; }
+  h2 { font-size:clamp(22px,3.4vw,32px); margin:0 0 14px; font-weight:600; }
+  .lead { font-size:17px; color:var(--muted); max-width:62ch; }
+  .grid { display:grid; gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .num { font-variant-numeric:tabular-nums; }
+  .big { font-size:clamp(30px,5vw,44px); font-weight:700; font-family:'Unbounded',sans-serif; color:var(--accent); }
+  .cap { font-size:13px; color:var(--muted); }
+  .pill { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:999px; background:var(--accent-soft); color:var(--accent); }
+  /* hero */
+  .hero { background:linear-gradient(160deg, var(--hero-bg) 0%, #0a2e3d 60%, #0d3a4a 100%); color:var(--hero-fg); padding:88px 0 72px; border-top:none; }
+  .hero .kicker { color:var(--hero-accent); font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:700; }
+  .hero h1 { font-size:clamp(30px,5.4vw,52px); line-height:1.12; margin:14px 0 18px; font-weight:700; }
+  .hero h1 em { font-style:normal; color:var(--hero-accent); }
+  .hero p.sub { font-size:clamp(16px,2.2vw,19px); color:var(--hero-muted); max-width:56ch; }
+  .hero .badge-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:28px; }
+  .hero .badge-row span { font-size:13px; border:1px solid rgba(79,209,197,.35); color:var(--hero-accent); border-radius:999px; padding:6px 14px; }
+  /* quote-alert */
+  .alert-box { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--crit); border-radius:12px; padding:18px 20px; font-size:15px; }
+  .alert-box .when { font-size:12px; color:var(--muted); }
+  /* steps */
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .step { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; }
+  .step .n { width:30px; height:30px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:10px; font-size:14px; }
+  .step b { display:block; margin-bottom:4px; }
+  .step p { margin:0; font-size:13.5px; color:var(--muted); }
+  /* mini dashboard */
+  .dash { background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; font-size:12px; }
+  .dash .bar { display:flex; align-items:center; gap:8px; padding:8px 12px; border-bottom:1px solid var(--line); }
+  .dash .dot { width:8px; height:8px; border-radius:50%; background:var(--ok); }
+  .dash .bar b { font-size:12.5px; }
+  .dash .sync { margin-left:auto; color:var(--ok); }
+  .dash .body { display:grid; grid-template-columns:1.6fr 1fr; }
+  .dash table { width:100%; border-collapse:collapse; }
+  .dash td, .dash th { padding:7px 10px; border-bottom:1px solid var(--line); text-align:left; }
+  .dash th { color:var(--muted); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+  .dash .crit { background:rgba(176,58,46,.10); }
+  .badge-c { background:var(--crit); color:#fff; border-radius:999px; padding:1px 8px; font-size:10.5px; font-weight:700; }
+  .badge-w { background:rgba(163,102,10,.15); color:var(--warn); border-radius:999px; padding:1px 8px; font-size:10.5px; font-weight:700; }
+  .dash .side { border-left:1px solid var(--line); padding:10px 12px; }
+  .spark { display:flex; align-items:flex-end; gap:3px; height:56px; margin:8px 0; }
+  .spark i { flex:1; background:var(--accent); border-radius:2px 2px 0 0; opacity:.85; }
+  .spark i.hot { background:var(--crit); }
+  /* guarantee list */
+  .guar { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
+  .guar .card { display:flex; gap:12px; align-items:flex-start; }
+  .guar .ic { flex:0 0 34px; height:34px; border-radius:9px; background:var(--accent-soft); color:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:800; }
+  .guar p { margin:2px 0 0; font-size:13px; color:var(--muted); }
+  .guar b { font-size:14px; }
+  /* timeline */
+  .tl { border-left:2px solid var(--accent); margin-left:6px; padding-left:22px; display:grid; gap:18px; }
+  .tl .st { position:relative; }
+  .tl .st::before { content:""; position:absolute; left:-28px; top:5px; width:10px; height:10px; border-radius:50%; background:var(--accent); }
+  .tl .st .when { font-size:12px; color:var(--accent); font-weight:700; letter-spacing:.04em; }
+  .tl .st b { font-size:15px; }
+  .tl .st p { margin:3px 0 0; font-size:13.5px; color:var(--muted); }
+  /* money */
+  .money { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+  .money .card { text-align:left; }
+  .foot { padding:40px 0 64px; color:var(--muted); font-size:13px; }
+  @media (max-width:640px){ .dash .body { grid-template-columns:1fr; } .dash .side { border-left:none; border-top:1px solid var(--line); } }
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Предложение для производства бутилированной воды</div>
+    <h1>Узнавать о риске брака <em>за 2 часа</em>, а не после лаборатории</h1>
+    <p class="sub">AquaPredict — цифровой ассистент технолога. Он непрерывно читает датчики линии, предсказывает отклонения качества воды и подсказывает, что сделать, чтобы партия не стала браком.</p>
+    <div class="badge-row">
+      <span>Надстройка над вашей «1С:БИТ.Лаборатория»</span>
+      <span>Без вмешательства в оборудование</span>
+      <span>Решение всегда за человеком</span>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Знакомая ситуация</p>
+    <h2>Сегодня качество подтверждается постфактум</h2>
+    <p class="lead">Пробу отбирают по плану, результат приходит из лаборатории через часы — а причина отклонения возникла часами раньше на линии. К этому моменту партия уже произведена.</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin-top:18px">
+      <div class="card"><span class="big num">3–5%</span><p class="cap">партий могут нести потери от несоответствий — типичная оценка для отрасли (ваша цифра уточняется по истории «1С»)</p></div>
+      <div class="card"><span class="big num">Часы</span><p class="cap">проходят между причиной на линии и результатом анализа — реактивный контроль всегда опаздывает</p></div>
+      <div class="card"><span class="big num">0</span><p class="cap">сигналов до события: датчики стоят, но просто «пишут в журнал» — предсказаний никто не делает</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Что вы получите</p>
+    <h2>Предупреждение на экране — до того, как испорчена партия</h2>
+    <div class="alert-box" style="margin-top:16px">
+      <div class="when">Экран технолога · пример уведомления</div>
+      «Давление до мембраны упало на 2%, температура в цеху выросла. <b>Вероятность превышения ОМЧ через 4 часа — 85%</b>. Рекомендуется внеплановая промывка фильтра №2».
+    </div>
+    <p class="lead" style="margin-top:16px">Так выглядит работа системы: не график задним числом, а конкретное предупреждение с вероятностью, сроком и готовым планом действия.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Как это работает</p>
+    <h2>Четыре шага — по кругу, каждый день</h2>
+    <div class="steps" style="margin-top:18px">
+      <div class="step"><div class="n">1</div><b>Слушает линию</b><p>13 параметров телеметрии — давление, мутность, озон, температура, pH — каждые 60 секунд.</p></div>
+      <div class="step"><div class="n">2</div><b>Оценивает риск</b><p>Два «ума»: проверенные правила технологов плюс модель, обученная на истории вашей линии и лаборатории.</p></div>
+      <div class="step"><div class="n">3</div><b>Предупреждает</b><p>Порог риска выше нормы — технолог получает уведомление с рекомендацией. Не чаще 10 в час — только важное.</p></div>
+      <div class="step"><div class="n">4</div><b>Учится</b><p>Лаборатория подтвердила или опровергла прогноз — система стала точнее. Каждый день работы делает её умнее.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Экран технолога</p>
+    <h2>Всё важное — на одном экране</h2>
+    <div class="dash" style="margin-top:16px">
+      <div class="bar"><span class="dot"></span><b>Дашборд технолога · линия №1</b><span class="sync">Синхронизация с 1С: норма</span></div>
+      <div class="body">
+        <div>
+          <table>
+            <tr><th>Критичность</th><th>Партия</th><th>Параметр</th><th>Риск</th><th>Горизонт</th></tr>
+            <tr class="crit"><td><span class="badge-c">Критический</span></td><td>П-2026-11-0412</td><td>Мутность (TEL-06)</td><td><b>0,87</b></td><td>≈ 2 ч</td></tr>
+            <tr><td><span class="badge-w">Внимание</span></td><td>П-2026-11-0410</td><td>Давление (TEL-01)</td><td>0,64</td><td>≈ 3 ч</td></tr>
+            <tr><td><span class="badge-w">Внимание</span></td><td>П-2026-11-0408</td><td>Озон (TEL-05)</td><td>0,58</td><td>≈ 4 ч</td></tr>
+          </table>
+        </div>
+        <div class="side">
+          <b style="font-size:12px">Мутность (NTU), 2 часа</b>
+          <div class="spark"><i style="height:20%"></i><i style="height:24%"></i><i style="height:30%"></i><i style="height:36%"></i><i style="height:46%"></i><i style="height:55%"></i><i style="height:62%"></i><i class="hot" style="height:74%"></i><i class="hot" style="height:88%"></i></div>
+          <span class="cap">рост мутности → прогноз превышения ОМЧ</span>
+        </div>
+      </div>
+    </div>
+    <p class="cap" style="margin-top:10px">Иллюстрация интерфейса: критические предупреждения выделены и требуют подтверждения ознакомления.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Честные гарантии</p>
+    <h2>Система советует — решаете вы</h2>
+    <div class="guar" style="margin-top:18px">
+      <div class="card"><div class="ic">✓</div><div><b>Человек в контуре</b><p>Система не управляет оборудованием и не останавливает линию. Она рекомендует — действие выполняет ваш персонал.</p></div></div>
+      <div class="card"><div class="ic">✓</div><div><b>Лаборатория — истина</b><p>Юридически значимое решение о качестве принимает ваша лаборатория в «1С». Прогноз — ранний сигнал, а не основание для браковки.</p></div></div>
+      <div class="card"><div class="ic">✓</div><div><b>Документы не трогаем</b><p>Протоколы, электронная подпись и выгрузка во ФГИС Росаккредитации остаются в вашем контуре «1С» — без дублирования.</p></div></div>
+      <div class="card"><div class="ic">✓</div><div><b>Без обещаний чуда</b><p>Прогноз вероятностный: цели по точности фиксируются в договоре и измеряются открыто, а не «поверим на слово».</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">План внедрения</p>
+    <h2>Четыре этапа — от интеграции до «умного режима»</h2>
+    <div class="tl" style="margin-top:20px">
+      <div class="st"><span class="when">16.11.2026 – 28.12.2026 · ≈ 1,8 млн ₽ работ</span><br><b>R0. Фундамент</b><p>Подключение к «1С», приём телеметрии с буферизацией, каркас веб-консоли и безопасности. Результат: интеграции работают.</p></div>
+      <div class="st"><span class="when">11.01.2027 – 29.03.2027 · ≈ 3,64 млн ₽ работ</span><br><b>R1. MVP</b><p>Правила и алерты, инциденты и задачи персоналу, внеплановый отбор проб, обучение на вашем архиве. Результат: система предупреждает.</p></div>
+      <div class="st"><span class="when">30.03.2027 – 25.05.2027 · ≈ 1,65 млн ₽ работ</span><br><b>R2. Советник</b><p>Машинное обучение на накопленных данных, экран метрик, переход в режим советника — с измеримыми критериями качества.</p></div>
+      <div class="st"><span class="when">с 01.06.2027 · по отдельному решению</span><br><b>R3. Целевой режим</b><p>Мониторинг деградации моделей, масштабирование на новые линии.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Инвестиции</p>
+    <h2>Прозрачная стоимость, фазовая оплата</h2>
+    <div class="money" style="margin-top:18px">
+      <div class="card"><span class="pill">Разово</span><div class="big num" style="margin-top:8px">9,37 млн ₽</div><p class="cap">работы (7,09) + оборудование (2,28) — позиции и ставки раскрыты в смете, оплата по актам этапов</p></div>
+      <div class="card"><span class="pill">Резерв</span><div class="big num" style="margin-top:8px">1,83 млн ₽</div><p class="cap">на непредвиденное — тратится только по вашему отдельному решению</p></div>
+      <div class="card"><span class="pill">Ежегодно</span><div class="big num" style="margin-top:8px">1,2–2,4 млн ₽</div><p class="cap">поддержка и сопровождение моделей — отдельный договор, после запуска</p></div>
+    </div>
+    <p class="lead" style="margin-top:14px">Каждый этап оплачивается после подписанного акта приёмки — вы платите за работающий результат, а не за обещания. Максимальная сумма обязательств зафиксирована в договоре.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Что нужно от вас</p>
+    <h2>Три вещи — остальное на нас</h2>
+    <div class="guar" style="margin-top:18px">
+      <div class="card"><div class="ic">1</div><div><b>Архив SCADA</b><p>История показателей датчиков за последние годы — на ней система учится ещё до старта.</p></div></div>
+      <div class="card"><div class="ic">2</div><div><b>Доступ к «1С»</b><p>Ограниченный технический доступ для чтения данных и записи задач — в пределах лимита нагрузки.</p></div></div>
+      <div class="card"><div class="ic">3</div><div><b>Утверждение порога</b><p>Рабочую точку (когда считать риск критическим) утверждаете вы — принятый остаточный риск остаётся вашим управленческим решением.</p></div></div>
+    </div>
+    <p class="lead" style="margin-top:20px"><b>Следующий шаг:</b> согласование договора и технического задания — и к концу декабря интеграции уже работают.</p>
+  </div>
+</section>
+
+<div class="foot">
+  <div class="wrap">AquaPredict · предиктивная аналитика качества бутилированной воды · материалы подготовлены для обсуждения с заказчиком; числовые показатели — целевые значения проекта</div>
+</div>
