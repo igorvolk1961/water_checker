@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мокап SCR-08 — Cold Start</title>
+<style>
+  :root { --ink:#16262e; --ink2:#51656f; --surface:#f5f8f9; --card:#fff; --line:#dbe4e7; --crit:#b03a2e; --warn:#a3660a; --ok:#1e8449; --accent:#0e7c86; --accent-soft:#e2f1f2; }
+  *{box-sizing:border-box;font-family:'Manrope',system-ui,sans-serif}
+  body{margin:0;background:var(--surface);color:var(--ink);font-size:14px}
+  header{display:flex;align-items:center;gap:10px;padding:10px 20px;background:var(--card);border-bottom:1px solid var(--line)}
+  header h1{font-size:16px;margin:0} .sync{margin-left:auto;font-size:12px;color:var(--ok)}
+  .wrap{max-width:1000px;margin:0 auto;padding:16px 20px;display:grid;gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 10px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:14px}
+  .st{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px}
+  .st.done{background:#eaf6ef;border-color:var(--ok);color:var(--ok)}
+  .st.cur{background:var(--accent-soft);border-color:var(--accent);color:#0a5a62;font-weight:700}
+  .st b{display:block;font-size:12px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{color:var(--ink2);font-size:11px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:7px 9px;border-bottom:2px solid var(--line)}
+  td{padding:7px 9px;border-bottom:1px solid var(--line)}
+  .num{font-variant-numeric:tabular-nums}
+  .meter{height:14px;background:var(--surface);border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:6px 0 2px}
+  .meter i{display:block;height:100%;background:var(--accent)}
+  .b{border-radius:999px;padding:2px 9px;font-size:11px;font-weight:700}
+  .b-ok{background:#eaf6ef;color:var(--ok)} .b-w{background:#fdf3e0;color:var(--warn)}
+  .btn{border:none;border-radius:6px;padding:7px 12px;font-size:12.5px;cursor:pointer;font-weight:700}
+  .btn-p{background:var(--ink);color:#fff} .btn-g{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+  .note{font-size:11px;color:var(--ink2);border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Cold Start · SCR-08</h1>
+  <span class="sync">● Синхронизация с 1С: норма</span>
+</header>
+<div class="wrap">
+  <div class="card">
+    <h2>Мастер калибровки — шаг 3 из 5</h2>
+    <div class="steps">
+      <div class="st done"><b>1 · Импорт архива</b>SCADA CSV + журналы · выполнено</div>
+      <div class="st done"><b>2 · Отчёт импорта</b>2,1 млн отметок · 99,2 % валидны</div>
+      <div class="st cur"><b>3 · Матчинг</b>срез 2 ч → проба</div>
+      <div class="st"><b>4 · Baseline-профиль</b>Anomaly Detection</div>
+      <div class="st"><b>5 · Подтверждение ГТ</b>«Эталонный»</div>
+    </div>
+    <table>
+      <tr><th>Показатель матчинга</th><th>Значение</th></tr>
+      <tr><td>Проб из архива</td><td class="num">4 312</td></tr>
+      <tr><td>Сопоставлено «срез 2 ч → проба»</td><td class="num">3 964 (91,9 % — цель ≥ 90 %, `kpi.md` §4)</td></tr>
+      <tr><td>Не сопоставлено</td><td class="num">348 — список с причинами (нет телеметрии: 214; вне окна: 96; прочее: 38)</td></tr>
+    </table>
+    <div class="meter"><i style="width:92%"></i></div>
+    <p class="note">Повторный запуск матчинга на подмножестве — поддерживается (FR-10.2). Хранение архива ≥ 3 лет — обязанность Заказчика (ТЗ §4.3, ASM-01).</p>
+  </div>
+  <div class="card">
+    <h2>Baseline-профиль и режимы</h2>
+    <table>
+      <tr><th>Профиль</th><td class="num">BL-2026-11 v3 (Anomaly Detection, без размеченного брака)</td></tr>
+      <tr><th>Статус</th><td><span class="b b-w">Черновик — ожидает подтверждения ГТ</span> → «Эталонный» (ST-06, фиксация в аудите)</td></tr>
+      <tr><th>Режим после подтверждения</th><td>Shadow Mode: прогнозы персоналу не показываются (FR-04.2)</td></tr>
+    </table>
+    <p style="margin:10px 0 0;display:flex;gap:8px">
+      <button class="btn btn-p">Подтвердить как «Эталонный»</button>
+      <button class="btn btn-g">Отчёт о матчинге (CSV)</button>
+    </p>
+    <p class="note">Альтернативный поток 7а: при недостатке архива — Pre-training на синтетических данных цифрового двойника с продлением калибровки (FR-10.5). Критерии перехода в Advisor — §4 (`10_cold_start_and_archival_data.md`), даты этапов — Приложение № 5.</p>
+  </div>
+</div>
+</body>
+</html>
