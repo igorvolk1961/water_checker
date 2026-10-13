@@ -71,6 +71,7 @@
     - [plan_lead.md](docs/system_analysis/plans/plan_lead.md) — план ведущего
     - [plan_colleague.md](docs/system_analysis/plans/plan_colleague.md) — план коллеги (FR/UI/BPMN)
     - [backlog_implementation_plan.md](docs/system_analysis/plans/backlog_implementation_plan.md) — детальный план реализации бэклога (релизы R0–R3)
+    - [epics/](docs/system_analysis/plans/epics/) — детальные планы по эпикам (EPIC-01…EPIC-14)
   - [reviews/](docs/system_analysis/reviews/) — переписка пары
     - [2026-10-12_colleague_to_lead.md](docs/system_analysis/reviews/2026-10-12_colleague_to_lead.md)
     - [2026-10-13_colleague_to_lead_gate2.md](docs/system_analysis/reviews/2026-10-13_colleague_to_lead_gate2.md)
