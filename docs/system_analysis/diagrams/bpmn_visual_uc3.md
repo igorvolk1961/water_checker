@@ -1,6 +1,6 @@
 # BPMN (визуальная версия) — UC3: Корректирующее действие
 
-**Версия:** 1.0 (визуализация `bpmn_uc3_corrective_action.md` стандартным mermaid). Термины — `02_glossary.md`.
+**Версия:** 1.1. Визуальная (mermaid) схема процесса `bpmn_uc3_corrective_action.md`. Канонический BPMN: `bpmn/uc3.bpmn` · SVG: `bpmn/uc3.svg`; термины — `02_glossary.md`.
 
 ```mermaid
 flowchart TB

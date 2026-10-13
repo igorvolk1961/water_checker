@@ -43,7 +43,7 @@
   - [defense_notes.md](docs/system_analysis/defense_notes.md) — аргументы защиты
   - [defense_slides.md](docs/system_analysis/defense_slides.md) — слайды защиты (черновик)
   - [docs/defense.html](docs/defense.html) — **автономная** HTML-дека защиты (шрифты встроены; mermaid — локальный `docs/vendor/mermaid.min.js`), навигация стрелками/пробелом
-  - [docs/bpmn.html](docs/bpmn.html) — **BPMN-схемы процессов UC1…UC8** (SVG-галерея; редактируемые BPMN 2.0 — `diagrams/bpmn/*.bpmn`, SVG — `diagrams/bpmn/*.svg`; исходники — `diagrams/bpmn_ucX*.md`)
+  - [docs/bpmn.html](docs/bpmn.html) — **BPMN-схемы процессов UC1…UC8** (три уровня: спецификация `diagrams/bpmn_ucX*.md` → **BPMN 2.0** `diagrams/bpmn/*.bpmn` + **SVG** `diagrams/bpmn/*.svg`; для UC2–UC4 — ещё и визуальная mermaid-версия `diagrams/bpmn_visual_uc2…4.md`)
   - [hardware_requirements.md](docs/system_analysis/hardware_requirements.md) — требования к оборудованию и инфраструктуре
   - [presentation_customer.html](docs/system_analysis/presentation_customer.html) — презентация заказчику (HTML, автономная — шрифты встроены)
   - [qa/](docs/system_analysis/qa/) — тест-план, тест-кейсы (симулятор/мок-1С), чек-листы приёмки

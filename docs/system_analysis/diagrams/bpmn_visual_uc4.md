@@ -1,6 +1,6 @@
 # BPMN (визуальная версия) — UC4: Внеплановый отбор пробы
 
-**Версия:** 1.0 (визуализация `bpmn_uc4_trigger_sampling.md` стандартным mermaid). Термины — `02_glossary.md`.
+**Версия:** 1.1. Визуальная (mermaid) схема процесса `bpmn_uc4_trigger_sampling.md`. Канонический BPMN: `bpmn/uc4.bpmn` · SVG: `bpmn/uc4.svg`; термины — `02_glossary.md`.
 
 ```mermaid
 flowchart TB

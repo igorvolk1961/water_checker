@@ -1,4 +1,6 @@
 # BPMN v1 — UC7: Первичная калибровка (Cold Start) и обучение базовой линии
+> **Канонический BPMN:** `bpmn/uc7.bpmn` (BPMN 2.0, bpmn.io / Camunda Modeler) · схема: `bpmn/uc7.svg`
+
 
 **Версия:** 0.1 (C-04, I-6). **Независимо от вилки A/B.** FR-04, FR-10; критерии перехода — `10_cold_start_and_archival_data.md` §4.
 
