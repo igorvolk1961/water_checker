@@ -26,6 +26,6 @@ class OneCClient:
         raise NotImplementedError("OData: чтение результатов (EPIC-07)")
 
     def write_task(self, payload: dict[str, Any]) -> str:
-        """Запись задачи (КА / внеплановый отбор) через HTTP-сервис."""
+        """Запись задачи (корректирующее действие / внеплановый отбор) через HTTP-сервис."""
 
         raise NotImplementedError("HTTP-сервис: запись задачи (EPIC-01)")

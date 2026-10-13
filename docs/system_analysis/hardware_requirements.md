@@ -31,7 +31,7 @@
 | --- | --- | --- |
 | App-сервер | FastAPI/uvicorn (веб-консоль, API) | Linux, 4 vCPU, 8–16 ГБ RAM |
 | Worker | Фоновая очередь (Redis): ретраи синхронизации, переобучение, дрейф | 2–4 vCPU, 4–8 ГБ RAM |
-| БД | PostgreSQL (партии, инциденты, КА, вердикты, аудит); миграции Alembic | 2–4 vCPU, 8–16 ГБ RAM, SSD |
+| БД | PostgreSQL (партии, инциденты, корректирующие действия, вердикты, аудит); миграции Alembic | 2–4 vCPU, 8–16 ГБ RAM, SSD |
 | Телеметрия (time-series) | PostgreSQL с партиционированием или TimescaleDB; retention 1 год (LGL-06) | SSD, см. сайзинг §3 |
 | Redis | Очередь задач/кэш | 1–2 vCPU, 2–4 ГБ RAM |
 | ML | обучение Baseline/Слоя 2 (scikit-learn), Feature Store, реестр моделей | CPU достаточно; GPU — опционально |

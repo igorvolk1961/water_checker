@@ -8,7 +8,7 @@
 | --- | --- | --- | --- |
 | Web/API (SCR-01…12) | **FastAPI** + **Pydantic v2** + **uvicorn** | API веб-консоли, алерты, задачи, метрики | async, быстрый, автовалидация и OpenAPI |
 | Конфигурация | **pydantic-settings** | типизированные настройки из env | единый источник конфигурации |
-| Данные | **PostgreSQL** + **SQLAlchemy 2.0** + **Alembic** | партии, инциденты, КА, вердикты, аудит | надёжная реляционная БД, миграции |
+| Данные | **PostgreSQL** + **SQLAlchemy 2.0** + **Alembic** | партии, инциденты, корректирующие действия, вердикты, аудит | надёжная реляционная БД, миграции |
 | Телеметрия (хранение) | PostgreSQL (партиционирование) или **TimescaleDB** | time-series, retention 1 год (LGL-06) | эффективное хранение рядов |
 | Интеграции | **httpx** (OData/HTTP к 1С), **asyncua** (OPC-UA), **paho-mqtt** (MQTT) | EPIC-01 (1С), EPIC-02 (телеметрия) | зрелые клиенты под протоколы проекта |
 | ML (Слой 2, Cold Start) | **scikit-learn** (+ **pandas**, **numpy**); опц. **PyOD** | риск-скоринг, Anomaly Detection Baseline | стандарт для tabular/unsupervised |
