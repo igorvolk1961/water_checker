@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дизайн-токены веб-консоли AquaPredict</title>
+<style>
+  /* === ТОКЕНЫ (копируются в CSS/конфиг фреймворка при реализации) === */
+  :root {
+    /* палитра: индустриальная вода — глубокий сине-зелёный, без «медом» */
+    --ink:#16262e;        /* основной текст */
+    --ink-2:#51656f;      /* вторичный текст */
+    --surface:#f5f8f9;    /* фон страницы */
+    --card:#ffffff;       /* карточки */
+    --line:#dbe4e7;       /* границы, разделители */
+    --accent:#0e7c86;     /* фирменный акцент (вода) */
+    --accent-ink:#0a5a62; /* акцент-текст */
+    --accent-soft:#e2f1f2;/* акцент-фон */
+    --crit:#b03a2e;       /* критический алерт (NFR-4) */
+    --crit-soft:#fdecea;
+    --warn:#a3660a;       /* предупреждение */
+    --warn-soft:#fdf3e0;
+    --ok:#1e8449;         /* норма/успех */
+    --ok-soft:#eaf6ef;
+    /* типографика */
+    --font: 'Manrope', system-ui, sans-serif;
+    --font-display:'Unbounded', var(--font);
+    --fs-xs:12px; --fs-s:13px; --fs-m:15px; --fs-l:18px; --fs-xl:24px;
+    /* отступы и форма */
+    --r-s:6px; --r-m:10px; --r-l:14px;
+    --gap:8px; --gap-2:16px; --gap-3:24px;
+  }
+  *{box-sizing:border-box} body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--font);font-size:var(--fs-m);line-height:1.5;padding:24px}
+  h1{font-family:var(--font-display);font-size:var(--fs-xl);margin:0 0 4px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-2);margin:28px 0 12px}
+  .row{display:flex;gap:var(--gap-2);flex-wrap:wrap}
+  .sw{width:120px}
+  .sw i{display:block;height:48px;border-radius:var(--r-s);border:1px solid var(--line)}
+  .sw span{font-size:var(--fs-xs);color:var(--ink-2)}
+  .demo{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:16px;margin-bottom:12px}
+  .btn{border:none;border-radius:var(--r-s);padding:8px 14px;font-size:var(--fs-s);cursor:pointer;font-family:var(--font)}
+  .btn.p{background:var(--ink);color:#fff} .btn.a{background:var(--accent);color:#fff} .btn.o{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+  .btn.d{background:var(--crit-soft);border:1px solid var(--crit);color:var(--crit)}
+  table{border-collapse:collapse;width:100%;font-size:var(--fs-s)}
+  td,th{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+  th{color:var(--ink-2);font-weight:600;font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.05em}
+  .b{border-radius:999px;padding:2px 9px;font-size:var(--fs-xs);font-weight:700;display:inline-block}
+  .banner{border-radius:var(--r-s);padding:10px 12px;font-size:var(--fs-s);display:flex;gap:8px;align-items:center}
+  .note{font-size:var(--fs-xs);color:var(--ink-2)}
+</style>
+</head>
+<body>
+<h1>Дизайн-токены веб-консоли AquaPredict</h1>
+<p class="note">Визуальный стандарт для SCR-01…12 (`ui_requirements.md` v0.3). Стек-независимо: токены переносятся в CSS (Jinja2) или Tailwind-config (React/Vue) один в один. Семантические цвета отдельно от акцента.</p>
+
+<h2>Палитра</h2>
+<div class="row">
+  <div class="sw"><i style="background:var(--ink)"></i><span>ink — текст</span></div>
+  <div class="sw"><i style="background:var(--surface)"></i><span>surface — фон</span></div>
+  <div class="sw"><i style="background:var(--accent)"></i><span>accent — фирменный</span></div>
+  <div class="sw"><i style="background:var(--crit)"></i><span>crit — критический</span></div>
+  <div class="sw"><i style="background:var(--warn)"></i><span>warn — внимание</span></div>
+  <div class="sw"><i style="background:var(--ok)"></i><span>ok — норма</span></div>
+  <div class="sw"><i style="background:var(--accent-soft)"></i><span>accent-soft</span></div>
+</div>
+
+<h2>Типографика</h2>
+<div class="demo">
+  <div style="font-family:var(--font-display);font-size:var(--fs-xl)">Заголовок — Unbounded (экраны, цифры)</div>
+  <p style="margin:8px 0">Основной текст — Manrope, 15px/1.5. Числовые колонки — tabular-nums.</p>
+  <span class="note">Manrope и Unbounded — оба с кириллицей (Google Fonts).</span>
+</div>
+
+<h2>Кнопки</h2>
+<div class="demo row">
+  <button class="btn p">Основное действие</button>
+  <button class="btn a">Акцентное</button>
+  <button class="btn o">Вторичное</button>
+  <button class="btn d">Опасное (АДМ: изменение рабочей точки)</button>
+</div>
+
+<h2>Бейджи состояний (ST-01…07)</h2>
+<div class="demo row">
+  <span class="b" style="background:var(--crit);color:#fff">Критический</span>
+  <span class="b" style="background:var(--warn-soft);color:var(--warn)">Внимание</span>
+  <span class="b" style="background:var(--ok-soft);color:var(--ok)">Норма</span>
+  <span class="b" style="background:var(--accent-soft);color:var(--accent-ink)">Слой 2 (ML)</span>
+  <span class="b" style="background:var(--line);color:var(--ink-2)">Подавлен (дубль)</span>
+</div>
+
+<h2>Баннер синхронизации (UI-08)</h2>
+<div class="demo" style="display:grid;gap:8px">
+  <div class="banner" style="background:var(--ok-soft);color:var(--ok)">● Синхронизация с 1С: норма · 14:32:05</div>
+  <div class="banner" style="background:var(--warn-soft);color:var(--warn)">● Синхронизация: очередь (пакетирование, NFR-6)</div>
+  <div class="banner" style="background:var(--crit-soft);color:var(--crit)">● Ошибка синхронизации с 1С · последняя успешная: 14:02:11 · данные могут быть неактуальны</div>
+</div>
+
+<h2>Таблица + обязательный дисклеймер (LGL-09/04/11)</h2>
+<div class="demo">
+  <table>
+    <tr><th>Партия</th><th>Параметр</th><th>Риск-скор</th></tr>
+    <tr><td>П-2026-11-0412</td><td>Мутность (TEL-06)</td><td>0,87</td></tr>
+  </table>
+  <p class="note" style="border-top:1px dashed var(--line);padding-top:8px;margin-top:8px">⚠️ Прогноз вероятностный (LGL-09) · система рекомендует, решает человек (LGL-04) · ML-алерт не основание для браковки (LGL-11)</p>
+</div>
+</body>
+</html>
