@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Аудит-лог (SCR-10){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">Аудит-лог</h2>
+<div class="card">
+  <form class="app-nav" method="get" hx-get="/audit" hx-target="#audit-list" hx-trigger="change, submit" style="margin-bottom:12px">
+    <input type="date" name="from" value="{{ filters.from }}">
+    <input type="date" name="to" value="{{ filters.to }}">
+    <select name="role" aria-label="Роль"><option value="">Все роли</option>{% for r in roles %}<option value="{{ r }}" {% if filters.role == r %}selected{% endif %}>{{ r }}</option>{% endfor %}</select>
+    <select name="entity_type" aria-label="Сущность"><option value="">Все сущности</option><option>Инцидент</option><option>Задача CA</option><option>Партия</option></select>
+    <select name="source" aria-label="Источник"><option value="">Все источники</option><option>AquaPredict</option><option>1С</option></select>
+    <select name="category" aria-label="Категория"><option value="">Все категории</option><option>Рекомендация системы</option><option>Решение человека</option><option>Фактическое действие</option></select>
+  </form>
+
+  <div id="audit-list">
+  <table class="data num">
+    <thead><tr><th>Время</th><th>Пользователь</th><th>Категория</th><th>Действие</th><th>Сущность</th><th>Источник</th></tr></thead>
+    <tbody>
+    {% for e in entries %}
+    <tr>
+      <td class="num">{{ e.at }}</td>
+      <td>{{ e.user }}</td>
+      <td><span class="badge {{ {'Рекомендация системы':'info','Решение человека':'warn','Фактическое действие':'ok'}[e.category] }}">{{ e.category }}</span></td>
+      <td>{{ e.action }}</td>
+      <td class="num">{{ e.entity }}</td>
+      <td>{{ e.source }}</td>
+    </tr>
+    {% endfor %}
+    {% if not entries %}<tr><td colspan="6" style="color:var(--ink-2)">Записей по фильтрам нет.</td></tr>{% endif %}
+    </tbody>
+  </table>
+  </div>
+
+  <p class="disclaimer">
+    Записи <b>неизменяемы</b> — только добавление (LGL-03). Категории «рекомендация системы / решение человека / фактическое действие» и источник (AquaPredict / 1С) различаются обязательно (LGL-10).
+    Выгрузка CSV — право РЛ/АДМ и фиксируется в журнале (LGL-14, FR-14.5). ПДн маскированы по умолчанию, раскрытие — по праву и в аудит (LGL-05).
+  </p>
+</div>
+{% endblock %}

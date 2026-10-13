@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Администрирование (SCR-11){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">Администрирование</h2>
+<div class="grid">
+  <div class="card">
+    <h2>Рабочая точка (LGL-09)</h2>
+    <table class="data num">
+      <tbody>
+      <tr><th>Порог критического алерта (риск-скор)</th><td><b>{{ operating_point.threshold }}</b></td></tr>
+      <tr><th>Остаточные FPR / FNR</th><td class="num">{{ operating_point.fpr }} / {{ operating_point.fnr }}</td></tr>
+      <tr><th>Утверждение</th><td><span class="badge ok">эксплуатант · {{ operating_point.approved_at }}</span></td></tr>
+      </tbody>
+    </table>
+    {% if user.role == 'Администратор' %}
+    <p style="margin:10px 0 0;display:flex;gap:8px;align-items:center">
+      <button class="btn danger" hx-post="/settings/operating-point">Изменить порог (подтверждение эксплуатанта)</button>
+    </p>
+    {% else %}
+    <p class="disclaimer">Изменение — только администратор; просмотр — для остальных ролей.</p>
+    {% endif %}
+    <p class="disclaimer">История изменений: {% for h in operating_point.history %}{{ h.at }}: {{ h.was }} → {{ h.now }} ({{ h.who }}){% if not loop.last %} · {% endif %}{% endfor %}. NFR-4 применяется к текущему значению. Изменение фиксируется в аудите (UI-SCR-11.2).</p>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Пользователи и роли (RBAC, FR-14.1)</h2>
+      <table class="data">
+        <thead><tr><th>Пользователь</th><th>Роль</th><th>Статус</th></tr></thead>
+        <tbody>
+        {% for u in users %}
+        <tr><td>{{ u.login }}</td><td><span class="badge info">{{ u.role }}</span></td><td><span class="badge ok">{{ u.status }}</span></td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <p class="disclaimer">Матрица прав — `ui_requirements.md` §3. ОЛ и ЛБ работают в 1С (OQ-03/04).</p>
+    </div>
+    <div class="card">
+      <h2>Интеграция с 1С (NFR-6, FR-15)</h2>
+      <table class="data num">
+        <tbody>
+        <tr><th>Лимит запросов</th><td>≤ 60/мин (guardrail, согласован с администратором 1С)</td></tr>
+        <tr><th>Очередь</th><td>{{ queue_now }} записей · режим: {{ sync.status }}</td></tr>
+        <tr><th>Идемпотентность</th><td>ключ: инцидент + тип записи (FR-15.6)</td></tr>
+        <tr><th>Контракт обмена</th><td>версия {{ contract_version }} (`requirements/integration_contract_1c.md`, LGL-R3)</td></tr>
+        </tbody>
+      </table>
+      <p class="disclaimer">Настройка HTTP-сервисов на стороне 1С — администратор 1С заказчика (стейкхолдер).</p>
+    </div>
+    <div class="card">
+      <h2>Справочник нормативов (LGL-11)</h2>
+      <table class="data">
+        <tbody>
+        {% for n in norms %}
+        <tr><th>{{ n.doc }}</th><td class="num">{{ n.version }}{% if n.note %} · {{ n.note }}{% endif %}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <p class="disclaimer">Изменение — только с комментарием и в аудите (UI-SCR-11.3); источник «справочник» отображается на SCR-04.</p>
+    </div>
+    <div class="card">
+      <h2>Персональные данные (LGL-05/06)</h2>
+      <table class="data">
+        <tbody>
+        <tr><th>Состав ПДн сотрудников</th><td>минимум: ФИО исполнителей CA, логины</td></tr>
+        <tr><th>Срок хранения данных</th><td class="num">1 год (LGL-06, решение заказчика)</td></tr>
+        <tr><th>Маскирование</th><td>по умолчанию; раскрытие — по праву + в аудит</td></tr>
+        </tbody>
+      </table>
+      <p class="disclaimer">Резервное копирование и RTO/RPO — NFR-10/11 (`07_nonfunctional_requirements.md`, В-7).</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

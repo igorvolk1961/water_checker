@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Мониторинг телеметрии (SCR-09){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">Мониторинг канала телеметрии</h2>
+<div class="grid cols-2">
+  <div class="card">
+    <h2>Датчики TEL-01…TEL-13 (FR-16.1)</h2>
+    <table class="data num">
+      <thead><tr><th>Датчик</th><th>Параметр</th><th>Статус</th><th>Последняя валидная отметка</th></tr></thead>
+      <tbody>
+      {% for s in sensors %}
+      <tr>
+        <td class="num">{{ s.tel }}</td>
+        <td>{{ s.param }}</td>
+        <td><span class="badge {{ {'ok':'ok','warn':'warn','crit':'crit'}[s.kind] }}">{{ s.status }}</span></td>
+        <td class="num">{{ s.last_valid }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="disclaimer">Статусы: Норма / Нет данных / «Заморожено» / Вне физического диапазона / Задержка потока (FR-16.1). Уведомление КИПиА — канал SCR-12. Инциденты по деградировавшему каналу помечаются пониженной достоверностью (FR-16.4).</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Буфер IoT-шлюза (NFR-2, FR-16.2)</h2>
+      <table class="data">
+        <tr><th>Режим</th><td>{{ gateway.mode }}</td></tr>
+        <tr><th>Заполнение буфера</th><td class="num">{{ gateway.fill_pct }} %</td></tr>
+        <tr><th>Глубина при потере связи</th><td class="num">до {{ gateway.depth_hours }} ч</td></tr>
+        <tr><th>Синхронизация времени (NTP)</th><td>{{ gateway.ntp }}</td></tr>
+        <tr><th>Последняя автосинхронизация</th><td class="num">{{ gateway.last_sync }}</td></tr>
+      </table>
+      <p class="disclaimer">Досинхронизация после восстановления связи — в исходном порядке, без дублей (FR-01.3).</p>
+    </div>
+    <div class="card">
+      <h2>События качества потока (FR-02.4)</h2>
+      <table class="data num">
+        <thead><tr><th>Время</th><th>Датчик</th><th>Событие</th></tr></thead>
+        <tbody>
+        {% for e in quality_events %}
+        <tr><td class="num">{{ e.at }}</td><td class="num">{{ e.tel }}</td><td>{{ e.event }}</td></tr>
+        {% endfor %}
+        {% if not quality_events %}<tr><td colspan="3" style="color:var(--ink-2)">Событий за период нет.</td></tr>{% endif %}
+        </tbody>
+      </table>
+      <p class="disclaimer">События качества помечают достоверность данных для риск-скоринга (FR-02.4, FR-16.4).</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
