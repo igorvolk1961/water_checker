@@ -4,6 +4,8 @@
 
 [**Презентация проекта**](https://igorvolk1961.github.io/water_checker/)
 
+[**Слайды защиты проекта**](https://igorvolk1961.github.io/water_checker/defense.html)
+
 **Позиционирование (вариант A):** AquaPredict — **аналитическая надстройка** над учётной системой «БИТ:LIMS» (1С), а не самостоятельная LIMS. Лабораторный контур (регистрация проб, результаты, протоколы, выгрузка во ФГИС) остаётся в 1С; AquaPredict добавляет телеметрию, риск-скоринг и предиктивные алерты и пишет задачи обратно в 1С.
 
 ## Архитектура (кратко)
@@ -40,6 +42,7 @@
   - [report.md](docs/system_analysis/report.md) — пояснительная записка (черновик)
   - [defense_notes.md](docs/system_analysis/defense_notes.md) — аргументы защиты
   - [defense_slides.md](docs/system_analysis/defense_slides.md) — слайды защиты (черновик)
+  - [docs/defense.html](docs/defense.html) — слайды защиты (HTML-дека, навигация стрелками/пробелом)
   - [hardware_requirements.md](docs/system_analysis/hardware_requirements.md) — требования к оборудованию и инфраструктуре
   - [presentation_customer.html](docs/system_analysis/presentation_customer.html) — презентация заказчику (HTML)
   - [qa/](docs/system_analysis/qa/) — тест-план, чек-листы приёмки, каркасы руководств
@@ -120,7 +123,7 @@
 | Договор и ТЗ | [contract_draft.md](docs/system_analysis/legal/contract_draft.md), [tz_draft.md](docs/system_analysis/legal/tz_draft.md) |
 | QA и макеты | [qa/](docs/system_analysis/qa/), [presentation_customer.html](docs/system_analysis/presentation_customer.html), [frontend/](frontend/) |
 | Управление | [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md), [backlog_implementation_plan.md](docs/system_analysis/plans/backlog_implementation_plan.md), [backlog/](docs/system_analysis/backlog/), [traceability.md](docs/system_analysis/traceability.md), [change_log.md](docs/system_analysis/change_log.md) |
-| Отчёт и защита | [report.md](docs/system_analysis/report.md), [defense_notes.md](docs/system_analysis/defense_notes.md), [defense_slides.md](docs/system_analysis/defense_slides.md) |
+| Отчёт и защита | [report.md](docs/system_analysis/report.md), [defense_notes.md](docs/system_analysis/defense_notes.md), [defense_slides.md](docs/system_analysis/defense_slides.md), [docs/defense.html](docs/defense.html) |
 
 ## Статус ворот (Gate 0–4)
 

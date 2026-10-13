@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AquaPredict — защита проекта</title>
+<style>
+  :root{
+    --bg:#f6f9fa; --fg:#0e2433; --card:#ffffff; --muted:#5d7285;
+    --accent:#0e7c86; --accent-soft:#e3f2f3; --line:#dfe8ea;
+    --warn:#a3660a; --crit:#b03a2e; --ok:#1e8449; --hero-accent:#4fd1c5;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:radial-gradient(1200px 800px at 80% -10%, #e9f4f5 0%, var(--bg) 60%) no-repeat, var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;overflow:hidden}
+  h1,h2,h3{font-family:'Unbounded','Manrope',sans-serif;text-wrap:balance}
+  .deck{position:relative;height:100%}
+  .slide{position:absolute;inset:0;display:none;padding:7vh 8vw;overflow:auto}
+  .slide.active{display:flex;flex-direction:column}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800;margin:0 0 10px}
+  h2.slideTitle{font-size:clamp(26px,4vw,44px);margin:0 0 18px;font-weight:700}
+  ul{list-style:none;padding:0;margin:0;display:grid;gap:12px;max-width:78ch}
+  ul li{position:relative;padding-left:26px;font-size:clamp(15px,1.8vw,20px);line-height:1.5}
+  ul li::before{content:"";position:absolute;left:4px;top:.62em;width:9px;height:9px;border-radius:2px;background:var(--accent)}
+  li b{color:var(--fg)}
+  .sub{font-size:clamp(15px,1.9vw,21px);color:var(--muted);max-width:70ch;margin:0 0 18px}
+  .kicker{color:var(--accent);font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}
+  .titleSlide{justify-content:center;background:linear-gradient(160deg,#07222e 0%, #0a2e3d 60%, #0d3a4a 100%);color:#eef7f8;margin:-1px}
+  .titleSlide h1{font-size:clamp(30px,5vw,58px);line-height:1.1;margin:16px 0 18px}
+  .titleSlide h1 em{font-style:normal;color:var(--hero-accent)}
+  .titleSlide .kicker{color:var(--hero-accent)}
+  .titleSlide .sub{color:#8fb3bd}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+  .badges span{border:1px solid rgba(79,209,197,.35);color:var(--hero-accent);border-radius:999px;padding:6px 14px;font-size:13px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1000px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .card h3{margin:0 0 8px;font-size:16px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .tag{font-size:13px;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:4px 11px;font-weight:700}
+  code{background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:1px 6px;font-size:.92em}
+  .controls{position:fixed;right:18px;bottom:16px;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+  .controls button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:10px;padding:8px 12px;cursor:pointer}
+  .controls button:hover{border-color:var(--accent);color:var(--accent)}
+  .counter{font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
+  .progress{position:fixed;left:0;bottom:0;height:3px;background:var(--accent);width:0;transition:width .2s}
+  .foot{position:fixed;left:18px;bottom:16px;font-size:12px;color:var(--muted)}
+  @media (max-width:760px){ .cols{grid-template-columns:1fr} .slide{padding:56px 22px} }
+  @media print{ html,body{overflow:visible;height:auto} .deck{height:auto} .slide{display:flex !important;position:static;height:auto;min-height:auto;page-break-after:always} .controls,.progress,.foot{display:none} }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;600;700&display=swap">
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <section class="slide titleSlide active">
+    <div class="kicker">Защита проекта · системный анализ</div>
+    <h1>AquaPredict — предиктивная аналитика качества <em>бутилированной воды</em></h1>
+    <p class="sub">Вариант A: аналитическая надстройка над «БИТ:LIMS» (1С). Предсказываем риск брака заранее и подсказываем действие.</p>
+    <div class="badges"><span>HITL — решение за человеком</span><span>Без вмешательства в оборудование</span><span>2026</span></div>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Проблема</p>
+    <h2 class="slideTitle">Контроль качества реактивен</h2>
+    <ul>
+      <li>Отклонения выявляются <b>постфактум</b> — партия уже произведена.</li>
+      <li>Телеметрия линии <b>не используется</b> для упреждающего контроля.</li>
+      <li>Итог — прямые потери (утилизация) и репутационные риски.</li>
+      <li>Цифры проблемы — допущение: партия ~6000 л, брак 3–5 %, ~300 тыс ₽/мес.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Решение и идея</p>
+    <h2 class="slideTitle">Цифровой ассистент технолога</h2>
+    <ul>
+      <li><b>За 2 часа до</b>, а не после выпуска партии.</li>
+      <li>Принцип <b>HITL</b>: система рекомендует, решение принимает человек.</li>
+      <li>Ранний сигнал → корректирующее действие → партия не становится браком.</li>
+      <li>Данные есть — добавляем <b>предсказание</b> и <b>рекомендацию</b>.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Границы проекта · вариант A</p>
+    <h2 class="slideTitle">Надстройка, а не самостоятельная LIMS</h2>
+    <div class="cols">
+      <div class="card"><h3>In-Scope</h3><p>Телеметрия (OPC-UA/MQTT), риск-скоринг (Слой 1/2), алерты, инциденты и корректирующие действия, внеплановый отбор, Cold Start, MLOps, веб-консоль, интеграция с 1С.</p></div>
+      <div class="card"><h3>Out-of-Scope</h3><p>Лабораторный учёт и ФГИС (в «БИТ:LIMS»); прямое управление оборудованием (ПЛК/SCADA); ERP.</p></div>
+    </div>
+    <ul style="margin-top:16px"><li>Обоснование: безопасность/ответственность, сложность сертификации, отсутствие двойного ввода.</li></ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Стейкхолдеры</p>
+    <h2 class="slideTitle">Учитываем интересы всех ролей</h2>
+    <div class="tags">
+      <span class="tag">Главный технолог</span><span class="tag">Руководитель производства</span>
+      <span class="tag">Лаборант / Рук. лаборатории</span><span class="tag">Инженер КИПиА</span>
+      <span class="tag">Администратор 1С</span><span class="tag">Администратор AquaPredict</span>
+      <span class="tag">ML-инженер</span><span class="tag">Юристы (разработчик/заказчик)</span>
+    </div>
+    <ul style="margin-top:16px"><li>Лаборанту новый интерфейс не навязываем — работает в «БИТ:LIMS».</li></ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Требования</p>
+    <h2 class="slideTitle">FR-01…FR-16 и NFR-1…NFR-11</h2>
+    <ul>
+      <li>Телеметрия, Слой 1/2, алерты, инциденты / корректирующие действия / вердикты, отбор.</li>
+      <li>Лабораторные данные, Cold Start, MLOps, экран метрик, безопасность, интеграция, мониторинг канала.</li>
+      <li>Ключевые NFR: latency ≤ 5 с; буфер ≤ 2 ч; ≤ 10 алертов/час; ≤ 60 зап./мин к 1С; TLS; RTO/RPO; NTP.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Домен и состояния</p>
+    <h2 class="slideTitle">Разведены результат и вердикт</h2>
+    <ul>
+      <li>Партия, показание датчика, алерт, <b>инцидент</b>, <b>корректирующее действие</b>, <b>вердикт</b>, проба, протокол, модель, обучающий пример.</li>
+      <li><b>Результат корректирующего действия</b> [Выполнено/Отменено] ≠ <b>вердикт инцидента</b> [Подтверждён/Ложное срабатывание].</li>
+      <li>Состояния инцидента: Новый → Подтверждён / Ложный_алерт → Закрыт; возврат при отмене.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Варианты использования</p>
+    <h2 class="slideTitle">UC1…UC8, ключевой — UC2</h2>
+    <div class="tags">
+      <span class="tag">UC1 партия</span><span class="tag">UC2 алерт</span><span class="tag">UC3 корректирующее действие</span>
+      <span class="tag">UC4 внеплановый отбор</span><span class="tag">UC5 Ground Truth</span><span class="tag">UC6 разметка</span>
+      <span class="tag">UC7 Cold Start</span><span class="tag">UC8 мониторинг телеметрии</span>
+    </div>
+    <ul style="margin-top:16px"><li>Детальная спецификация — UC2 «Обработка предиктивного предупреждения».</li></ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Данные и ML</p>
+    <h2 class="slideTitle">От профиля нормы к прогнозу</h2>
+    <ul>
+      <li>Данные: телеметрия <code>TEL-01…13</code>, лабораторные <code>LAB-01…16</code>; хранение 1 год.</li>
+      <li><b>Cold Start:</b> профиль нормы (Anomaly Detection) → <b>Shadow Mode</b> → Advisor.</li>
+      <li>Метрики: Recall/FPR/F1 (не accuracy); Слой 1 — Precision/FPR, Слой 2 — Recall/FPR.</li>
+      <li>Разметка: приоритет лабораторного протокола; конфликты — в карантин.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Архитектура и API</p>
+    <h2 class="slideTitle">Модульный монолит + воркеры</h2>
+    <ul>
+      <li>API-монолит + выделенные воркеры (ML, очередь) + общая БД; Redis-очередь; контейнеры.</li>
+      <li><b>C4</b> уровней 1–3 (контекст/контейнеры/компоненты).</li>
+      <li>Стек: FastAPI/Pydantic, Jinja2+HTMX, PostgreSQL, Redis, scikit-learn, MLflow.</li>
+      <li>API зафиксированы: консоль (REST+SSE), 1С, доменные события.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Интеграция с 1С</p>
+    <h2 class="slideTitle">Контракт и «мост»</h2>
+    <ul>
+      <li>Чтение — <b>OData</b>, запись — <b>HTTP</b>; ≤ 60 зап./мин; идемпотентность; очередь.</li>
+      <li>Доступ к реальному API заказчика <b>не предоставлен</b>; публичной техдокументации нет → имена <b>условные</b>.</li>
+      <li>При появлении доступа реализуется <b>мост (adapter/ACL)</b>, маппящий реальные сущности на наши модели.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Право и ответственность</p>
+    <h2 class="slideTitle">Стохастичность ИИ учтена</h2>
+    <ul>
+      <li>Нормативы: ТР ЕАЭС 044/2017, СанПиН, ГОСТ, ФЗ-152/63, ФГИС.</li>
+      <li><b>HITL:</b> система советующая; ответственность — за человеком; остаточный риск принимает эксплуатант.</li>
+      <li>Точность — целевые метрики, <b>не гарантия</b>; браковка — по лабораторному контролю и подписи.</li>
+      <li>Аудит различает «рекомендация / решение / действие».</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Экономика</p>
+    <h2 class="slideTitle">Оценка честная</h2>
+    <ul>
+      <li>CAPEX: ПО ≈ 7,09 + оборудование ≈ 2,28 → ≈ 9,37 млн ₽; с резервом ≈ <b>11,2 млн ₽</b>.</li>
+      <li>OPEX ≈ 1,2–2,4 млн ₽/год; экономия 0,4–2,4 млн ₽/год → окупаемость длинная.</li>
+      <li>Ценность дополняется снижением репутационных/нормативных рисков; принят <b>фазовый MVP</b>.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">План и ворота</p>
+    <h2 class="slideTitle">R0 → R1 → R2 → R3</h2>
+    <ul>
+      <li>R0 Фундамент; R1 MVP (Слой 1 + Cold Start); R2 ML/Advisor; R3 Active; 14 эпиков.</li>
+      <li>Вехи M0–M4 ↔ Gate 0–4: <b>Gate 0–3 пройдены</b>, Gate 4 завершается.</li>
+      <li>Стенды: мок-1С, симулятор датчиков, тестовый архив.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Что сделано</p>
+    <h2 class="slideTitle">Полный комплект артефактов</h2>
+    <ul>
+      <li>Требования, домен/состояния, диаграммы (BPMN/sequence/state/C4).</li>
+      <li>Архитектура и API (1С, консоль, события), право, экономика, план.</li>
+      <li>Презентация заказчику (GitHub Pages) и макеты всех экранов SCR-01…12.</li>
+      <li>Сквозная трассируемость <code>UC→FR→эпик→стоимость</code> и <code>LGL→FR/SCR/BPMN</code>.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Ограничения и допущения</p>
+    <h2 class="slideTitle">Говорим как есть</h2>
+    <ul>
+      <li>Числа (стоимость, объёмы, пороги) — <b>допущения</b>, помечены.</li>
+      <li>Даты этапов — ориентировочные.</li>
+      <li>Точные имена API 1С — после получения доступа.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Итоги</p>
+    <h2 class="slideTitle">Спасибо! Вопросы?</h2>
+    <ul>
+      <li>Спроектирован целостный, юридически защищённый и реалистичный проект.</li>
+      <li>Сложные темы — в `defense_notes.md`: вариант A, архитектура, стохастичность/ответственность, ROI, «мост».</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Резерв</p>
+    <h2 class="slideTitle">Карта артефактов</h2>
+    <div class="cols">
+      <div class="card"><h3>Требования и домен</h3><p>01 vision · 02 glossary · 04/05 UC · 06 domain · 07 NFR · requirements/ (FR, UI, параметры, API, события, контракт 1С)</p></div>
+      <div class="card"><h3>Архитектура и картина</h3><p>architecture · architecture_stack · diagrams/ (BPMN, sequence, state, C4)</p></div>
+      <div class="card"><h3>Экономика и право</h3><p>cost/ · business_case · legal/ (риски, договор, ТЗ, чек-лист, DPIA)</p></div>
+      <div class="card"><h3>План и защита</h3><p>plans/ (эпики) · backlog · traceability · report · defense_notes · defense_slides · presentation</p></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Резерв</p>
+    <h2 class="slideTitle">Метрики по слоям</h2>
+    <div class="cols">
+      <div class="card"><h3>Слой 1 (rules)</h3><p>Precision/FPR приоритетны; Recall не нормируется.</p></div>
+      <div class="card"><h3>Слой 2 (ML)</h3><p>Recall ≥ 0,75 при FPR ≤ 0,10; ≥ 4 недели стабильности; ≥ N инцидентов.</p></div>
+      <div class="card"><h3>Baseline</h3><p>Текущий реактивный процесс — база сравнения.</p></div>
+      <div class="card"><h3>Guardrails</h3><p>≤ 10 алертов/час; latency ≤ 5 с; нагрузка на 1С ≤ 60 зап./мин.</p></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <p class="eyebrow">Резерв</p>
+    <h2 class="slideTitle">Конкурентный анализ</h2>
+    <ul>
+      <li>Существующие LIMS — <b>реактивные «цифровые журналы»</b>.</li>
+      <li>AquaPredict — <b>проактивный ассистент</b>: предсказание + рекомендация.</li>
+      <li>Не заменяем учётную систему, а усиливаем её аналитикой.</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="foot">AquaPredict · защита проекта · 2026</div>
+<div class="controls">
+  <button id="prev" aria-label="Назад">←</button>
+  <span class="counter"><span id="cur">1</span> / <span id="total">20</span></span>
+  <button id="next" aria-label="Вперёд">→</button>
+</div>
+<div class="progress" id="progress"></div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const cur=document.getElementById('cur'), total=document.getElementById('total'), bar=document.getElementById('progress');
+  total.textContent=slides.length;
+  function go(n){ i=Math.max(0,Math.min(slides.length-1,n)); slides.forEach((s,k)=>s.classList.toggle('active',k===i)); cur.textContent=i+1; bar.style.width=((i+1)/slides.length*100)+'%'; history.replaceState(null,'','#s'+(i+1)); }
+  document.getElementById('next').onclick=()=>go(i+1);
+  document.getElementById('prev').onclick=()=>go(i-1);
+  addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(i-1);}
+    else if(e.key==='Home'){go(0);} else if(e.key==='End'){go(slides.length-1);}
+    else if(e.key.toLowerCase()==='f'){ if(document.fullscreenElement)document.exitFullscreen(); else document.documentElement.requestFullscreen(); }
+  });
+  let x0=null;
+  addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+  addEventListener('touchend',e=>{ if(x0===null)return; const dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>50) go(dx<0?i+1:i-1); x0=null; },{passive:true});
+  const m=location.hash.match(/#s(\d+)/); go(m?+m[1]-1:0);
+</script>
+</body>
+</html>
