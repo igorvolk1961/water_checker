@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мокап SCR-04 — Аналитика по партии</title>
+<style>
+  :root { --ink:#16262e; --ink2:#51656f; --surface:#f5f8f9; --card:#fff; --line:#dbe4e7; --crit:#b03a2e; --warn:#a3660a; --ok:#1e8449; --accent:#0e7c86; }
+  *{box-sizing:border-box;font-family:'Manrope',system-ui,sans-serif}
+  body{margin:0;background:var(--surface);color:var(--ink);font-size:14px}
+  header{display:flex;align-items:center;gap:10px;padding:10px 20px;background:var(--card);border-bottom:1px solid var(--line)}
+  header h1{font-size:16px;margin:0}
+  .sync{margin-left:auto;font-size:12px;color:var(--ok)}
+  .wrap{max-width:1080px;margin:0 auto;padding:16px 20px;display:grid;gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 10px}
+  .chart{height:180px;border:1px solid var(--line);border-radius:6px;position:relative;background:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 30px}
+  .curve{position:absolute;left:0;right:0;bottom:0;height:100%}
+  .lab{position:absolute;width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);background:var(--card)}
+  .lab.bad{border-color:var(--crit)}
+  .leg{display:flex;gap:16px;font-size:12px;color:var(--ink2);margin-top:8px}
+  .leg i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:4px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{color:var(--ink2);font-size:11px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:7px 9px;border-bottom:2px solid var(--line)}
+  td{padding:7px 9px;border-bottom:1px solid var(--line)}
+  .b{border-radius:999px;padding:2px 9px;font-size:11px;font-weight:700}
+  .b-ok{background:#eaf6ef;color:var(--ok)} .b-over{background:#fdecea;color:var(--crit)} .b-w{background:#fdf3e0;color:var(--warn)}
+  .cols{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+  .note{font-size:11px;color:var(--ink2);border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}
+  @media(max-width:760px){.cols{grid-template-columns:1fr}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;600;700&display=swap">
+</head>
+<body>
+<header>
+  <h1>Аналитика по партии · SCR-04</h1>
+  <span class="sync">● Синхронизация с 1С: норма</span>
+</header>
+<div class="wrap">
+  <div class="card">
+    <h2>Партия П-2026-11-0412 · линия №1 · 13:20–15:40 · телеметрия и результаты анализов</h2>
+    <div class="chart">
+      <div class="curve"><svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100"><polyline points="0,78 12,74 24,66 36,60 48,52 60,44 72,38 84,30 100,22" fill="none" stroke="#0e7c86" stroke-width="2"/></svg></div>
+      <span class="lab" style="left:12%;bottom:22%" title="Плановая проба, ОМЧ в норме"></span>
+      <span class="lab bad" style="left:70%;bottom:38%" title="Внеплановая проба (по алерту), ОМЧ превышен"></span>
+      <span class="lab" style="left:88%;bottom:52%"></span>
+    </div>
+    <div class="leg">
+      <span><i style="background:var(--accent)"></i>мутность TEL-06 (NTU)</span>
+      <span><i style="background:var(--accent);width:10px;height:10px;border-radius:50%"></i>пробы из 1С (LAB-01…16)</span>
+      <span><i style="background:var(--crit);border-radius:50%;height:10px;width:10px"></i>несоответствие — информационно</span>
+    </div>
+    <p class="note">Связка «проба → срез телеметрии за окно 2 ч» (FR-08.4). Сверка с нормативом (СанПиН 1.2.3685-21 / ГОСТ 32220-2013, справочник v __ ) — <b>информационная подсветка</b>; решение о несоответствии остаётся в 1С (LGL-11). Данные 1С — только чтение (UI-06).</p>
+  </div>
+  <div class="cols">
+    <div class="card">
+      <h2>Лабораторные показатели партии (из 1С)</h2>
+      <table>
+        <tr><th>Показатель</th><th>Значение</th><th>Норматив</th><th>Сверка</th></tr>
+        <tr><td>ОМЧ (LAB-01)</td><td><b>120 КОЕ/мл</b></td><td>≤ 100</td><td><span class="b b-over">Превышение (информационно)</span></td></tr>
+        <tr><td>Мутность (LAB-05)</td><td>0,9 NTU</td><td>≤ 1,5</td><td><span class="b b-ok">Норма</span></td></tr>
+        <tr><td>pH (LAB-08)</td><td>7,1</td><td>6,5–7,5</td><td><span class="b b-ok">Норма</span></td></tr>
+        <tr><td>Общая минерализация (LAB-09)</td><td>340 мг/л</td><td>≤ 1000</td><td><span class="b b-ok">Норма</span></td></tr>
+      </table>
+      <p class="note">Полный перечень — LAB-01…LAB-16 (`requirements/measured_parameters.md`). Протокол испытаний и ЭП — в 1С.</p>
+    </div>
+    <div class="card">
+      <h2>Инциденты и задачи партии</h2>
+      <table>
+        <tr><th>ИНЦ-0041</th><td><span class="b b-w">Подтверждён</span></td><td>Слой 2 (ML)</td></tr>
+        <tr><th>CA-0087</th><td><span class="b b-ok">Назначена</span></td><td>задача в 1С →</td></tr>
+        <tr><th>ОТБ-0155</th><td><span class="b b-ok">Назначена</span></td><td>отбор, «Срочно» → 1С</td></tr>
+        <tr><th>Блокировка закрытия</th><td colspan="2"><span class="b b-w">активна до проверки инцидентов (FR-01.4)</span></td></tr>
+      </table>
+      <p class="note">Риск по партии: 0,87 (Слой 2) · горизонт ≈ 2 ч · прогноз вероятностный (LGL-09), не основание для браковки (LGL-11).</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

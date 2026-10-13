@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мокап SCR-07 — MLOps-модуль</title>
+<style>
+  :root { --ink:#16262e; --ink2:#51656f; --surface:#f5f8f9; --card:#fff; --line:#dbe4e7; --crit:#b03a2e; --warn:#a3660a; --ok:#1e8449; --accent:#0e7c86; --accent-soft:#e2f1f2; }
+  *{box-sizing:border-box;font-family:'Manrope',system-ui,sans-serif}
+  body{margin:0;background:var(--surface);color:var(--ink);font-size:14px}
+  header{display:flex;align-items:center;gap:10px;padding:10px 20px;background:var(--card);border-bottom:1px solid var(--line)}
+  header h1{font-size:16px;margin:0} .sync{margin-left:auto;font-size:12px;color:var(--ok)}
+  .badge{background:var(--accent-soft);color:#0a5a62;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:700}
+  .wrap{max-width:1080px;margin:0 auto;padding:16px 20px;display:grid;gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 10px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{color:var(--ink2);font-size:11px;text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:7px 9px;border-bottom:2px solid var(--line)}
+  td{padding:7px 9px;border-bottom:1px solid var(--line)}
+  .num{font-variant-numeric:tabular-nums}
+  .b{border-radius:999px;padding:2px 9px;font-size:11px;font-weight:700}
+  .b-ok{background:#eaf6ef;color:var(--ok)} .b-w{background:#fdf3e0;color:var(--warn)} .b-c{background:#fdecea;color:var(--crit)} .b-q{background:#e2f1f2;color:#0a5a62}
+  .btn{border:none;border-radius:6px;padding:7px 12px;font-size:12.5px;cursor:pointer;font-weight:700}
+  .btn-p{background:var(--ink);color:#fff} .btn-g{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+  .note{font-size:11px;color:var(--ink2);border-top:1px dashed var(--line);margin-top:10px;padding-top:8px}
+  @media(max-width:760px){.cols{grid-template-columns:1fr}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;600;700&display=swap">
+</head>
+<body>
+<header>
+  <h1>MLOps-модуль · SCR-07</h1>
+  <span class="badge">ML-инженер (DS)</span>
+  <span class="sync" style="margin-left:auto;font-size:12px;color:var(--ok)">● Синхронизация с 1С: норма</span>
+</header>
+<div class="wrap">
+  <div class="cols">
+    <div class="card">
+      <h2>Датасеты и очередь разметки</h2>
+      <table>
+        <tr><th>Датасет</th><th>Примеры</th><th>Источник меток</th><th>Статус</th></tr>
+        <tr><td class="num">DS-2026-W41</td><td class="num">+512</td><td>протокол (32) / вердикт (480)</td><td><span class="b b-ok">готов</span></td></tr>
+        <tr><td class="num">DS-2026-W40</td><td class="num">1 284</td><td>протокол / вердикт</td><td><span class="b b-ok">используется</span></td></tr>
+      </table>
+      <p class="note">Приоритет метки: <b>лабораторный протокол &gt; вердикт технолога</b> (прокси-метка, FR-11.1). Уведомление «Накоплено 512 новых примеров» — бейдж (UC6-3).</p>
+    </div>
+    <div class="card">
+      <h2>Карантин конфликтов разметки</h2>
+      <table>
+        <tr><th>Пример</th><th>Конфликт</th><th>Статус</th></tr>
+        <tr><td class="num">#18412</td><td>вердикт «Ложное срабатывание» vs протокол: превышение</td><td><span class="b b-c">в карантине</span></td></tr>
+        <tr><td class="num">#18399</td><td>расхождение источников</td><td><span class="b b-q">разрешён DS · приоритет протоколу</span></td></tr>
+      </table>
+      <p class="note">Примеры в карантине <b>не используются в обучении</b> до разрешения (FR-11.2, поток 6б); разрешение фиксируется в аудите.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Переобучение: сравнение версий</h2>
+    <table class="num">
+      <tr><th>Метрика</th><th>Production (v14)</th><th>Кандидат (v15)</th><th>Δ</th></tr>
+      <tr><td>Recall</td><td>0,78</td><td>0,81</td><td class="num" style="color:var(--ok)">+0,03</td></tr>
+      <tr><td>Precision</td><td>0,66</td><td>0,65</td><td class="num" style="color:var(--warn)">−0,01</td></tr>
+      <tr><td>FPR</td><td>0,07</td><td>0,07</td><td class="num">0,00</td></tr>
+    </table>
+    <p style="margin:10px 0 0;display:flex;gap:8px">
+      <button class="btn btn-p">Утвердить и развернуть</button>
+      <button class="btn btn-g">Отложить</button>
+    </p>
+    <p class="note">Развёртывание — только решение DS (HITL); старая версия → Архив, журнал версий ведётся (FR-11.4). При ухудшении — отмена, флаг «Требуется проверка аномалий», уведомление DS + ГТ (поток 6а, FR-11.5). Мониторинг дрейфа — непрерывно (LGL-13).</p>
+  </div>
+</div>
+</body>
+</html>
