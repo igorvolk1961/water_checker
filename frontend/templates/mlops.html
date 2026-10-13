@@ -39,7 +39,7 @@
     </table>
     <p style="margin:10px 0 0;display:flex;gap:8px">
       {% if user.role == 'ML-инженер' %}
-      <button class="btn primary" hx-post="/ml/deploy/{{ candidate.version }}">Утвердить и развернуть</button>
+      <button class="btn primary" hx-post="/ml/deploy/{{ candidate.version }}" hx-headers='{"Idempotency-Key": "deploy-{{ candidate.version }}"}'>Утвердить и развернуть</button>
       {% endif %}
       <button class="btn ghost">Отложить</button>
     </p>

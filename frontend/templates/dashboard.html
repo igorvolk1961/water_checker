@@ -24,7 +24,7 @@
         <td>{{ a.status }}</td>
         <td>
           {% if a.critical and a.status == 'Новый' %}
-          <button class="ack-btn" hx-post="/alerts/{{ a.id }}/ack"
+          <button class="ack-btn" hx-post="/alerts/{{ a.id }}/ack" hx-headers='{"Idempotency-Key": "ack-{{ a.id }}"}'
                   hx-target="#ack-{{ a.id }}" hx-swap="outerHTML">Подтвердить ознакомление</button>
           <span id="ack-{{ a.id }}"></span>
           {% endif %}

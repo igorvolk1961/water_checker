@@ -31,7 +31,8 @@ frontend/
 ## Как подключается к бэкенду (стыковка с ведущим)
 
 - FastAPI монтирует: `app.mount("/static", StaticFiles(directory="frontend/static"))` и рендерит шаблоны из `frontend/templates` через `Jinja2Templates(directory="frontend/templates")`.
-- Контекст шаблонов = формы из **API-контракта** (`../docs/system_analysis/reviews/2026-10-13_frontend_api_contract_draft.md`): `/alerts`, `/incidents/{id}`, `/metrics/model` и т. д. Названия полей в шаблонах совпадают с контрактом (`risk_score`, `horizon`, `source`, `status`).
+- **Авторитетный контракт: `../docs/system_analysis/requirements/api_contract.md` (консольный API v0.1, draft-frozen)** — формализован из черновика коллеги; типизация — через `openapi.json` (генерирует FastAPI). Машинночитаемые формы — из frozen-контракта: `/alerts`, `/incidents/{id}`, `/metrics/model` и т. д. Названия полей в шаблонах совпадают с контрактом (`risk_score`, `horizon`, `source`, `status`).
+- **Конвенции v0.1, отражённые в шаблонах:** `Idempotency-Key` на всех мутациях (ack, verdict, deploy, operating-point, baseline-confirm); SSE-поток алертов `/ws/alerts` (ADR-04) с восполнением из `GET /alerts`; `X-Sync-Status` / `X-Sync-Last-Ok` → баннер UI-08; ошибки `{code, message, details, trace_id}`.
 - HTMX: взаимодействие без перезагрузки (подтверждение ознакомления, фильтры, вердикт) — endpoint'ы возвращают фрагменты HTML.
 - **Frontend никогда не обращается к 1С напрямую** — только к API (NFR-6 на бэкенде).
 - Графики — Chart.js (CDN) на SCR-02/04/06.

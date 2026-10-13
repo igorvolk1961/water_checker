@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/static/css/tokens.css">
 <link rel="stylesheet" href="/static/css/app.css">
 <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js" defer></script>
 {% block head %}{% endblock %}
 </head>
 <body>
@@ -29,6 +30,8 @@
   <span class="sync ok">{{ user.role }}</span>
 </header>
 <main style="padding:16px 20px; max-width:1200px; margin:0 auto">
+  {# Живые алерты: SSE /ws/alerts (API v0.1 §5, ADR-04); разрыв → восполнение из GET /alerts #}
+  <div hx-ext="sse" sse-connect="/ws/alerts" sse-swap="alert" hx-target="#live-alerts" hidden></div>
   {% if sync.status == 'error' %}
   <div class="sync-banner error" role="alert">
     ● Ошибка синхронизации с 1С · последняя успешная: {{ sync.last_ok }} · данные могут быть неактуальны (UI-08)

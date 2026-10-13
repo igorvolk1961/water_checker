@@ -14,7 +14,7 @@
     </table>
     {% if user.role == 'Администратор' %}
     <p style="margin:10px 0 0;display:flex;gap:8px;align-items:center">
-      <button class="btn danger" hx-post="/settings/operating-point">Изменить порог (подтверждение эксплуатанта)</button>
+      <button class="btn danger" hx-post="/settings/operating-point" hx-headers='{"Idempotency-Key": "op-point"}'>Изменить порог (подтверждение эксплуатанта)</button>
     </p>
     {% else %}
     <p class="disclaimer">Изменение — только администратор; просмотр — для остальных ролей.</p>

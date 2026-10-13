@@ -28,7 +28,7 @@
     <p><select aria-label="Значение вердикта"><option>— выберите значение —</option><option>Подтверждён</option><option>Ложное срабатывание</option></select></p>
     <p><select aria-label="Причина из справочника"><option>— причина (справочник) —</option>{% for r in verdict_reasons %}<option>{{ r }}</option>{% endfor %}</select></p>
     <p><textarea rows="2" style="width:100%" aria-label="Комментарий"></textarea></p>
-    <button class="btn primary" hx-post="/incidents/{{ incident.id }}/verdicts">Зафиксировать вердикт</button>
+    <button class="btn primary" hx-post="/incidents/{{ incident.id }}/verdicts" hx-headers='{"Idempotency-Key": "verdict-{{ incident.id }}"}'>Зафиксировать вердикт</button>
     {% endif %}
     <p class="disclaimer">Вердикт обязателен до перевода инцидента в «Закрыт» (решение В-1). «Ложное срабатывание» уходит в разметку как прокси-метка (FR-12).</p>
   </div>

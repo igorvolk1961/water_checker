@@ -35,7 +35,7 @@
       </tbody>
     </table>
     {% if not baseline.confirmed and user.role == 'Главный технолог' %}
-    <p style="margin:10px 0 0"><button class="btn primary" hx-post="/coldstart/baseline/confirm">Подтвердить как «Эталонный»</button></p>
+    <p style="margin:10px 0 0"><button class="btn primary" hx-post="/coldstart/baseline/confirm" hx-headers='{"Idempotency-Key": "baseline-confirm"}'>Подтвердить как «Эталонный»</button></p>
     {% endif %}
     <p class="disclaimer">
       После подтверждения — Shadow Mode: прогнозы персоналу не показываются (FR-04.2). Подтверждение фиксируется в аудите (UI-07).
