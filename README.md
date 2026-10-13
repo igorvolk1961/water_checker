@@ -13,6 +13,7 @@
 
 ## Структура репозитория
 
+- [frontend/](frontend/) — макеты экранов и дизайн-система (HTML)
 - [docs/system_analysis/](docs/system_analysis/)
   - [01_vision_and_scope.md](docs/system_analysis/01_vision_and_scope.md) — видение, границы (In/Out-of-Scope)
   - [02_glossary.md](docs/system_analysis/02_glossary.md) — глоссарий терминов и метрик
@@ -34,6 +35,8 @@
   - [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md) — волны, ворота, RACI, DoR/DoD
   - [architecture_stack.md](docs/system_analysis/architecture_stack.md) — технологический стек (FastAPI, PostgreSQL, Redis и др.)
   - [hardware_requirements.md](docs/system_analysis/hardware_requirements.md) — требования к оборудованию и инфраструктуре
+  - [presentation_customer.html](docs/system_analysis/presentation_customer.html) — презентация заказчику (HTML)
+  - [qa/](docs/system_analysis/qa/) — тест-план, чек-листы приёмки, каркасы руководств
   - [requirements/](docs/system_analysis/requirements/)
     - [functional_requirements.md](docs/system_analysis/requirements/functional_requirements.md) — функциональные требования FR-01…FR-16
     - [ui_requirements.md](docs/system_analysis/requirements/ui_requirements.md) — требования к UI (SCR-01…SCR-12, ST-01…07)
@@ -70,6 +73,13 @@
     - [2026-10-13_colleague_to_lead_questions.md](docs/system_analysis/reviews/2026-10-13_colleague_to_lead_questions.md)
     - [2026-10-13_lead_to_colleague_answers.md](docs/system_analysis/reviews/2026-10-13_lead_to_colleague_answers.md)
     - [2026-10-13_lead_to_colleague_request.md](docs/system_analysis/reviews/2026-10-13_lead_to_colleague_request.md)
+    - [2026-10-13_colleague_scope_status.md](docs/system_analysis/reviews/2026-10-13_colleague_scope_status.md)
+    - [2026-10-13_colleague_ids_for_traceability.md](docs/system_analysis/reviews/2026-10-13_colleague_ids_for_traceability.md)
+    - [2026-10-13_senior_review.md](docs/system_analysis/reviews/2026-10-13_senior_review.md)
+    - [2026-10-13_terminology_check.md](docs/system_analysis/reviews/2026-10-13_terminology_check.md)
+    - [2026-10-13_colleague_contract_tz_review.md](docs/system_analysis/reviews/2026-10-13_colleague_contract_tz_review.md)
+    - [2026-10-13_colleague_tz_review.md](docs/system_analysis/reviews/2026-10-13_colleague_tz_review.md)
+    - [2026-10-13_frontend_api_contract_draft.md](docs/system_analysis/reviews/2026-10-13_frontend_api_contract_draft.md)
 
 ## С чего начать чтение
 
@@ -93,6 +103,7 @@
 | Экономика | [business_case.md](docs/system_analysis/business_case.md), [cost_estimation.md](docs/system_analysis/cost/cost_estimation.md) |
 | Инфраструктура/стек | [hardware_requirements.md](docs/system_analysis/hardware_requirements.md), [architecture_stack.md](docs/system_analysis/architecture_stack.md) |
 | Договор и ТЗ | [contract_draft.md](docs/system_analysis/legal/contract_draft.md), [tz_draft.md](docs/system_analysis/legal/tz_draft.md) |
+| QA и макеты | [qa/](docs/system_analysis/qa/), [presentation_customer.html](docs/system_analysis/presentation_customer.html), [frontend/](frontend/) |
 | Управление | [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md), [backlog_implementation_plan.md](docs/system_analysis/plans/backlog_implementation_plan.md), [backlog/](docs/system_analysis/backlog/), [traceability.md](docs/system_analysis/traceability.md), [change_log.md](docs/system_analysis/change_log.md) |
 
 ## Статус ворот (Gate 0–4)
