@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Протоколы и ФГИС (SCR-05){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">Статусы протоколов и ФГИС-выгрузки</h2>
+<div class="grid">
+  <div class="card">
+    <h2>Протоколы испытаний (чтение из 1С — только чтение, UI-06)</h2>
+    <table class="data num">
+      <thead><tr><th>Партия</th><th>Протокол</th><th>Валидация</th><th>ПЭП (контур 1С)</th><th>ФГИС-выгрузка</th><th>UUID записи</th></tr></thead>
+      <tbody>
+      {% for p in protocols %}
+      <tr>
+        <td class="num">{{ p.party_id }}</td>
+        <td class="num">{{ p.number }}</td>
+        <td><span class="badge {{ 'ok' if p.validation == 'Валидирован' else 'warn' }}">{{ p.validation }}</span></td>
+        <td>{{ p.signature or '—' }}</td>
+        <td>{% if p.exported %}<span class="badge ok">Выгружен</span>{% else %}<span class="badge warn">не выгружался</span>{% endif %}</td>
+        <td class="num">{{ p.uuid or '—' }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="disclaimer">
+      Весь цикл — валидация, ПЭП руководителя лаборатории, выгрузка во ФГИС — выполняется <b>в контуре «1С»</b> (LGL-01/02/07, вариант A).
+      AquaPredict <b>не формирует, не подписывает и не выгружает</b> протоколы — кнопок «выгрузить/подписать» не существует.
+      Неподписанный протокол не отображается как «отправляемый» (LGL-07). Отказ выгрузки → обращение в контур 1С (FR-09.4).
+    </p>
+  </div>
+  <div class="card">
+    <h2>Инциденты и блокировка закрытия партии</h2>
+    <table class="data">
+      <thead><tr><th>Партия</th><th>Открытые инциденты</th><th>Блокировка закрытия</th></tr></thead>
+      <tbody>
+      {% for p in parties_blocking %}
+      <tr>
+        <td class="num">{{ p.party_id }}</td>
+        <td>{{ p.open_incidents or 'нет открытых' }}</td>
+        <td>{% if p.blocked %}<span class="badge warn">активна (FR-01.4)</span>{% else %}<span class="badge ok">снята</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="disclaimer">Проблемная партия не покидает карантин до разбора инцидентов (FR-01.4); ввод в оборот (в т. ч. «Честный ЗНАК») — контур 1С (OQ-11).</p>
+  </div>
+</div>
+{% endblock %}

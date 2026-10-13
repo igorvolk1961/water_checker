@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — MLOps (SCR-07){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">MLOps-модуль</h2>
+<div class="grid cols-2">
+  <div class="card">
+    <h2>Датасеты и очередь разметки</h2>
+    <table class="data num">
+      <thead><tr><th>Датасет</th><th>Примеры</th><th>Источники меток</th><th>Статус</th></tr></thead>
+      <tbody>
+      {% for d in datasets %}
+      <tr><td class="num">{{ d.id }}</td><td class="num">{{ d.count }}</td><td>{{ d.labels }}</td><td><span class="badge {{ 'ok' if d.ready else 'info' }}">{{ d.status }}</span></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="disclaimer">Приоритет метки: <b>лабораторный протокол &gt; вердикт технолога</b> (прокси-метка, FR-11.1). Уведомление о накоплении — бейдж (UC6-3).</p>
+  </div>
+  <div class="card">
+    <h2>Карантин конфликтов разметки</h2>
+    <table class="data num">
+      <thead><tr><th>Пример</th><th>Конфликт</th><th>Статус</th></tr></thead>
+      <tbody>
+      {% for q in quarantine %}
+      <tr><td class="num">{{ q.example }}</td><td>{{ q.conflict }}</td><td><span class="badge {{ 'crit' if q.quarantined else 'ok' }}">{{ q.status }}</span></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="disclaimer">Примеры в карантине <b>не используются в обучении</b> до разрешения (FR-11.2, поток 6б); разрешение — с фиксацией в аудите.</p>
+  </div>
+  <div class="card" style="grid-column:1/-1">
+    <h2>Переобучение: сравнение версий</h2>
+    <table class="data num">
+      <thead><tr><th>Метрика</th><th>Production ({{ current.version }})</th><th>Кандидат ({{ candidate.version }})</th><th>Δ</th></tr></thead>
+      <tbody>
+      {% for m in candidate.compare %}
+      <tr><td>{{ m.name }}</td><td class="num">{{ m.current }}</td><td class="num">{{ m.candidate }}</td><td class="num">{{ m.delta }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p style="margin:10px 0 0;display:flex;gap:8px">
+      {% if user.role == 'ML-инженер' %}
+      <button class="btn primary" hx-post="/ml/deploy/{{ candidate.version }}">Утвердить и развернуть</button>
+      {% endif %}
+      <button class="btn ghost">Отложить</button>
+    </p>
+    <p class="disclaimer">Развёртывание — только решение DS (HITL); текущая версия → Архив, журнал версий ведётся (FR-11.4). При ухудшении — отмена, флаг «Требуется проверка аномалий», уведомление DS + ГТ (UC6-6а). Мониторинг дрейфа непрерывен (LGL-13, FR-11.6).</p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Cold Start (SCR-08){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">Мастер калибровки (Cold Start)</h2>
+<div class="grid">
+  <div class="card">
+    <h2>Шаги мастера</h2>
+    <div class="app-nav">
+      {% for s in steps %}
+      <span class="badge {{ 'ok' if s.state == 'done' else ('info' if s.state == 'current' else 'muted') }}">{{ loop.index }} · {{ s.title }}{% if s.state == 'done' %} ✓{% endif %}</span>
+      {% endfor %}
+    </div>
+    <table class="data num" style="margin-top:12px">
+      <tbody>
+      <tr><th>Импорт архива</th><td>SCADA (CSV / OPC-UA HDA) + лабораторные журналы · {{ import.rows }} отметок · {{ import.valid_pct }} % валидны</td></tr>
+      <tr><th>Матчинг «срез 2 ч → проба»</th><td class="num">{{ matching.matched }} из {{ matching.total }} ({{ matching.pct }} % — цель ≥ 90 %, `kpi.md` §4)</td></tr>
+      <tr><th>Не сопоставлено</th><td>{{ matching.unmatched_summary }}</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:10px 0 0;display:flex;gap:8px">
+      {% if user.role in ['ML-инженер', 'Главный технолог'] %}
+      <button class="btn ghost" hx-post="/coldstart/rematch">Повторный матчинг на подмножестве</button>
+      {% endif %}
+      <button class="btn ghost" hx-get="/coldstart/matching-report">Отчёт о матчинге (CSV)</button>
+    </p>
+    <p class="disclaimer">Хранение архива ≥ 3 лет — обязанность Заказчика (ТЗ §4.3, ASM-01). Повторный запуск на подмножестве поддерживается (FR-10.2).</p>
+  </div>
+  <div class="card">
+    <h2>Baseline-профиль и режимы</h2>
+    <table class="data">
+      <tbody>
+      <tr><th>Профиль</th><td class="num">{{ baseline.id }} (Anomaly Detection, без размеченного брака — FR-10.3)</td></tr>
+      <tr><th>Статус</th><td>{% if baseline.confirmed %}<span class="badge ok">Эталонный ✓</span>{% else %}<span class="badge warn">Черновик — ожидает подтверждения ГТ</span>{% endif %}</td></tr>
+      <tr><th>Режим</th><td>{{ baseline.mode }} (ST-06/ST-05)</td></tr>
+      </tbody>
+    </table>
+    {% if not baseline.confirmed and user.role == 'Главный технолог' %}
+    <p style="margin:10px 0 0"><button class="btn primary" hx-post="/coldstart/baseline/confirm">Подтвердить как «Эталонный»</button></p>
+    {% endif %}
+    <p class="disclaimer">
+      После подтверждения — Shadow Mode: прогнозы персоналу не показываются (FR-04.2). Подтверждение фиксируется в аудите (UI-07).
+      Поток 7а: при недостатке архива — Pre-training на синтетике цифрового двойника с продлением калибровки (FR-10.5).
+      Критерии перехода в Advisor — §4 (`10_cold_start_and_archival_data.md`), сроки — Приложение № 5 к Договору.
+    </p>
+  </div>
+</div>
+{% endblock %}

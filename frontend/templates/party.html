@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}AquaPredict — Партия {{ party.id }} (SCR-04){% endblock %}
+{% block content %}
+<h2 style="font-family:var(--font-display);font-size:var(--fs-l);margin:0 0 12px">
+  Аналитика по партии <span class="num">{{ party.id }}</span> · линия №{{ party.line }}
+</h2>
+<div class="grid">
+  <div class="card">
+    <h2>Телеметрия и лабораторные результаты на одной оси</h2>
+    <canvas id="party-chart" data-api="/parties/{{ party.id }}/telemetry?window=2h" height="180" aria-label="График телеметрии и проб"></canvas>
+    <p class="disclaimer">График строится из данных API (`/parties/{id}/telemetry`, Chart.js). Связка «проба → срез телеметрии за окно 2 ч» — FR-08.4. Сверка с нормативом — <b>информационная подсветка</b>; решение о несоответствии — в 1С (LGL-11). Данные 1С — только чтение (UI-06).</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Лабораторные показатели (LAB-01…16, из 1С)</h2>
+      <table class="data num">
+        <thead><tr><th>Показатель</th><th>Значение</th><th>Норматив</th><th>Сверка</th></tr></thead>
+        <tbody>
+        {% for r in lab_results %}
+        <tr>
+          <td>{{ r.name }} ({{ r.code }})</td>
+          <td><b>{{ r.value }}</b></td>
+          <td class="num">{{ r.norm }}</td>
+          <td>{% if r.status == 'Превышение' %}<span class="badge crit">Превышение (информационно)</span>{% else %}<span class="badge ok">Норма</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <p class="note" style="font-size:var(--fs-xs);color:var(--ink-2);margin-top:8px">Норматив — из справочника (СанПиН 1.2.3685-21 / ГОСТ 32220-2013, версия на SCR-11). Протокол и ПЭП — в 1С.</p>
+    </div>
+    <div class="card">
+      <h2>Инциденты и задачи партии</h2>
+      <table class="data">
+        {% for i in incidents %}
+        <tr><th>{{ i.id }}</th><td><span class="badge {{ {'Подтверждён':'warn','Закрыт':'ok','Новый':'info'}[i.status] }}">{{ i.status }}</span> · {{ i.source }}</td></tr>
+        {% endfor %}
+        {% for t in tasks %}
+        <tr><th class="num">{{ t.id }}</th><td><span class="badge ok">{{ t.status }}</span> · задача в 1С →</td></tr>
+        {% endfor %}
+      </table>
+      <p class="disclaimer">
+        Блокировка закрытия партии: {% if party.blocked %}<span class="badge warn">активна до проверки инцидентов (FR-01.4)</span>{% else %}<span class="badge ok">снята</span>{% endif %}<br>
+        Риск по партии: {{ party.risk_score }} ({{ party.source }}) · прогноз вероятностный (LGL-09), не основание для браковки (LGL-11).
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
