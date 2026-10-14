@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 # ruff: noqa: E501  (в файле намеренно длинные строки HTML/CSS/JS-шаблонов)
-"""Генератор колоды защиты о процессе: docs/process_defense.html.
+"""Генератор колоды: docs/process_defense.html.
 
 Что делает:
   * берёт <head> (стили и встроенные шрифты) из docs/defense.html — автономность
     сохраняется, внешние CDN не добавляются;
-  * собирает слайды процесса и материалы (макеты SCR-01…12, полный текст
-    Договора и ТЗ, презентация для Заказчика);
-  * встраивает полный текст legal/contract_draft.md и legal/tz_draft.md,
-    отрендеренный из Markdown (таблицы, приложения).
+  * титульный лист: «AquaPredict — предиктивная надстройка над «БИТ:LIMS»»;
+  * слайды 2 и 3 — содержание раздела 5 доклада (process_report.md),
+    отрендеренное из первоисточника;
+  * далее — полный текст артефактов Vision and Scope, glossary, stakeholder_map,
+    use_cases и слайд с полным перечнем артефактов;
+  * далее — Договор и ТЗ (полный текст), затем экранные формы SCR-01…12 и
+    презентация Заказчика.
 
 Запуск (из корня репозитория):
     .venv/bin/python scripts/build_process_deck.py
 
-После изменения docs/system_analysis/legal/contract_draft.md или tz_draft.md
-перезапустите этот скрипт, чтобы колода не показывала устаревший текст.
+После изменения docs/system_analysis/legal/contract_draft.md, tz_draft.md,
+process_report.md или любого из встроенных артефактов перезапустите скрипт,
+чтобы колода не показывала устаревший текст.
 
 Замечание: подчёркивания-заполнители вида `___` экранируются перед рендерингом,
 иначе Markdown трактует их как выделение (emphasis). Не удаляйте эту защиту.
@@ -28,22 +32,30 @@ import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
+SA = DOCS / "system_analysis"
 DEFENSE = DOCS / "defense.html"
-CONTRACT = DOCS / "system_analysis/legal/contract_draft.md"
-TZ = DOCS / "system_analysis/legal/tz_draft.md"
+CONTRACT = SA / "legal/contract_draft.md"
+TZ = SA / "legal/tz_draft.md"
+REPORT = SA / "process_report.md"
 OUT = DOCS / "process_defense.html"
+
+ARTIFACT_DOCS = [
+    ("Vision and Scope", SA / "01_vision_and_scope.md"),
+    ("Glossary", SA / "02_glossary.md"),
+    ("Stakeholder Map", SA / "03_stakeholder_map.md"),
+    ("Use Cases", SA / "04_use_cases.md"),
+]
 
 head = DEFENSE.read_text(encoding="utf-8").split("<body>", 1)[0]
 head = head.replace(
     "<title>AquaPredict — защита проекта</title>",
-    "<title>AquaPredict — процесс разработки (защита проекта)</title>",
+    "<title>AquaPredict — предиктивная надстройка над «БИТ:LIMS»</title>",
 )
 
 md_ext = ["tables", "fenced_code", "sane_lists", "attr_list"]
 
 
-def md_html(path: Path) -> str:
-    text = path.read_text(encoding="utf-8")
+def render_md(text: str) -> str:
     codes = []
 
     def stash(m):
@@ -58,8 +70,31 @@ def md_html(path: Path) -> str:
     return out
 
 
+def md_html(path: Path) -> str:
+    return render_md(path.read_text(encoding="utf-8"))
+
+
+def report_section(num: int) -> str:
+    """Тело раздела «## <num>. ...» из process_report.md (без заголовка)."""
+    text = REPORT.read_text(encoding="utf-8")
+    m = re.search(rf"^##\s*{num}\..*?(?=^##\s*{num + 1}\.)", text, re.S | re.M)
+    if not m:
+        raise SystemExit(f"раздел {num} не найден в {REPORT}")
+    body = re.sub(rf"^##\s*{num}\.[^\n]*\n", "", m.group(0), count=1)
+    return body.strip()
+
+
 contract_html = md_html(CONTRACT)
 tz_html = md_html(TZ)
+
+# Раздел 5 доклада — двумя слайдами: (а) проблема и ручной процесс,
+# (б) преимущества и проблемы внедрения ИИ.
+sec5 = report_section(5)
+_split = sec5.find("Поэтому целесообразно")
+if _split < 0:
+    raise SystemExit("не найден маркер деления раздела 5")
+sec5_a = sec5[:_split].strip()
+sec5_b = sec5[_split:].strip()
 
 EXTRA_CSS = """
   .docSlide{padding:4vh 6vw}
@@ -79,6 +114,12 @@ EXTRA_CSS = """
   .doc code{background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:1px 5px}
   .doc hr{border:none;border-top:1px solid var(--line);margin:1.2em 0}
   .docScrollHint{font-size:13px;color:var(--muted);margin:0 0 6px}
+  .artifacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:8px}
+  .artifacts .card{padding:12px 14px}
+  .artifacts h3{margin:0 0 6px;font-size:14px}
+  .artifacts ul{display:block;max-width:none;gap:0;margin:0;padding:0}
+  .artifacts li{list-style:none;padding-left:0;font-size:12.5px;line-height:1.45;margin:1px 0;color:var(--muted)}
+  .artifacts li::before{content:none}
 """
 
 
@@ -87,158 +128,92 @@ def slide(inner: str, extra_class: str = "") -> str:
     return f'  <section class="{cls}">\n{inner}\n  </section>\n'
 
 
+def artifact_deck() -> str:
+    """Полный перечень артефактов: обход docs/system_analysis и группировка."""
+    groups: list[tuple[str, str]] = [
+        ("Ядро системного анализа", ""),
+        ("Требования", "requirements"),
+        ("Диаграммы", "diagrams"),
+        ("План реализации", "plans"),
+        ("Бэклог", "backlog"),
+        ("Контроль качества", "qa"),
+        ("Право", "legal"),
+        ("Экономика", "cost"),
+        ("Руководства", "manuals"),
+        ("Рецензии и обзоры", "reviews"),
+    ]
+    cards = []
+    for title, sub in groups:
+        base = SA / sub if sub else SA
+        items: list[str] = []
+        if sub == "":
+            items = sorted(p.name for p in base.iterdir() if p.is_file())
+        else:
+            for p in sorted(base.iterdir()):
+                if p.is_file():
+                    items.append(p.name)
+                elif p.is_dir():
+                    for q in sorted(p.rglob("*")):
+                        if q.is_file():
+                            items.append(str(q.relative_to(base)))
+        if items:
+            lis = "".join(f"<li>{_html.escape(i)}</li>" for i in items)
+            cards.append(f'<div class="card"><h3>{_html.escape(title)}</h3><ul>{lis}</ul></div>')
+    return '<div class="artifacts">' + "".join(cards) + "</div>"
+
+
 slides = []
 
-slides.append(slide('''    <div class="kicker">Защита проекта · системный анализ</div>
-    <h1>Процесс, а не результат</h1>
-    <p class="sub">Как мы за одни сутки смоделировали реальный проект: команда «человек + два ИИ-ассистента», распределение ролей, «LLM-as-a-Judge», глоссарий и references.</p>
-    <div class="badges"><span>AquaPredict — предиктивная надстройка над «БИТ:LIMS»</span><span>Срок: 1 день</span><span>2026</span></div>
-    <p class="sub" style="margin-top:18px">Авторы: Баева Анастасия Сергеевна · Волков Игорь Анатольевич</p>''', "titleSlide active"))
+slides.append(slide(
+    '''    <div class="kicker">Защита проекта · системный анализ</div>
+    <h1>AquaPredict — предиктивная надстройка над «БИТ:LIMS»</h1>
+    <p style="margin-top:26px;font-size:15px;color:#8fb3bd">Авторы: Баева Анастасия Сергеевна · Волков Игорь Анатольевич</p>''',
+    "titleSlide active"))
 
-slides.append(slide('''    <p class="eyebrow">Контекст</p>
-    <h2 class="slideTitle">Почему доклад — о процессе</h2>
-    <ul>
-      <li>Вчера мы слушали <b>красивые доклады</b> других слушателей — но мало полезные: про «почти готовый продукт», почти ничего — про то, <b>как</b> он делался.</li>
-      <li>Преподаватель хвалил чужие проекты: «почти прод, принесут кучу денег».</li>
-      <li>Сегодня — наш проект. Мы сознательно говорим <b>не о результатах, а о процессе разработки</b>.</li>
-      <li>Потому что в учебном проекте с жёстким сроком главный результат — это <b>освоенные роли и процессы</b>.</li>
-    </ul>'''))
+slides.append(slide(
+    '    <p class="eyebrow">Доклад · раздел 5</p>'
+    '<h2 class="slideTitle">Проблема, которую мы взялись закрыть</h2>'
+    f'<div class="doc">{render_md(sec5_a)}</div>',
+    "docSlide"))
 
-slides.append(slide('''    <p class="eyebrow">Исходные условия</p>
-    <h2 class="slideTitle">Задача и срок</h2>
-    <ul>
-      <li>Проект был сформулирован так: <b>«Определение качества бутилированной воды: состав, мутность и так далее»</b>.</li>
-      <li>Срок выполнения — <b>1 день</b>.</li>
-      <li>Мы — Анастасия Сергеевна и я. В команде, кроме коллеги, — <b>два ИИ-ассистента разработки</b>.</li>
-    </ul>'''))
+slides.append(slide(
+    '    <p class="eyebrow">Доклад · раздел 5 (продолжение)</p>'
+    '<h2 class="slideTitle">Преимущества и проблемы внедрения ИИ</h2>'
+    f'<div class="doc">{render_md(sec5_b)}</div>',
+    "docSlide"))
 
-slides.append(slide('''    <p class="eyebrow">Ключевое решение</p>
-    <h2 class="slideTitle">Максимум пользы для обучения</h2>
-    <ul>
-      <li>За 1 день нельзя качественно выполнить реальный проект — поэтому мы не имитировали «почти прод».</li>
-      <li>Вместо этого построили работу так, чтобы получить <b>максимальную пользу для собственного обучения</b>.</li>
-      <li><b>Анастасия Сергеевна</b> — освоить новую область ИТ-технологий.</li>
-      <li><b>Я</b> — освоить роль <b>руководителя коллектива разработчиков</b>.</li>
-    </ul>'''))
+for label, path in ARTIFACT_DOCS:
+    slides.append(slide(
+        f'    <p class="eyebrow">Артефакт · {_html.escape(label)}</p>'
+        f'<h2 class="slideTitle">Полный текст: {_html.escape(label)}</h2>'
+        f'<p class="docScrollHint">Источник: <code>docs/system_analysis/{_html.escape(path.name)}</code>. Прокрутите страницу, чтобы прочитать полностью.</p>'
+        f'<div class="doc">{md_html(path)}</div>',
+        "docSlide"))
 
-slides.append(slide('''    <p class="eyebrow">Команда и инструменты</p>
-    <h2 class="slideTitle">Кто и чем работал</h2>
-    <div class="cols">
-      <div class="card"><h3>Ведущий (я)</h3><p>Модель <b>DeepSeek</b> — оптимум цена/качество, под управлением ИИ-ассистента <b>Kilo Code</b>.</p></div>
-      <div class="card"><h3>Коллега</h3><p>Модель <b>GLM</b> — высокоэффективная и дорогая, под управлением ИИ-ассистента <b>Claude Code</b>.</p></div>
-    </div>
-    <ul style="margin-top:16px"><li>Разная цена и разная сила моделей — сознательно использованы как инструмент: <b>дешёвая делает объём, сильная проверяет</b>.</li></ul>'''))
+slides.append(slide(
+    '    <p class="eyebrow">Артефакты проекта</p>'
+    '<h2 class="slideTitle">Полный перечень артефактов</h2>'
+    '<p class="docScrollHint">Все артефакты репозитория (<code>docs/system_analysis/</code>).</p>'
+    + artifact_deck(),
+    "docSlide"))
 
-slides.append(slide('''    <p class="eyebrow">Поиск ниши</p>
-    <h2 class="slideTitle">Надстройка, а не слом технологии</h2>
-    <ul>
-      <li>Производство бутилированной воды — <b>отлаженный процесс</b>; проверка качества уже заложена в стандартные технологические решения.</li>
-      <li>Ломать действующие процессы бессмысленно — мы искали <b>свою нишу</b>.</li>
-      <li>Цель: <b>надстройка над существующей системой контроля качества</b>, закрывающая её недостатки.</li>
-    </ul>'''))
+slides.append(slide(
+    '    <p class="eyebrow">Документы · Договор</p>'
+    '<h2 class="slideTitle">Полный текст Договора</h2>'
+    '<p class="docScrollHint">Проект договора на выполнение работ с приложениями № 2–5. Прокрутите страницу, чтобы прочитать полностью.<br>'
+    'Источник: <code>docs/system_analysis/legal/contract_draft.md</code> (ред. 2.2, 2026-10-13). Колода собрана из него; при правке документа перезапустите '
+    '<code>scripts/build_process_deck.py</code>.</p>'
+    f'<div class="doc">{contract_html}</div>',
+    "docSlide"))
 
-slides.append(slide('''    <p class="eyebrow">Проблема</p>
-    <h2 class="slideTitle">Реактивный контроль → предиктивный</h2>
-    <ul>
-      <li>Существующая система <b>только отбраковывает</b> партию — уже произведённую.</li>
-      <li>Нужен <b>предиктивный</b> контроль: раннее предупреждение о риске.</li>
-      <li>Предположение: на многих предприятиях процесс <b>ручной</b> → человеческий фактор, запаздывание реакции, отсутствие объективной истории, разрозненность данных, неповторяемость практик, сложность аудита.</li>
-      <li>Берём преимущества ИИ, но видим и <b>проблемы внедрения</b>: стохастичность, FP/FN, эффект автоматизации, ответственность, разметка данных, дрейф, ИБ.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Организация работы</p>
-    <h2 class="slideTitle">Моделировали реальный процесс</h2>
-    <ul>
-      <li>Не делили проект на полностью <b>независимые модули</b>.</li>
-      <li>Разделили ответственность по принципу:
-        <ul style="margin-top:8px">
-          <li>равноценности вклада каждого участника;</li>
-          <li>максимальной пользы от участия для каждого;</li>
-          <li>учёта сильных сторон каждого, <b>включая ИИ-модели</b>.</li>
-        </ul>
-      </li>
-    </ul>
-    <p class="sub" style="margin-top:14px">Сознательно пошли на связанность задач и совместную работу над одними артефактами — потому что именно конфликты и есть <b>реальность</b>, а не учебная модель.</p>'''))
-
-slides.append(slide('''    <p class="eyebrow">Роли</p>
-    <h2 class="slideTitle">Распределение ответственности</h2>
-    <div class="cols">
-      <div class="card"><h3>Ведущий (я)</h3><p>Руководство проектом, концепция, планирование и текущее управление, черновые артефакты СА (кроме ФТ), бэклог, бэкенд (по факту не дошло), вопросы ИИ.</p></div>
-      <div class="card"><h3>Анастасия Сергеевна</h3><p>Функциональные требования, все диаграммы, образцы экранных форм, презентация Заказчику, чистовая доработка Договора.</p></div>
-    </div>
-    <ul style="margin-top:16px"><li>ИИ-помощник коллеги — <b>роль судьи</b>: технология <b>«LLM-as-a-Judge»</b> (сильная модель критикует результаты дешёвой).</li></ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Результат за сутки</p>
-    <h2 class="slideTitle">Что получилось</h2>
-    <ul>
-      <li><b>Проект Договора</b> на выполнение работ.</li>
-      <li><b>Техническое задание (ТЗ)</b>.</li>
-      <li><b>Образцы экранных форм</b> — для представления Заказчику.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Главная трудность</p>
-    <h2 class="slideTitle">Границы проекта (Vision and Scope)</h2>
-    <ul>
-      <li>Труднее всего — на первом этапе: чётко <b>разграничить зону ответственности</b> проекта от остальной существующей технологической цепочки.</li>
-      <li>Здесь очень помогла техника <b>«LLM-as-a-Judge»</b>: сильная модель выявляла <b>неточности формулировок</b>.</li>
-      <li>Неточность формулировки на раннем этапе → <b>галлюцинации</b> моделей на поздних этапах.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Планирование</p>
-    <h2 class="slideTitle">Пошагово, с перепроверкой</h2>
-    <ul>
-      <li>Отказались от соблазна поручить ИИ «сделать всё и сразу».</li>
-      <li>Каждый шаг, выполненный <b>дешёвой</b> моделью, <b>перепроверялся сильной</b> моделью.</li>
-      <li>Планирование и пошаговое выполнение — не формальность, а способ удержать качество.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Особый случай</p>
-    <h2 class="slideTitle">ИИ-модели вступили в прямой контакт</h2>
-    <ul>
-      <li>Неожиданно обнаружили: <b>две ИИ-модели сами установили контакт</b> между собой.</li>
-      <li>Они создали в репозитории проекта <b>папку</b> и помещали туда сообщения друг другу.</li>
-      <li>Я заметил это, когда моя модель «проговорилась», что ей надо ответить на адресованное ей сообщение.</li>
-      <li>Я попросил показать диалог и <b>взял его под свой контроль</b>: стал поручать своей модели давать сильной модели прямые указания по <b>предотвращению конфликтов</b> при совместной работе над артефактами.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Артефакт · глоссарий</p>
-    <h2 class="slideTitle">Glossary — словарь смыслов</h2>
-    <ul>
-      <li>Особое внимание — артефакту <b>glossary</b>: он <b>постоянно пополнялся</b>.</li>
-      <li>Следили, чтобы во всех артефактах использовались <b>одни и те же термины</b>.</li>
-      <li>Периодически моделям ставилась задача <b>проверять полноту словаря</b> — чтобы не оставалось непонятных или неоднозначных терминов и сокращений.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Пример из практики</p>
-    <h2 class="slideTitle">Аббревиатура «КА»</h2>
-    <ul>
-      <li>Корректирующее действие обозначается префиксом <code>CA</code> (corrective action).</li>
-      <li>Одна из моделей по аналогии предложила русское сокращение <b>«КА»</b> — это порождало неоднозначность.</li>
-      <li>В глоссарий внесли явный запрет: <b>«корректирующее действие (в идентификаторах — префикс CA; аббревиатура "КА" не используется)»</b>.</li>
-      <li>Так глоссарий стал <b>инструментом против галлюцинаций</b>, а не формальным приложением.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Артефакт · references</p>
-    <h2 class="slideTitle">Папка вспомогательных материалов</h2>
-    <ul>
-      <li>Папка <b>references</b> — хранилище материалов, найденных в интернете или полученных в ИИ-чатах.</li>
-      <li>Назначение — помочь команде <b>глубже понимать задачу</b>.</li>
-      <li>Пример: обзор подходов к <b>поиску аномалий</b> в данных (алгоритмы, оконные признаки, residual/reconstruction).</li>
-      <li>Экономит время: вместо повторного поиска опираемся на уже собранную и проверенную базу.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Выводы</p>
-    <h2 class="slideTitle">Что мы вынесли</h2>
-    <ul>
-      <li>В учебном проекте главное — <b>освоенные роли и процессы</b>, а не «почти готовый продукт».</li>
-      <li>Разделение по сильным сторонам + перекрёстная проверка <b>«дешёвая делает — сильная проверяет»</b> → управляемое качество.</li>
-      <li>Дисциплина артефактов (<b>Vision and Scope, глоссарий, references</b>) защищает от галлюцинаций и масштабирует команду «человек + ИИ».</li>
-      <li>Связанность задач и реальные конфликты — это <b>процесс, переносимый на реальные проекты</b>.</li>
-    </ul>'''))
-
-slides.append(slide('''    <p class="eyebrow">Материалы проекта</p>
-    <h2 class="slideTitle">Экраны интерфейса — SCR-01…SCR-12</h2>
-    <p class="sub">Далее — макеты всех экранных форм, затем полный текст Договора и ТЗ (с прокруткой) и презентация для Заказчика.</p>'''))
+slides.append(slide(
+    '    <p class="eyebrow">Документы · ТЗ</p>'
+    '<h2 class="slideTitle">Полный текст Технического задания</h2>'
+    '<p class="docScrollHint">Техническое задание (структура по ГОСТ 34.602-89) с приложениями А и Б. Прокрутите страницу, чтобы прочитать полностью.<br>'
+    'Источник: <code>docs/system_analysis/legal/tz_draft.md</code> (ред. 1.2, 2026-10-13). Колода собрана из него; при правке документа перезапустите '
+    '<code>scripts/build_process_deck.py</code>.</p>'
+    f'<div class="doc">{tz_html}</div>',
+    "docSlide"))
 
 mockups = [
     ("SCR-01", "Дашборд технолога", "scr01_dashboard.html"),
@@ -261,24 +236,6 @@ for code, title, fname in mockups:
     ))
 
 slides.append(slide(
-    '    <p class="eyebrow">Документы · Договор</p>'
-    '<h2 class="slideTitle">Полный текст Договора</h2>'
-    '<p class="docScrollHint">Проект договора на выполнение работ с приложениями № 2–5. Прокрутите страницу, чтобы прочитать полностью.<br>'
-    'Источник: <code>docs/system_analysis/legal/contract_draft.md</code> (ред. 2.2, 2026-10-13). Колода собрана из него; при правке документа перезапустите '
-    '<code>scripts/build_process_deck.py</code>.</p>'
-    f'<div class="doc">{contract_html}</div>',
-    "docSlide"))
-
-slides.append(slide(
-    '    <p class="eyebrow">Документы · ТЗ</p>'
-    '<h2 class="slideTitle">Полный текст Технического задания</h2>'
-    '<p class="docScrollHint">Техническое задание (структура по ГОСТ 34.602-89) с приложениями А и Б. Прокрутите страницу, чтобы прочитать полностью.<br>'
-    'Источник: <code>docs/system_analysis/legal/tz_draft.md</code> (ред. 1.2, 2026-10-13). Колода собрана из него; при правке документа перезапустите '
-    '<code>scripts/build_process_deck.py</code>.</p>'
-    f'<div class="doc">{tz_html}</div>',
-    "docSlide"))
-
-slides.append(slide(
     '    <p class="eyebrow">Документы · для Заказчика</p>'
     '<h2 class="slideTitle">Презентация для Заказчика</h2>'
     '<p class="docScrollHint">Одностраничная презентация (прокрутите её внутри окна).</p>'
@@ -287,13 +244,13 @@ slides.append(slide(
 slides.append(slide('''    <p class="eyebrow">Итоги</p>
     <h2 class="slideTitle">Спасибо! Вопросы?</h2>
     <ul>
-      <li>Говорили о <b>процессе</b>: команда «человек + ИИ», роли, перекрёстная проверка, глоссарий, references.</li>
-      <li>Полный текст Договора и ТЗ, все экранные формы и презентация Заказчику — в этой колоде.</li>
-      <li>Исходный текст доклада — <code>docs/system_analysis/process_report.md</code>.</li>
+      <li>Раздел 5 доклада, артефакты системного анализа и полный перечень — в начале колоды.</li>
+      <li>Договор, ТЗ, экранные формы и презентация Заказчику — далее.</li>
+      <li>Текст доклада о процессе разработки — <code>docs/system_analysis/process_report.md</code>.</li>
     </ul>'''))
 
 nav = '''
-<div class="foot">AquaPredict · процесс разработки · 2026 · <a href="https://github.com/igorvolk1961/water_checker">репозиторий</a></div>
+<div class="foot">AquaPredict · предиктивная надстройка над «БИТ:LIMS» · 2026 · <a href="https://github.com/igorvolk1961/water_checker">репозиторий</a></div>
 <div class="controls">
   <button id="prev" aria-label="Назад">←</button>
   <span class="counter"><span id="cur">1</span> / <span id="total">20</span></span>
