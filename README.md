@@ -4,7 +4,7 @@
 
 [**Презентация проекта**](https://igorvolk1961.github.io/water_checker/)
 
-[**Слайды защиты проекта**](https://igorvolk1961.github.io/water_checker/defense.html)
+[**Слайды защиты проекта**](https://igorvolk1961.github.io/water_checker/process_defense.html)
 
 **Позиционирование:** AquaPredict — **аналитическая надстройка** над учётной системой «БИТ:LIMS» (1С), а не самостоятельная LIMS. Лабораторный контур (регистрация проб, результаты, протоколы, выгрузка во ФГИС) остаётся в 1С; AquaPredict добавляет телеметрию, риск-скоринг и предиктивные алерты и пишет задачи обратно в 1С.
 
@@ -42,7 +42,7 @@
   - [report.md](docs/system_analysis/report.md) — пояснительная записка (черновик)
   - [defense_notes.md](docs/system_analysis/defense_notes.md) — аргументы защиты
   - [defense_slides.md](docs/system_analysis/defense_slides.md) — слайды защиты (черновик)
-  - [docs/defense.html](docs/defense.html) — **автономная** HTML-дека защиты (шрифты встроены; mermaid — локальный `docs/vendor/mermaid.min.js`), навигация стрелками/пробелом
+  - [docs/process_defense.html](docs/process_defense.html) — **автономная** HTML-дека защиты: раздел 5 доклада, полные тексты Vision&Scope / glossary / stakeholder_map / use_cases, полный перечень артефактов, Договор и ТЗ, экранные формы SCR-01…SCR-12 и презентация Заказчику (шрифты встроены), навигация стрелками/пробелом
   - [docs/bpmn.html](docs/bpmn.html) — **BPMN-схемы процессов UC1…UC8** (три уровня: спецификация `diagrams/bpmn_ucX*.md` → **BPMN 2.0** `diagrams/bpmn/*.bpmn` + **SVG** `diagrams/bpmn/*.svg`; плюс визуальная mermaid-версия `diagrams/bpmn_visual_uc1…8.md`)
   - [hardware_requirements.md](docs/system_analysis/hardware_requirements.md) — требования к оборудованию и инфраструктуре
   - [presentation_customer.html](docs/system_analysis/presentation_customer.html) — презентация заказчику (HTML, автономная — шрифты встроены)
@@ -125,7 +125,7 @@
 | Договор и ТЗ | [contract_draft.md](docs/system_analysis/legal/contract_draft.md), [tz_draft.md](docs/system_analysis/legal/tz_draft.md) |
 | QA и макеты | [qa/](docs/system_analysis/qa/), [manuals/](docs/system_analysis/manuals/), [presentation_customer.html](docs/system_analysis/presentation_customer.html), [frontend/](frontend/) |
 | Управление | [roadmap_and_plan.md](docs/system_analysis/roadmap_and_plan.md), [backlog_implementation_plan.md](docs/system_analysis/plans/backlog_implementation_plan.md), [backlog/](docs/system_analysis/backlog/), [traceability.md](docs/system_analysis/traceability.md), [change_log.md](docs/system_analysis/change_log.md) |
-| Отчёт и защита | [report.md](docs/system_analysis/report.md), [defense_notes.md](docs/system_analysis/defense_notes.md), [defense_slides.md](docs/system_analysis/defense_slides.md), [docs/defense.html](docs/defense.html) |
+| Отчёт и защита | [report.md](docs/system_analysis/report.md), [defense_notes.md](docs/system_analysis/defense_notes.md), [defense_slides.md](docs/system_analysis/defense_slides.md), [docs/process_defense.html](docs/process_defense.html) |
 
 ## Статус ворот (Gate 0–4)
 
