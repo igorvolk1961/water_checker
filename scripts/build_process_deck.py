@@ -241,14 +241,6 @@ slides.append(slide(
     '<p class="docScrollHint">Одностраничная презентация (прокрутите её внутри окна).</p>'
     '<iframe class="frame" style="height:74vh" src="system_analysis/presentation_customer.html" title="Презентация для Заказчика" loading="lazy"></iframe>'))
 
-slides.append(slide('''    <p class="eyebrow">Итоги</p>
-    <h2 class="slideTitle">Спасибо! Вопросы?</h2>
-    <ul>
-      <li>Раздел 5 доклада, артефакты системного анализа и полный перечень — в начале колоды.</li>
-      <li>Договор, ТЗ, экранные формы и презентация Заказчику — далее.</li>
-      <li>Текст доклада о процессе разработки — <code>docs/system_analysis/process_report.md</code>.</li>
-    </ul>'''))
-
 nav = '''
 <div class="foot">AquaPredict · предиктивная надстройка над «БИТ:LIMS» · 2026 · <a href="https://github.com/igorvolk1961/water_checker">репозиторий</a></div>
 <div class="controls">
