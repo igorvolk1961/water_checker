@@ -84,6 +84,13 @@ def report_section(num: int) -> str:
     return body.strip()
 
 
+def report_heading(num: int) -> str:
+    """Заголовок раздела «## <num>. ...» из process_report.md."""
+    text = REPORT.read_text(encoding="utf-8")
+    m = re.search(rf"^##\s*{num}\.\s*(.+)$", text, re.M)
+    return m.group(1).strip() if m else f"Раздел {num}"
+
+
 contract_html = md_html(CONTRACT)
 tz_html = md_html(TZ)
 
@@ -181,6 +188,13 @@ slides.append(slide(
     '<h2 class="slideTitle">Преимущества и проблемы внедрения ИИ</h2>'
     f'<div class="doc">{render_md(sec5_b)}</div>',
     "docSlide"))
+
+for _num in (7, 8):
+    slides.append(slide(
+        f'    <p class="eyebrow">Доклад · раздел {_num}</p>'
+        f'<h2 class="slideTitle">{_html.escape(report_heading(_num))}</h2>'
+        f'<div class="doc">{render_md(report_section(_num))}</div>',
+        "docSlide"))
 
 for label, path in ARTIFACT_DOCS:
     slides.append(slide(
