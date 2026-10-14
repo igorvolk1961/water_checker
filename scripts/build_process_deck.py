@@ -196,14 +196,6 @@ for _num in (7, 8):
         f'<div class="doc">{render_md(report_section(_num))}</div>',
         "docSlide"))
 
-for label, path in ARTIFACT_DOCS:
-    slides.append(slide(
-        f'    <p class="eyebrow">Артефакт · {_html.escape(label)}</p>'
-        f'<h2 class="slideTitle">Полный текст: {_html.escape(label)}</h2>'
-        f'<p class="docScrollHint">Источник: <code>docs/system_analysis/{_html.escape(path.name)}</code>. Прокрутите страницу, чтобы прочитать полностью.</p>'
-        f'<div class="doc">{md_html(path)}</div>',
-        "docSlide"))
-
 slides.append(slide(
     '    <p class="eyebrow">Артефакты проекта</p>'
     '<h2 class="slideTitle">Полный перечень артефактов</h2>'
@@ -228,6 +220,14 @@ slides.append(slide(
     '<code>scripts/build_process_deck.py</code>.</p>'
     f'<div class="doc">{tz_html}</div>',
     "docSlide"))
+
+for label, path in ARTIFACT_DOCS:
+    slides.append(slide(
+        f'    <p class="eyebrow">Артефакт · {_html.escape(label)}</p>'
+        f'<h2 class="slideTitle">Полный текст: {_html.escape(label)}</h2>'
+        f'<p class="docScrollHint">Источник: <code>docs/system_analysis/{_html.escape(path.name)}</code>. Прокрутите страницу, чтобы прочитать полностью.</p>'
+        f'<div class="doc">{md_html(path)}</div>',
+        "docSlide"))
 
 mockups = [
     ("SCR-01", "Дашборд технолога", "scr01_dashboard.html"),
